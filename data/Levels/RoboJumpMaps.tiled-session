@@ -1,0 +1,81 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "RoboJumpMap_Level1.tmx",
+    "expandedProjectPaths": [
+        "images",
+        ".",
+        "images/tilemap"
+    ],
+    "fileStates": {
+        "RoboJumpMap_Level1.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 231.66666666666669,
+                "y": 247.66666666666663
+            }
+        },
+        "demo.tmx": {
+            "scale": 0.8708333333333332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 479.4258373205742,
+                "y": 255.50239234449768
+            }
+        },
+        "demo.tmx#tileset": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "images/tilemap/BackgroundsTileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        },
+        "images/tilemap/FlagsTileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
+        },
+        "images/tilemap/GUITileset.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 3
+        },
+        "images/tilemap/GemsTileset.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 4
+        }
+    },
+    "frame.defaultDuration": 100,
+    "last.imagePath": "C:/Users/flyai/Desktop/Master ProgVideoj/ProgramacionC++/RoboJump/data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": "3",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "RoboJumpMap_Level1.tmx",
+        "images/tilemap/GUITileset.tsx",
+        "images/tilemap/BackgroundsTileset.tsx",
+        "images/tilemap/FlagsTileset.tsx",
+        "images/tilemap/GemsTileset.tsx",
+        "demo.tmx"
+    ],
+    "project": "RoboJumpMaps.tiled-project",
+    "recentFiles": [
+        "demo.tmx",
+        "images/tilemap/GemsTileset.tsx",
+        "images/tilemap/FlagsTileset.tsx",
+        "images/tilemap/BackgroundsTileset.tsx",
+        "images/tilemap/GUITileset.tsx",
+        "RoboJumpMap_Level1.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

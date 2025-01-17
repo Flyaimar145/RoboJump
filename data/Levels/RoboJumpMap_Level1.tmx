@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="17">
+ <tileset firstgid="1" source="images/tilemap/BackgroundsTileset.tsx"/>
+ <tileset firstgid="97" source="images/tilemap/GUITileset.tsx"/>
+ <tileset firstgid="202" source="images/tilemap/FlagsTileset.tsx"/>
+ <tileset firstgid="517" source="images/tilemap/GemsTileset.tsx"/>
+ <layer id="1" name="BackgroundLayer" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0bEBgCAUxNC/AOgSgEuALqGw/ySmY4OrrnhF6qSIyDhwIom6oKLhEnbHwI1H2C8+TCxhq376r//6r//6r//67+4fMEZ2NQ==
+  </data>
+ </layer>
+ <layer id="2" name="GroundAndWallsLayer" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxby8DAsHYUj+JRPIqHAF4AxHvojBcC8ToG+oM1o/aO2jtqL1XsXQ/E8yjA89HMnEuEng1ADABiCvwr
+  </data>
+ </layer>
+ <layer id="3" name="MainLayer" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGATrQYILQilBaCkrzQGlWJvq7iRDgYmRg4Gakv73yQDsVBsBeE6CdpgNgLzEAAMknAUI=
+  </data>
+ </layer>
+ <objectgroup id="4" name="WallsLayer">
+  <object id="1" name="Wall1" x="0" y="176" width="16" height="128"/>
+  <object id="2" name="Ceiling" x="0" y="160" width="480" height="16"/>
+  <object id="4" name="Wall2" x="464" y="176" width="16" height="128">
+   <properties>
+    <property name="ColliderType" value="Wall"/>
+   </properties>
+  </object>
+  <object id="5" name="Ground1" x="0" y="304" width="272" height="16"/>
+  <object id="6" name="Ground2" x="320" y="304" width="160" height="16"/>
+ </objectgroup>
+ <objectgroup id="5" name="GemsLayer">
+  <object id="8" name="BlueGem" x="96" y="240" width="16" height="16"/>
+  <object id="9" name="PinkGem" x="128" y="240" width="16" height="16"/>
+  <object id="10" name="RedGem" x="160" y="240" width="16" height="16"/>
+  <object id="11" name="CoinGem" x="192" y="240" width="16" height="16"/>
+  <object id="12" name="StarGem" x="224" y="240" width="16" height="16"/>
+ </objectgroup>
+</map>
