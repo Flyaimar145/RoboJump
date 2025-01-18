@@ -28,9 +28,11 @@ public:
 	void render(sf::RenderWindow& window) override;
 
 	sf::Vector2f getSpeed() const { return m_speed; }
+	sf::Vector2f getDirection() const { return m_direction; }
 	void setGravity(float gravity) { m_currentGravity = gravity; }
 	void setIsJumping(bool isJumping) { m_isJumping = isJumping; }
 	void setSpeed(sf::Vector2f speed) { m_speed = speed; }
+	void setDirection(sf::Vector2f direction) { m_direction = direction; }
 
 protected:
 

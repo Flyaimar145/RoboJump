@@ -41,6 +41,7 @@ class World
 		MapLayer* m_layerZero{ nullptr };
 		MapLayer* m_layerOne{ nullptr };
 		MapLayer* m_layerTwo{ nullptr };
-		ObjectLayer* m_collisionLayer{ nullptr };
+		ObjectLayer* m_groundsLayer{ nullptr };
+		ObjectLayer* m_wallsLayer{ nullptr };
 		ObjectLayer* m_gemsLayer{ nullptr };
 };

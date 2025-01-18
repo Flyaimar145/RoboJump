@@ -13,6 +13,9 @@ World::~World()
 	delete m_layerZero;
 	delete m_layerOne;
 	delete m_layerTwo;
+	delete m_groundsLayer;
+	delete m_wallsLayer;
+	delete m_gemsLayer;
 	delete m_map;
 }
 
@@ -27,8 +30,9 @@ bool World::load()
 	m_layerOne = new MapLayer(*m_map, 1);
 	m_layerTwo = new MapLayer(*m_map, 2);
 
-	m_collisionLayer = new ObjectLayer(*m_map, 3);
-	m_gemsLayer = new ObjectLayer(*m_map, 4);
+	m_groundsLayer = new ObjectLayer(*m_map, 3);
+	m_wallsLayer = new ObjectLayer(*m_map, 4);
+	m_gemsLayer = new ObjectLayer(*m_map, 5);
 
 	m_layerZero->setOffset({ .0f, .0f });
 
@@ -44,7 +48,7 @@ bool World::load()
 	const bool initOk = player->init(playerDescriptor);
 
 	m_player = player;
-	player->setPosition({ MAP_TILE_SIZE * 1.f, MAP_TILE_SIZE * 17.f });
+	player->setPosition({ MAP_TILE_SIZE * 1.5f, MAP_TILE_SIZE * 17.f });
 
 
 
@@ -61,27 +65,80 @@ void World::update(uint32_t deltaMilliseconds)
 
 	// Update actors
 	// Check for collisions (We could do it in a function here or have a collision manager if it gets complex)
-	const auto& collisionShapes = m_collisionLayer->getShapes();
-	bool isColliding = false;
-	for (const auto* shape : collisionShapes)
+	const auto& groundShapes = m_groundsLayer->getShapes();
+	bool isGrounded = false;
+	for (const auto* shape : groundShapes)
 	{	
 		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
 		{
-			isColliding = true;
+			isGrounded = true;
 			m_player->setGravity(.0f);
 			m_player->setIsJumping(false);
 			m_player->setPosition({ m_player->getPosition().x, shape->getGlobalBounds().top - m_player->getBounds().height +1.f});
-			//m_player->setSpeed({ m_player->getSpeed().x, .0f });
 			#if DEBUG_MODE
-				//printf("Wall Collision \n");
+				//printf("Ground Collision \n");
 			#endif
 		}
 	}
-	//printf("Is colliding: %d\n", isColliding);
-	if (!isColliding)
+	if (!isGrounded)
 	{
 		m_player->setGravity(980.f);
 	}
+
+	const auto& wallShapes = m_wallsLayer->getShapes();
+	bool isCollidingWithWall = false;
+	bool collidedLeft = false;
+	bool collidedRight = false;
+	for (const auto* shape : wallShapes)
+	{
+		//printf("Player Bounds \n");
+		/*
+		printf("Left: %f \n", m_player->getBounds().left);
+		printf("Top: %f \n", m_player->getBounds().top);
+		printf("Right: %f \n", m_player->getBounds().left + m_player->getBounds().width);
+		printf("Bottom: %f \n", m_player->getBounds().top + m_player->getBounds().height);
+		*/
+		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
+		{
+			sf::FloatRect playerBounds = m_player->getBounds();
+			sf::FloatRect wallBounds = shape->getGlobalBounds();
+
+			// Check if the player is moving right and collides with the left side of the wall
+			if (m_player->getDirection().x > 0 && playerBounds.left + playerBounds.width > wallBounds.left && playerBounds.left < wallBounds.left)
+			{
+				m_player->setPosition({ wallBounds.left - playerBounds.width, m_player->getPosition().y });
+				isCollidingWithWall = true;
+				collidedLeft = true;
+			}
+			// Check if the player is moving left and collides with the right side of the wall
+			else if (m_player->getDirection().x < 0 && playerBounds.left < wallBounds.left + wallBounds.width && playerBounds.left + playerBounds.width > wallBounds.left + wallBounds.width)
+			{
+				m_player->setPosition({ wallBounds.left + wallBounds.width, m_player->getPosition().y });
+				isCollidingWithWall = true;
+				collidedRight = true;
+
+			}
+			#if DEBUG_MODE
+			//printf("Wall Collision \n");
+			//printf("Collided Left: %d, Collided Right: %d", collidedLeft, collidedRight);
+			#endif
+		}
+	}
+	// Allow movement away from the wall
+	sf::Vector2f newDirection = m_player->getDirection();
+	// If collidedLeft, disallow left movement (negative x-direction)
+	if (collidedLeft && newDirection.x < 0)
+	{
+		newDirection.x = 0.f;
+	}
+	// If collidedRight, disallow right movement (positive x-direction)
+	if (collidedRight && newDirection.x > 0)
+	{
+		newDirection.x = 0.f;
+	}
+	// Update the player's direction with the new direction
+	m_player->setDirection(newDirection);
+		
 	m_player->update(deltaMilliseconds);
 
 	const auto& gemShapes = m_gemsLayer->getShapes();
@@ -101,7 +158,8 @@ void World::render(sf::RenderWindow& window)
 	window.draw(*m_layerZero);
 	window.draw(*m_layerOne);
 	window.draw(*m_layerTwo);
-	window.draw(*m_collisionLayer);
+	window.draw(*m_groundsLayer);
+	window.draw(*m_wallsLayer);
 	window.draw(*m_gemsLayer);
 	m_player->render(window);
 }
