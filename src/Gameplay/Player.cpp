@@ -89,7 +89,7 @@ void Player::update(float deltaMilliseconds)
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
 	//std::cout << "X: " << m_position.x << " Y: " << m_position.y << std::endl;
-	printf("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
+	//printf("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
 	//m_position.y += (m_direction.y * m_speed.y * deltaMilliseconds);
 
 	// Update animation

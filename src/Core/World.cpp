@@ -15,6 +15,7 @@ World::~World()
 	delete m_layerTwo;
 	delete m_groundsLayer;
 	delete m_wallsLayer;
+	delete m_ceilingsLayer;
 	delete m_gemsLayer;
 	delete m_map;
 }
@@ -32,7 +33,8 @@ bool World::load()
 
 	m_groundsLayer = new ObjectLayer(*m_map, 3);
 	m_wallsLayer = new ObjectLayer(*m_map, 4);
-	m_gemsLayer = new ObjectLayer(*m_map, 5);
+	m_ceilingsLayer = new ObjectLayer(*m_map, 5);
+	m_gemsLayer = new ObjectLayer(*m_map, 6);
 
 	m_layerZero->setOffset({ .0f, .0f });
 
@@ -138,6 +140,19 @@ void World::update(uint32_t deltaMilliseconds)
 	}
 	// Update the player's direction with the new direction
 	m_player->setDirection(newDirection);
+
+	const auto& ceilingShapes = m_ceilingsLayer->getShapes();
+	for (const auto* shape : ceilingShapes)
+	{
+		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
+		{
+			m_player->setPosition({ m_player->getPosition().x, shape->getGlobalBounds().top + shape->getGlobalBounds().height });
+			m_player->setSpeed({ m_player->getSpeed().x, .0f });
+		#if DEBUG_MODE
+					//printf("Ceiling Colission\n");
+		#endif
+		}
+	}
 		
 	m_player->update(deltaMilliseconds);
 
@@ -160,6 +175,7 @@ void World::render(sf::RenderWindow& window)
 	window.draw(*m_layerTwo);
 	window.draw(*m_groundsLayer);
 	window.draw(*m_wallsLayer);
+	window.draw(*m_ceilingsLayer);
 	window.draw(*m_gemsLayer);
 	m_player->render(window);
 }

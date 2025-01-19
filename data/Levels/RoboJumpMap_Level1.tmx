@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="17">
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="17">
  <tileset firstgid="1" source="images/tilemap/BackgroundsTileset.tsx"/>
  <tileset firstgid="97" source="images/tilemap/GUITileset.tsx"/>
  <tileset firstgid="202" source="images/tilemap/FlagsTileset.tsx"/>
@@ -25,12 +25,14 @@
  </objectgroup>
  <objectgroup id="4" name="WallsLayer">
   <object id="1" name="Wall1" x="0" y="176" width="16" height="128"/>
-  <object id="2" name="Ceiling" x="0" y="160" width="480" height="16"/>
   <object id="4" name="Wall2" x="464" y="176" width="16" height="128">
    <properties>
     <property name="ColliderType" value="Wall"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="7" name="CelingsLayer">
+  <object id="2" name="Ceiling" x="0" y="160" width="480" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="GemsLayer">
   <object id="8" name="BlueGem" x="96" y="240" width="16" height="16"/>
