@@ -1,5 +1,5 @@
 #include <Core/AssetManager.h>
-#include <Core/ColissionManager.h>
+#include <Core/CollisionManager.h>
 #include <Core/World.h>
 #include <Gameplay/Player.h>
 #include <Render/SFMLOrthogonalLayer.h>
@@ -66,10 +66,19 @@ void World::update(uint32_t deltaMilliseconds)
 	m_layerTwo->update(sf::milliseconds(deltaMilliseconds));
 
 
-	// Update actors
 	// Check for collisions (We could do it in a function here or have a collision manager if it gets complex)
+	// Collision management (with CollisionManager)
+	CollisionManager::getInstance()->checkGroundCollision(m_groundsLayer, m_player);
+	CollisionManager::getInstance()->checkWallCollision(m_wallsLayer, m_player);
+	CollisionManager::getInstance()->checkCeilingCollision(m_ceilingsLayer, m_player);
+	CollisionManager::getInstance()->checkGemCollision(m_gemsLayer, m_player);
 
-	/*const auto& groundShapes = m_groundsLayer->getShapes();
+	// Update player
+	m_player->update(deltaMilliseconds);
+
+	// Collision management (old code; no CollisionManager; keeping it for the moment just in case)
+	/*
+	const auto& groundShapes = m_groundsLayer->getShapes();
 	bool isGrounded = false;
 	for (const auto* shape : groundShapes)
 	{	
@@ -87,9 +96,8 @@ void World::update(uint32_t deltaMilliseconds)
 	if (!isGrounded)
 	{
 		m_player->setGravity(980.f);
-	}*/
-	ColissionManager::getInstance()->checkGroundColission(m_groundsLayer, m_player);
-	/*
+	}
+	
 	const auto& wallShapes = m_wallsLayer->getShapes();
 	bool isCollidingWithWall = false;
 	bool collidedLeft = false;
@@ -142,9 +150,8 @@ void World::update(uint32_t deltaMilliseconds)
 	}
 	// Update the player's direction with the new direction
 	m_player->setDirection(newDirection);
-	*/
-	ColissionManager::getInstance()->checkWallColission(m_wallsLayer, m_player);
-	/*const auto& ceilingShapes = m_ceilingsLayer->getShapes();
+	
+	const auto& ceilingShapes = m_ceilingsLayer->getShapes();
 	for (const auto* shape : ceilingShapes)
 	{
 		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
@@ -152,15 +159,11 @@ void World::update(uint32_t deltaMilliseconds)
 			m_player->setPosition({ m_player->getPosition().x, shape->getGlobalBounds().top + shape->getGlobalBounds().height });
 			m_player->setSpeed({ m_player->getSpeed().x, .0f });
 		#if DEBUG_MODE
-					//printf("Ceiling Colission\n");
+					//printf("Ceiling Collision\n");
 		#endif
 		}
 	}
-	*/
-	ColissionManager::getInstance()->checkCeilingColission(m_ceilingsLayer, m_player);
-	m_player->update(deltaMilliseconds);
-
-	/*
+	
 	const auto& gemShapes = m_gemsLayer->getShapes();
 	for (const auto* shape : gemShapes)
 	{
@@ -172,7 +175,6 @@ void World::update(uint32_t deltaMilliseconds)
 		}
 	}
 	*/
-	ColissionManager::getInstance()->checkGemColission(m_gemsLayer, m_player);
 }
 
 void World::render(sf::RenderWindow& window)

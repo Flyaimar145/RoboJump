@@ -25,7 +25,7 @@ set(PROJECT_HEADERS
     include/Utils/Constants.h
 
     include/Core/AssetManager.h
-    include/Core/ColissionManager.h
+    include/Core/CollisionManager.h
     include/Core/Game.h
     include/Core/World.h
 
@@ -35,6 +35,7 @@ set(PROJECT_HEADERS
     include/Gameplay/Enemies/Stomp.h
     include/Gameplay/Enemies/Patrol.h
     include/Gameplay/Player.h
+    include/Gameplay/Entity.h
 
     include/Render/SFMLOrthogonalLayer.h
 
@@ -44,7 +45,7 @@ set(PROJECT_HEADERS
 set(PROJECT_SOURCES 
 
     src/Core/AssetManager.cpp
-    src/Core/ColissionManager.cpp
+    src/Core/CollisionManager.cpp
     src/Core/Game.cpp
     src/Core/World.cpp
 
@@ -53,6 +54,7 @@ set(PROJECT_SOURCES
     src/Gameplay/Enemies/Patrol.cpp
     src/Gameplay/Enemies/Zombie.cpp
     src/Gameplay/Player.cpp
+    src/Gameplay/Entity.cpp
 
     src/Render/SFMLOrthogonalLayer.cpp
 
