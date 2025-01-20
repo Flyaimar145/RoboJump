@@ -1,4 +1,5 @@
 #include <Core/AssetManager.h>
+#include <Core/ColissionManager.h>
 #include <Core/World.h>
 #include <Gameplay/Player.h>
 #include <Render/SFMLOrthogonalLayer.h>
@@ -67,7 +68,8 @@ void World::update(uint32_t deltaMilliseconds)
 
 	// Update actors
 	// Check for collisions (We could do it in a function here or have a collision manager if it gets complex)
-	const auto& groundShapes = m_groundsLayer->getShapes();
+
+	/*const auto& groundShapes = m_groundsLayer->getShapes();
 	bool isGrounded = false;
 	for (const auto* shape : groundShapes)
 	{	
@@ -85,8 +87,9 @@ void World::update(uint32_t deltaMilliseconds)
 	if (!isGrounded)
 	{
 		m_player->setGravity(980.f);
-	}
-
+	}*/
+	ColissionManager::getInstance()->checkGroundColission(m_groundsLayer, m_player);
+	/*
 	const auto& wallShapes = m_wallsLayer->getShapes();
 	bool isCollidingWithWall = false;
 	bool collidedLeft = false;
@@ -94,12 +97,11 @@ void World::update(uint32_t deltaMilliseconds)
 	for (const auto* shape : wallShapes)
 	{
 		//printf("Player Bounds \n");
-		/*
-		printf("Left: %f \n", m_player->getBounds().left);
-		printf("Top: %f \n", m_player->getBounds().top);
-		printf("Right: %f \n", m_player->getBounds().left + m_player->getBounds().width);
-		printf("Bottom: %f \n", m_player->getBounds().top + m_player->getBounds().height);
-		*/
+		//printf("Left: %f \n", m_player->getBounds().left);
+		//printf("Top: %f \n", m_player->getBounds().top);
+		//printf("Right: %f \n", m_player->getBounds().left + m_player->getBounds().width);
+		//printf("Bottom: %f \n", m_player->getBounds().top + m_player->getBounds().height);
+		
 		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
 		{
 			sf::FloatRect playerBounds = m_player->getBounds();
@@ -140,8 +142,9 @@ void World::update(uint32_t deltaMilliseconds)
 	}
 	// Update the player's direction with the new direction
 	m_player->setDirection(newDirection);
-
-	const auto& ceilingShapes = m_ceilingsLayer->getShapes();
+	*/
+	ColissionManager::getInstance()->checkWallColission(m_wallsLayer, m_player);
+	/*const auto& ceilingShapes = m_ceilingsLayer->getShapes();
 	for (const auto* shape : ceilingShapes)
 	{
 		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
@@ -153,9 +156,11 @@ void World::update(uint32_t deltaMilliseconds)
 		#endif
 		}
 	}
-		
+	*/
+	ColissionManager::getInstance()->checkCeilingColission(m_ceilingsLayer, m_player);
 	m_player->update(deltaMilliseconds);
 
+	/*
 	const auto& gemShapes = m_gemsLayer->getShapes();
 	for (const auto* shape : gemShapes)
 	{
@@ -166,6 +171,8 @@ void World::update(uint32_t deltaMilliseconds)
 			#endif
 		}
 	}
+	*/
+	ColissionManager::getInstance()->checkGemColission(m_gemsLayer, m_player);
 }
 
 void World::render(sf::RenderWindow& window)
