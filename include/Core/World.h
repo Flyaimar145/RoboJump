@@ -3,6 +3,7 @@
 #include <cstdint>
 
 class Player;
+class Enemy;
 
 namespace sf
 {
@@ -35,6 +36,7 @@ class World
 
 		// This is just an example. Think a good way to group the actors of your game. If they need any type of manager, etc...
 		Player* m_player{ nullptr };
+		Enemy* m_enemy{ nullptr };
 
 		// To-Do: This should be in its own class, something like "Level" should work
 		tmx::Map* m_map{ nullptr };

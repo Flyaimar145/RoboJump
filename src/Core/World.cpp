@@ -2,6 +2,8 @@
 #include <Core/CollisionManager.h>
 #include <Core/World.h>
 #include <Gameplay/Player.h>
+#include <Gameplay/Entity.h>
+#include <Gameplay/Enemies/Enemy.h>
 #include <Render/SFMLOrthogonalLayer.h>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <tmxlite/Map.hpp>
@@ -40,6 +42,8 @@ bool World::load()
 	m_layerZero->setOffset({ .0f, .0f });
 
 	// To-Do, read ALL from file, this is just a quick example to understand that here is where entities are created but consider grouping/managing actors in a smarter way
+	
+	// Player
 	sf::Texture* playerTexture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png");
 	Player::PlayerDescriptor playerDescriptor;
 	playerDescriptor.texture = playerTexture;
@@ -47,15 +51,28 @@ bool World::load()
 	playerDescriptor.speed = { 100.f * millisecondsToSeconds, 100.f * millisecondsToSeconds }; // 400 units per second, or 0.4 units per millisecond, using the latter so it's in alignment with delta time
 	playerDescriptor.tileWidth = 32.f;
 	playerDescriptor.tileHeight = 32.f;
+	playerDescriptor.jumpSpeed = 300.f; // 300 units per second, or 0.4 units per millisecond, using the latter so it's in alignment with delta time
+	playerDescriptor.totalFrames = 12;
 	Player* player = new Player();
-	const bool initOk = player->init(playerDescriptor);
-
+	const bool playerLoaded = player->init(playerDescriptor);
 	m_player = player;
 	player->setPosition({ MAP_TILE_SIZE * 1.5f, MAP_TILE_SIZE * 17.f });
 
+	// Enemy
+	Entity::EntityDescriptor enemyDescriptor;
+	enemyDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
+	enemyDescriptor.position = { 0.f, 0.f };
+	enemyDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds }; // 400 units per second, or 0.4 units per millisecond, using the latter so it's in alignment with delta time
+	enemyDescriptor.tileWidth = 32.f;
+	enemyDescriptor.tileHeight = 32.f;
+	enemyDescriptor.totalFrames = 12;
+	Enemy* enemy = new Enemy();
+	const bool enemyLoaded = enemy->init(enemyDescriptor);
+	m_enemy = enemy;
+	enemy->setPosition({ MAP_TILE_SIZE * 24.f, MAP_TILE_SIZE * 17.f });
 
 
-	return initOk;
+	return playerLoaded && enemyLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
@@ -75,6 +92,11 @@ void World::update(uint32_t deltaMilliseconds)
 
 	// Update player
 	m_player->update(deltaMilliseconds);
+	//printf("Player Position: %f, %f \n", m_player->getPosition().x, m_player->getPosition().y);
+
+	// Update enemy
+	m_enemy->update(deltaMilliseconds);
+	//printf("Enemy Position: %f, %f \n", m_enemy->getPosition().x, m_enemy->getPosition().y);
 
 	// Collision management (old code; no CollisionManager; keeping it for the moment just in case)
 	/*
@@ -187,4 +209,5 @@ void World::render(sf::RenderWindow& window)
 	window.draw(*m_ceilingsLayer);
 	window.draw(*m_gemsLayer);
 	m_player->render(window);
+	m_enemy->render(window);
 }

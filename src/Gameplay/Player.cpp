@@ -6,11 +6,13 @@
 
 bool Player::init(const PlayerDescriptor& playerDescriptor)
 {
-	m_sprite.setTexture(*playerDescriptor.texture);
-	m_sprite.setPosition(playerDescriptor.position);
-	m_tileWidth = playerDescriptor.tileWidth;
-	m_tileHeight = playerDescriptor.tileHeight;
-	m_speed = playerDescriptor.speed;
+	//m_sprite.setTexture(*playerDescriptor.texture);
+	//m_sprite.setPosition(playerDescriptor.position);
+	//m_tileWidth = playerDescriptor.tileWidth;
+	//m_tileHeight = playerDescriptor.tileHeight;
+	//m_speed = playerDescriptor.speed;
+	m_jumpSpeed = playerDescriptor.jumpSpeed;
+	Entity::init(playerDescriptor);
 	return true;
 }
 
@@ -128,21 +130,23 @@ void Player::update(float deltaMilliseconds)
 			m_currentSpriteStartingY = m_tileHeight * 0.f;
 		}
 	}
-	m_sprite.setPosition(m_position);
+	//m_sprite.setPosition(m_position);
+	Entity::update(deltaMilliseconds);
 }
 
 void Player::render(sf::RenderWindow& window)
 {
 	// Extend this mechanism to be able to support animations
-	m_sprite.setTextureRect(sf::IntRect(m_currentSpriteStartingX, m_currentSpriteStartingY, m_tileWidth, m_tileHeight));
+	//m_sprite.setTextureRect(sf::IntRect(m_currentSpriteStartingX, m_currentSpriteStartingY, m_tileWidth, m_tileHeight));
 
-	window.draw(m_sprite);
+	//window.draw(m_sprite);
 
-	const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
-	sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
-	boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
-	boundsRect.setOutlineColor(sf::Color::Red);
-	boundsRect.setOutlineThickness(.0f);
-	boundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(boundsRect);
+	//const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
+	//sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
+	//boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
+	//boundsRect.setOutlineColor(sf::Color::Red);
+	//boundsRect.setOutlineThickness(.0f);
+	//boundsRect.setFillColor(sf::Color::Transparent);
+	//window.draw(boundsRect);
+	Entity::render(window);
 }

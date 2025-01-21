@@ -3,18 +3,18 @@
 #include <Gameplay/Enemies/Enemy.h>
 
 
-class Zombie : public Enemy
+class Zombie //:// public Enemy
 {
 	public:
 
-		struct ZombieDescriptor : EnemyDescriptor
+		/*struct ZombieDescriptor : EnemyDescriptor
 		{
 			sf::Vector2f speed{ .0f, .0f };
-		};
+		};*/
 
-		bool init(const ZombieDescriptor& enemyDescriptor);
+		//bool init(const ZombieDescriptor& enemyDescriptor);
 
-		void update(float deltaMilliseconds) override;
+		void update(float deltaMilliseconds);// override;
 
 
 	private:
