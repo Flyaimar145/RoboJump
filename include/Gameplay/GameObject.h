@@ -16,7 +16,7 @@ class GameObject
 		virtual ~GameObject() = default; // IMPORTANT! If we don't define it as virtual, we will leak memory
 
 		const sf::Vector2f& getPosition() const { return m_position; }
-		sf::Vector2f& getPosition() { return m_position; }
+		//sf::Vector2f& getPosition() { return m_position; }
 		void setPosition(const sf::Vector2f& newPosition) { m_position = newPosition; }
 
 		virtual void update(float delta) = 0;

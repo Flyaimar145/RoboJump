@@ -21,8 +21,12 @@ void Player::update(float deltaMilliseconds)
 	bool isMovingLeftInput = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 	bool isMovingRightInput = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 	bool isJumpingInput = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+	bool isDyingInput = sf::Keyboard::isKeyPressed(sf::Keyboard::K);
 
-	
+	if (isDyingInput)
+	{
+		m_isDead = true;
+	}
 	bool isMoving = isMovingLeftInput || isMovingRightInput;
 	if (isMoving)
 	{
@@ -98,30 +102,60 @@ void Player::update(float deltaMilliseconds)
 	//printf("Sprite top: %f \n", m_sprite.getGlobalBounds().top);
 	//printf("Sprite left: %f \n", m_sprite.getGlobalBounds().left);
 	//printf("Live Count: %d \n", m_liveCount);
+	//printf("Is dead: %d \n", m_isDead);
 	
 
 
 	// Update animation
 	m_animationTime += deltaMilliseconds;
-	bool m_deathAnimationPlayed = false;
-
-	// Inside the update function
-	if (m_damageTaken && !m_deathAnimationPlayed)
+	if (m_damageTaken)
 	{
-		//m_animationTime += deltaMilliseconds;
-		if (m_animationTime >= m_damageTakenFrameDuration)
+		// First moment of taking damage: Reset the current frame to 0 to start the animation from the beginning, and reduce the live count
+		if (!m_damageAnimationStarted)
+		{
+			m_currentFrame = 0;
+			m_damageAnimationStarted = true;
+			printf("Damage taken\n");
+			m_liveCount--;
+		}
+
+		if (m_animationTime >= m_frameDuration)
 		{
 			m_animationTime = 0.f;
-			//Do the animation just once
 			m_currentFrame = (m_currentFrame + 1) % m_totalFrames;
 			m_currentSpriteStartingX = m_tileWidth * m_currentFrame;
 			m_currentSpriteStartingY = m_tileHeight * 2.f;
 			if (m_currentFrame == m_totalFrames - 1)
 			{
-				m_deathAnimationPlayed = true;
+				m_damageTaken = false;
+				m_damageAnimationStarted = false;
+				if (m_liveCount <= 0)
+				{
+					m_isDead = true;
+				}
 			}
 		}
-		m_damageTaken = false;
+	}
+	if (m_isDead)
+	{
+		// Reset the current frame to 0 when damage is taken
+		if (!m_deathAnimationStarted)
+		{
+			m_currentFrame = 0;
+			m_deathAnimationStarted = true;
+		}
+
+		if (m_animationTime >= m_frameDuration)
+		{
+			m_animationTime = 0.f;
+			m_currentFrame = (m_currentFrame + 1) % m_deathAnimationTotalFrames;
+			m_currentSpriteStartingX = m_tileWidth * m_currentFrame;
+			m_currentSpriteStartingY = m_tileHeight * 4.f;
+			if (m_currentFrame == m_deathAnimationTotalFrames - 1)
+			{
+				m_position = { 1000.f, 1000.f };
+			}
+		}
 	}
 	else
 	if (m_speed.y != 0)
@@ -139,7 +173,7 @@ void Player::update(float deltaMilliseconds)
 	}
 	else if (m_direction.x != 0.0f)
 	{
-		m_animationTime += deltaMilliseconds;
+		//m_animationTime += deltaMilliseconds;
 		if (m_animationTime >= m_frameDuration)
 		{
 			m_animationTime = 0.f;

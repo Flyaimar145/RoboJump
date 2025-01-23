@@ -15,7 +15,7 @@
 void Enemy::update(float deltaMilliseconds)
 {
 	//m_sprite.setPosition(m_position);
-	m_direction.x = -1.0f;
+	m_direction.x = -0.0f;
 	m_sprite.setScale(-1.f, 1.f);
 	m_sprite.setOrigin(m_tileWidth, 0.f);
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);

@@ -43,6 +43,7 @@ public:
 	void setGravity(float gravity) { m_currentGravity = gravity; }
 	void setLiveCount(int liveCount) { m_liveCount = liveCount; }
 	void setDamageTaken(bool damageTaken) { m_damageTaken = damageTaken; }
+	void setIsDead(bool isDead) { m_isDead = isDead; }
 	//void setSpeed(sf::Vector2f speed) { m_speed = speed; }
 	//void setDirection(sf::Vector2f direction) { m_direction = direction; }
 
@@ -67,6 +68,9 @@ protected:
 	//float m_frameDuration{ 50.f };
 	//int m_currentFrame{ 0 };
 	//int m_totalFrames{ 12 };
-	float m_damageTakenFrameDuration{ 100.f };
-	int m_totalDeathFrames{ 7 };
+	bool m_isDead{ false };
+	bool m_deathAnimationStarted{ false };
+	int m_deathAnimationTotalFrames{ 7 };
+
+	bool m_damageAnimationStarted{ false };
 };

@@ -515,7 +515,7 @@ ObjectLayer::ObjectLayer(const tmx::Map& map, std::size_t layerID)
     const auto& objectGroup = dynamic_cast<const tmx::ObjectGroup&>(*layers[layerID]);
     for (const auto& object : objectGroup.getObjects())
     {
-        printf("Object: %s\n", object.getName().c_str());
+        //printf("Object: %s\n", object.getName().c_str());
         if (auto shape = createShape(object))
         {
             m_shapes.emplace_back(shape);

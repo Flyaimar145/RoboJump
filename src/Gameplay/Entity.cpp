@@ -6,6 +6,7 @@
 bool Entity::init(const EntityDescriptor& entityDescriptor)
 {
 	m_sprite.setTexture(*entityDescriptor.texture);
+	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tileWidth, m_tileHeight));
 	m_sprite.setPosition(entityDescriptor.position);
 	m_tileWidth = entityDescriptor.tileWidth;
 	m_tileHeight = entityDescriptor.tileHeight;

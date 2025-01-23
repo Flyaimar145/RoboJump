@@ -23,7 +23,7 @@ void CollisionManager::checkGroundCollision(const ObjectLayer* groundsCollisionL
 			isGrounded = true;
 			objectToCheckCollision->setGravity(.0f);
 			objectToCheckCollision->setIsJumping(false);
-			objectToCheckCollision->setPosition({ objectToCheckCollision->getPosition().x, shape->getGlobalBounds().top - objectToCheckCollision->getBounds().height + 1.f });
+			objectToCheckCollision->setPosition({ objectToCheckCollision->getPosition().x, shape->getGlobalBounds().top - objectToCheckCollision->getBounds().height + 0.1f });
 			#if DEBUG_MODE
 						//printf("Ground Collision \n");
 			#endif
@@ -127,6 +127,7 @@ void CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy
 	if (player->getBounds().intersects(enemy->getBounds()))
 	{
 		player->setDamageTaken(true);
+		//player->setIsDead(true);
 		//printf("Player collided with enemy \n");
 	}
 }
