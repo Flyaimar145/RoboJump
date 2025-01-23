@@ -90,12 +90,40 @@ void Player::update(float deltaMilliseconds)
 	// the sprite changes according to the elapsed time and not to the number of calls
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
-	//std::cout << "X: " << m_position.x << " Y: " << m_position.y << std::endl;
-	//printf("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
 	//m_position.y += (m_direction.y * m_speed.y * deltaMilliseconds);
+	
+	//printf("X: %f, Y: %f \n", m_position.x, m_position.y);
+	//printf("Sprite X: %f, Sprite Y: %f \n", m_sprite.getPosition().x, m_sprite.getPosition().y);
+	//printf("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
+	//printf("Sprite top: %f \n", m_sprite.getGlobalBounds().top);
+	//printf("Sprite left: %f \n", m_sprite.getGlobalBounds().left);
+	//printf("Live Count: %d \n", m_liveCount);
+	
+
 
 	// Update animation
 	m_animationTime += deltaMilliseconds;
+	bool m_deathAnimationPlayed = false;
+
+	// Inside the update function
+	if (m_damageTaken && !m_deathAnimationPlayed)
+	{
+		//m_animationTime += deltaMilliseconds;
+		if (m_animationTime >= m_damageTakenFrameDuration)
+		{
+			m_animationTime = 0.f;
+			//Do the animation just once
+			m_currentFrame = (m_currentFrame + 1) % m_totalFrames;
+			m_currentSpriteStartingX = m_tileWidth * m_currentFrame;
+			m_currentSpriteStartingY = m_tileHeight * 2.f;
+			if (m_currentFrame == m_totalFrames - 1)
+			{
+				m_deathAnimationPlayed = true;
+			}
+		}
+		m_damageTaken = false;
+	}
+	else
 	if (m_speed.y != 0)
 	{
 		if (m_speed.y > 0.0f)
@@ -144,8 +172,8 @@ void Player::render(sf::RenderWindow& window)
 	//const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
 	//sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
 	//boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
-	//boundsRect.setOutlineColor(sf::Color::Red);
-	//boundsRect.setOutlineThickness(.0f);
+	//boundsRect.setOutlineColor(sf::Color::Blue);
+	//boundsRect.setOutlineThickness(.5f);
 	//boundsRect.setFillColor(sf::Color::Transparent);
 	//window.draw(boundsRect);
 	Entity::render(window);

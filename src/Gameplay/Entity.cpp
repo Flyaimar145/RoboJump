@@ -29,8 +29,8 @@ void Entity::render(sf::RenderWindow& window)
 	const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
 	sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
 	boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
-	boundsRect.setOutlineColor(sf::Color::Red);
-	boundsRect.setOutlineThickness(.0f);
+	boundsRect.setOutlineColor(sf::Color::Blue);
+	boundsRect.setOutlineThickness(.5f);
 	boundsRect.setFillColor(sf::Color::Transparent);
 	window.draw(boundsRect);
 }

@@ -58,14 +58,14 @@ void CollisionManager::checkWallCollision(const ObjectLayer* wallsCollisionLayer
 			// Check if the player is moving right and collides with the left side of the wall
 			if (objectToCheckCollision->getDirection().x > 0 && playerBounds.left + playerBounds.width > wallBounds.left && playerBounds.left < wallBounds.left)
 			{
-				objectToCheckCollision->setPosition({ wallBounds.left - playerBounds.width, objectToCheckCollision->getPosition().y });
+				objectToCheckCollision->setPosition({ wallBounds.left - playerBounds.width -1.f, objectToCheckCollision->getPosition().y });
 				isCollidingWithWall = true;
 				collidedLeft = true;
 			}
 			// Check if the player is moving left and collides with the right side of the wall
 			else if (objectToCheckCollision->getDirection().x < 0 && playerBounds.left < wallBounds.left + wallBounds.width && playerBounds.left + playerBounds.width > wallBounds.left + wallBounds.width)
 			{
-				objectToCheckCollision->setPosition({ wallBounds.left + wallBounds.width, objectToCheckCollision->getPosition().y });
+				objectToCheckCollision->setPosition({ wallBounds.left + wallBounds.width+1.f, objectToCheckCollision->getPosition().y });
 				isCollidingWithWall = true;
 				collidedRight = true;
 
@@ -119,5 +119,14 @@ void CollisionManager::checkGemCollision(const ObjectLayer* gemsCollisionLayer, 
 						//printf("Gem collected \n");
 			#endif
 		}
+	}
+}
+
+void CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const
+{
+	if (player->getBounds().intersects(enemy->getBounds()))
+	{
+		player->setDamageTaken(true);
+		//printf("Player collided with enemy \n");
 	}
 }

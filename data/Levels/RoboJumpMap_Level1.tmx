@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="17">
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="29">
  <tileset firstgid="1" source="images/tilemap/BackgroundsTileset.tsx"/>
  <tileset firstgid="97" source="images/tilemap/GUITileset.tsx"/>
  <tileset firstgid="202" source="images/tilemap/FlagsTileset.tsx"/>
@@ -11,7 +11,7 @@
  </layer>
  <layer id="2" name="GroundAndWallsLayer" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxby8DAsHYUj+JRPIqHAF4AxHvojBcC8ToG+oM1o/aO2jtqL1XsXQ/E8yjA89HMnEuEng1ADABiCvwr
+   eJxby8DAsHYUj+JRPIqHAF4AxHvojBcC8ToG+oM1o/aO2jsA9hYSkCskoAZdLbH2ErKPEnvXA/E8CvB8NDvmEqFnAxADAHXVAfc=
   </data>
  </layer>
  <layer id="3" name="MainLayer" width="30" height="20">
@@ -22,6 +22,10 @@
  <objectgroup id="6" name="GroundsLayer">
   <object id="5" name="Ground1" x="0" y="304" width="272" height="16"/>
   <object id="6" name="Ground2" x="320" y="304" width="160" height="16"/>
+  <object id="17" name="TestGround1" x="195" y="288" width="74" height="2"/>
+  <object id="18" name="TestGround2" x="227" y="272" width="42" height="2"/>
+  <object id="19" name="TestGround3" x="403" y="272" width="26" height="2"/>
+  <object id="20" name="TestGround4" x="115" y="272" width="10" height="2"/>
  </objectgroup>
  <objectgroup id="4" name="WallsLayer">
   <object id="1" name="Wall1" x="0" y="176" width="16" height="128"/>
@@ -30,6 +34,14 @@
     <property name="ColliderType" value="Wall"/>
    </properties>
   </object>
+  <object id="21" name="TestWall4.1" x="112" y="275" width="2" height="13"/>
+  <object id="22" name="TestWall4.2" x="126" y="275" width="2" height="13"/>
+  <object id="23" name="TestWall1.1" x="192" y="291" width="2" height="13"/>
+  <object id="24" name="TestWall1.2" x="270" y="291" width="2" height="13"/>
+  <object id="25" name="TestWall2.2" x="270" y="275" width="2" height="13"/>
+  <object id="26" name="TestWall2.1" x="224" y="275" width="2" height="13"/>
+  <object id="27" name="TestWall3.1" x="400" y="275.003" width="2" height="28.9972"/>
+  <object id="28" name="TestWall3.2" x="430" y="275" width="2" height="28.9972"/>
  </objectgroup>
  <objectgroup id="7" name="CelingsLayer">
   <object id="2" name="Ceiling" x="0" y="160" width="480" height="16"/>

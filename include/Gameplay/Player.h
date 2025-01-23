@@ -25,15 +25,24 @@ public:
 	bool init(const PlayerDescriptor& playerDescriptor);
 
 	//sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
+	//sf::FloatRect getBounds() const override{ return sf::FloatRect(m_sprite.getGlobalBounds().left, m_sprite.getGlobalBounds().top, m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().height); }
+
 
 	void update(float deltaMilliseconds) override;
 	void render(sf::RenderWindow& window) override;
 
 	//sf::Vector2f getSpeed() const { return m_speed; }
 	//sf::Vector2f getDirection() const { return m_direction; }
+	bool getIsJumping() const { return m_isJumping; }
+	float getJumpSpeed() const { return m_jumpSpeed; }
 	float getGravity() const { return m_currentGravity; }
-	void setGravity(float gravity) { m_currentGravity = gravity; }
+	int getLiveCount() const { return m_liveCount; }
+
 	void setIsJumping(bool isJumping) { m_isJumping = isJumping; }
+	void setJumpSpeed(float jumpSpeed) { m_jumpSpeed = jumpSpeed; }
+	void setGravity(float gravity) { m_currentGravity = gravity; }
+	void setLiveCount(int liveCount) { m_liveCount = liveCount; }
+	void setDamageTaken(bool damageTaken) { m_damageTaken = damageTaken; }
 	//void setSpeed(sf::Vector2f speed) { m_speed = speed; }
 	//void setDirection(sf::Vector2f direction) { m_direction = direction; }
 
@@ -46,6 +55,8 @@ protected:
 	bool m_isJumping{ false };
 	float m_jumpSpeed{ 0.0f };
 	float m_currentGravity{ 980.f };
+	int m_liveCount{ 1 };
+	bool m_damageTaken{ false };
 
 	// Animation
 	//float m_tileWidth{ .0f };
@@ -56,4 +67,6 @@ protected:
 	//float m_frameDuration{ 50.f };
 	//int m_currentFrame{ 0 };
 	//int m_totalFrames{ 12 };
+	float m_damageTakenFrameDuration{ 100.f };
+	int m_totalDeathFrames{ 7 };
 };

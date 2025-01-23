@@ -61,7 +61,7 @@ bool World::load()
 	// Enemy
 	Entity::EntityDescriptor enemyDescriptor;
 	enemyDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
-	enemyDescriptor.position = { 0.f, 0.f };
+	enemyDescriptor.position = { MAP_TILE_SIZE * 24.f, MAP_TILE_SIZE * 17.f };
 	enemyDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds }; // 400 units per second, or 0.4 units per millisecond, using the latter so it's in alignment with delta time
 	enemyDescriptor.tileWidth = 32.f;
 	enemyDescriptor.tileHeight = 32.f;
@@ -89,6 +89,8 @@ void World::update(uint32_t deltaMilliseconds)
 	CollisionManager::getInstance()->checkWallCollision(m_wallsLayer, m_player);
 	CollisionManager::getInstance()->checkCeilingCollision(m_ceilingsLayer, m_player);
 	CollisionManager::getInstance()->checkGemCollision(m_gemsLayer, m_player);
+
+	CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, m_enemy);
 
 	// Update player
 	m_player->update(deltaMilliseconds);

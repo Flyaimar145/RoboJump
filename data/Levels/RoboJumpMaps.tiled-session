@@ -6,28 +6,25 @@
     "activeFile": "RoboJumpMap_Level1.tmx",
     "expandedProjectPaths": [
         "images",
-        ".",
-        "images/tilemap"
+        "images/tilemap",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "RoboJumpMap_Level1.tmx": {
-            "expandedObjectLayers": [
-                4
-            ],
             "scale": 1.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 261,
-                "y": 178.33333333333337
+                "x": 209.33333333333331,
+                "y": 144.33333333333331
             }
         },
         "demo.tmx": {
-            "scale": 0.8708333333333332,
+            "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 479.4258373205742,
-                "y": 255.50239234449768
+                "x": 480,
+                "y": 255.33333333333326
             }
         },
         "demo.tmx#tileset": {
@@ -57,17 +54,23 @@
     "map.layerDataFormat": "3",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
+    "mapScene.enableWorlds": true,
     "openFiles": [
-        "RoboJumpMap_Level1.tmx"
-    ],
-    "project": "RoboJumpMaps.tiled-project",
-    "recentFiles": [
         "RoboJumpMap_Level1.tmx",
+        "images/tilemap/GUITileset.tsx",
         "images/tilemap/GemsTileset.tsx",
         "images/tilemap/FlagsTileset.tsx",
         "images/tilemap/BackgroundsTileset.tsx",
-        "images/tilemap/GUITileset.tsx",
         "demo.tmx"
+    ],
+    "project": "RoboJumpMaps.tiled-project",
+    "recentFiles": [
+        "demo.tmx",
+        "images/tilemap/BackgroundsTileset.tsx",
+        "images/tilemap/FlagsTileset.tsx",
+        "images/tilemap/GemsTileset.tsx",
+        "images/tilemap/GUITileset.tsx",
+        "RoboJumpMap_Level1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
