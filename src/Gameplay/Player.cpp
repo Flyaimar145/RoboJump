@@ -98,7 +98,7 @@ void Player::update(float deltaMilliseconds)
 	
 	//printf("X: %f, Y: %f \n", m_position.x, m_position.y);
 	//printf("Sprite X: %f, Sprite Y: %f \n", m_sprite.getPosition().x, m_sprite.getPosition().y);
-	//printf("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
+	//("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
 	//printf("Sprite top: %f \n", m_sprite.getGlobalBounds().top);
 	//printf("Sprite left: %f \n", m_sprite.getGlobalBounds().left);
 	//printf("Live Count: %d \n", m_liveCount);
@@ -108,7 +108,7 @@ void Player::update(float deltaMilliseconds)
 
 	// Update animation
 	m_animationTime += deltaMilliseconds;
-	if (m_damageTaken)
+	if (m_hasTakenDamage)
 	{
 		// First moment of taking damage: Reset the current frame to 0 to start the animation from the beginning, and reduce the live count
 		if (!m_damageAnimationStarted)
@@ -127,7 +127,7 @@ void Player::update(float deltaMilliseconds)
 			m_currentSpriteStartingY = m_tileHeight * 2.f;
 			if (m_currentFrame == m_totalFrames - 1)
 			{
-				m_damageTaken = false;
+				m_hasTakenDamage = false;
 				m_damageAnimationStarted = false;
 				if (m_liveCount <= 0)
 				{

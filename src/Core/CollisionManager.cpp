@@ -20,6 +20,12 @@ void CollisionManager::checkGroundCollision(const ObjectLayer* groundsCollisionL
 	{
 		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getBounds()))
 		{
+			printf("Speed X: %f, Speed Y: %f \n", objectToCheckCollision->getSpeed().x, objectToCheckCollision->getSpeed().y);
+			if (objectToCheckCollision->getSpeed().y > 800.f)
+			{
+				objectToCheckCollision->setHasTakenDamage(true);
+				objectToCheckCollision->setIsDead(true);
+			}
 			isGrounded = true;
 			objectToCheckCollision->setGravity(.0f);
 			objectToCheckCollision->setIsJumping(false);
@@ -126,7 +132,7 @@ void CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy
 {
 	if (player->getBounds().intersects(enemy->getBounds()))
 	{
-		player->setDamageTaken(true);
+		player->setHasTakenDamage(true);
 		//player->setIsDead(true);
 		//printf("Player collided with enemy \n");
 	}

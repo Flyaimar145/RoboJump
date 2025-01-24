@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="29">
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="146" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
  <tileset firstgid="1" source="images/tilemap/BackgroundsTileset.tsx"/>
  <tileset firstgid="97" source="images/tilemap/GUITileset.tsx"/>
  <tileset firstgid="202" source="images/tilemap/FlagsTileset.tsx"/>
- <tileset firstgid="517" source="images/tilemap/GemsTileset.tsx"/>
- <layer id="1" name="BackgroundLayer" width="30" height="20">
+ <tileset firstgid="580" source="images/tilemap/GemsTileset.tsx"/>
+ <layer id="1" name="BackgroundLayer" width="146" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0bEBgCAUxNC/AOgSgEuALqGw/ySmY4OrrnhF6qSIyDhwIom6oKLhEnbHwI1H2C8+TCxhq376r//6r//6r//67+4fMEZ2NQ==
+   eJzt1UkRAlEQwNAxMIAJFhMsJlj8K6E1/FNSlUMOT0H2bdsO03E6TXvOCz5Pl+k63XJe9H16TM/plfOi39Nn+k6/nBdN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8Nbv9By9KP/I=
   </data>
  </layer>
- <layer id="2" name="GroundAndWallsLayer" width="30" height="20">
+ <layer id="2" name="GroundAndWallsLayer" width="146" height="100">
   <data encoding="base64" compression="zlib">
-   eJxby8DAsHYUj+JRPIqHAF4AxHvojBcC8ToG+oM1o/aO2jsA9hYSkCskoAZdLbH2ErKPEnvXA/E8CvB8NDvmEqFnAxADAHXVAfc=
+   eJzt10FOFFAURNHeMgsSdS7qAlycODOEBK3+UNVwbnJGgimaP3g8XC6XBwAAAAAAAAAAAAAAbtqXR7+4eV+D3/1J3y96D327eEe6Pu9IJ/KOdCLvSCfyjnSi5Xd098K/3b3wNU+/Vq/X8jt6rrtn/Ov36PVqv6Mfj+6v8PnJz/Ppyv9vVdpb7ft56b6jE/6uveUtfsb/qb37lnyEzy2tvfuWfITPLa29+5Z8hM8trb37lrz3z+2avzXvBvazI629my1p7d1sSWvvZktaezc73NmcktbezZa09m62pLV3syWtvZsd7mxOSWvvZktaezdb0tq72ZLW3s0OdzanpLV3syWtvZstae3dbElr72aHO5tT0tq72ZLW3s2WtPZutqS1d7PDnc0pae3dbElr72ZLWns3W9Lau9nhzuaUtPZutqS1d7Mlrb2bLWnt3exwZ3NKWns3W9Lau9mS1t7NlrT2bna4szklrb2bLWnt3WxJa+9mS1p7Nzvc2ZyS1t7NlrT2braktXezJa29mx3ubE5Ja+9mS1p7N1vS2rvZktbezQ53NqektXezJa29my1p7d1sSWvvZoc7m1PS2rvZktbezZa09m62pLV3s+PPrXwfess7+zc9yIZI
   </data>
  </layer>
- <layer id="3" name="MainLayer" width="30" height="20">
+ <layer id="3" name="MainLayer" width="146" height="100">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGATrQYILQilBaCkrzQGlWJvq7iRDgYmRg4Gakv73yQDsVBsBeE6CdpgNgLzEAAMknAUI=
+   eJzt18EJwkAQBdAkYALagQa0AxW0A29W4M2bbW2pDpgC1AlK9D0Y5rTLwPzDblUBAAAAAAAAAAAAAAAAAPCsW/Po16Ffhn4e+qn5/Ez8l3ldVYv69XOzyGYb1SUzmrlnrBnIW0eGNm/kaBm7W0X1yR1m7hlrBvIOkaHjGznaxu52UfvkDjP3jDUDAMCvi3dTiTd4if9c+fYsTFe8vUv840orRyTE/630UZ0cAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwKTdAeBSDDE=
   </data>
  </layer>
  <objectgroup id="6" name="GroundsLayer">
-  <object id="5" name="Ground1" x="0" y="304" width="272" height="16"/>
-  <object id="6" name="Ground2" x="320" y="304" width="160" height="16"/>
-  <object id="17" name="TestGround1" x="195" y="288" width="74" height="2"/>
-  <object id="18" name="TestGround2" x="227" y="272" width="42" height="2"/>
-  <object id="19" name="TestGround3" x="403" y="272" width="26" height="2"/>
-  <object id="20" name="TestGround4" x="115" y="272" width="10" height="2"/>
+  <object id="5" name="Ground1" x="496" y="464" width="272" height="16"/>
+  <object id="6" name="Ground2" x="816" y="464" width="864" height="16"/>
+  <object id="17" name="TestGround1" x="691" y="448" width="74" height="2"/>
+  <object id="18" name="TestGround2" x="723" y="432" width="42" height="2"/>
+  <object id="19" name="TestGround3" x="899" y="432" width="26" height="2"/>
+  <object id="20" name="TestGround4" x="611" y="432" width="10" height="2"/>
+  <object id="29" x="1680" y="1584" width="224" height="16"/>
  </objectgroup>
  <objectgroup id="4" name="WallsLayer">
-  <object id="1" name="Wall1" x="0" y="176" width="16" height="128"/>
-  <object id="4" name="Wall2" x="464" y="176" width="16" height="128">
+  <object id="1" name="Wall1" x="496" y="336" width="16" height="128"/>
+  <object id="4" name="Wall2" x="2320" y="336" width="16" height="128">
    <properties>
     <property name="ColliderType" value="Wall"/>
    </properties>
   </object>
-  <object id="21" name="TestWall4.1" x="112" y="275" width="2" height="13"/>
-  <object id="22" name="TestWall4.2" x="126" y="275" width="2" height="13"/>
-  <object id="23" name="TestWall1.1" x="192" y="291" width="2" height="13"/>
-  <object id="24" name="TestWall1.2" x="270" y="291" width="2" height="13"/>
-  <object id="25" name="TestWall2.2" x="270" y="275" width="2" height="13"/>
-  <object id="26" name="TestWall2.1" x="224" y="275" width="2" height="13"/>
-  <object id="27" name="TestWall3.1" x="400" y="275.003" width="2" height="28.9972"/>
-  <object id="28" name="TestWall3.2" x="430" y="275" width="2" height="28.9972"/>
+  <object id="21" name="TestWall4.1" x="608" y="438" width="2" height="4"/>
+  <object id="22" name="TestWall4.2" x="622" y="438" width="2" height="4"/>
+  <object id="23" name="TestWall1.1" x="688" y="454" width="2" height="4"/>
+  <object id="24" name="TestWall1.2" x="766" y="454" width="2" height="4"/>
+  <object id="25" name="TestWall2.2" x="766" y="438" width="2" height="4"/>
+  <object id="26" name="TestWall2.1" x="720" y="438" width="2" height="4"/>
+  <object id="27" name="TestWall3.1" x="896" y="446" width="2" height="4"/>
+  <object id="28" name="TestWall3.2" x="926" y="446" width="2" height="4"/>
  </objectgroup>
  <objectgroup id="7" name="CelingsLayer">
-  <object id="2" name="Ceiling" x="0" y="160" width="480" height="16"/>
+  <object id="2" name="Ceiling" x="496" y="320" width="1840" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="GemsLayer">
-  <object id="8" name="BlueGem" x="96" y="240" width="16" height="16"/>
-  <object id="9" name="PinkGem" x="128" y="240" width="16" height="16"/>
-  <object id="10" name="RedGem" x="160" y="240" width="16" height="16"/>
-  <object id="11" name="CoinGem" x="192" y="240" width="16" height="16"/>
-  <object id="12" name="StarGem" x="224" y="240" width="16" height="16"/>
+  <object id="8" name="BlueGem" x="592" y="400" width="16" height="16"/>
+  <object id="9" name="PinkGem" x="624" y="400" width="16" height="16"/>
+  <object id="10" name="RedGem" x="656" y="400" width="16" height="16"/>
+  <object id="11" name="CoinGem" x="688" y="400" width="16" height="16"/>
+  <object id="12" name="StarGem" x="720" y="400" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -64,9 +64,9 @@
     ],
     "project": "RoboJumpMaps.tiled-project",
     "recentFiles": [
+        "images/tilemap/FlagsTileset.tsx",
         "demo.tmx",
         "images/tilemap/BackgroundsTileset.tsx",
-        "images/tilemap/FlagsTileset.tsx",
         "images/tilemap/GemsTileset.tsx",
         "images/tilemap/GUITileset.tsx",
         "RoboJumpMap_Level1.tmx"

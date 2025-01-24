@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 class Player;
 class Enemy;
@@ -8,6 +9,7 @@ class Enemy;
 namespace sf
 {
 	class RenderWindow;
+	class View;
 }
 
 namespace tmx
@@ -47,4 +49,8 @@ class World
 		ObjectLayer* m_wallsLayer{ nullptr };
 		ObjectLayer* m_ceilingsLayer{ nullptr };
 		ObjectLayer* m_gemsLayer{ nullptr };
+
+		sf::View* m_view{ nullptr };
+		sf::FloatRect m_deadZone;
+		void drawDeadZone(sf::RenderWindow& window);
 };

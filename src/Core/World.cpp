@@ -5,6 +5,7 @@
 #include <Gameplay/Entity.h>
 #include <Gameplay/Enemies/Enemy.h>
 #include <Render/SFMLOrthogonalLayer.h>
+#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <tmxlite/Map.hpp>
 #include <Utils/Constants.h>
@@ -41,6 +42,22 @@ bool World::load()
 
 	m_layerZero->setOffset({ .0f, .0f });
 
+	m_view = new sf::View(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
+	// Define the dead zone
+	float deadZoneWidth = m_view->getSize().x * 0.15f;
+	float deadZoneHeight = m_view->getSize().y * 0.25f;
+	float deadZoneX = (m_view->getSize().x - deadZoneWidth) / 2.f;
+	float deadZoneY = (m_view->getSize().y - deadZoneHeight) / 2.f;
+
+	// Dead zone is defined relative to the center of the view
+	m_deadZone = sf::FloatRect(deadZoneX, deadZoneY, deadZoneWidth, deadZoneHeight);
+	//m_view1.setCenter({ createInfo.screenWidth / 4.f, createInfo.screenHeight /4.f });
+
+	//sf::View view1({ 0.f, 0.f, 960.f, 540.f });
+
+
+	//m_window->setView(m_view);
+
 	// To-Do, read ALL from file, this is just a quick example to understand that here is where entities are created but consider grouping/managing actors in a smarter way
 	
 	// Player
@@ -56,7 +73,7 @@ bool World::load()
 	Player* player = new Player();
 	const bool playerLoaded = player->init(playerDescriptor);
 	m_player = player;
-	player->setPosition({ MAP_TILE_SIZE * 1.5f, MAP_TILE_SIZE * 17.f });
+	player->setPosition({ MAP_TILE_SIZE * 33.f, MAP_TILE_SIZE * 27.f });
 
 	// Enemy
 	Entity::EntityDescriptor enemyDescriptor;
@@ -100,6 +117,37 @@ void World::update(uint32_t deltaMilliseconds)
 	m_enemy->update(deltaMilliseconds);
 	//printf("Enemy Position: %f, %f \n", m_enemy->getPosition().x, m_enemy->getPosition().y);
 
+	// Adjust the view's center based on the dead zone
+	sf::Vector2f playerPos = m_player->getPosition();
+	sf::Vector2f viewCenter = m_view->getCenter();
+
+	if (!m_player->getIsDead())
+	{
+		// Dead zone boundaries relative to the view's center
+		sf::FloatRect viewDeadZone(
+			viewCenter.x - m_deadZone.width / 2.f,
+			viewCenter.y - m_deadZone.height / 2.f,
+			m_deadZone.width,
+			m_deadZone.height
+		);
+
+		// Check if the player is outside the dead zone
+		if (playerPos.x < viewDeadZone.left) {
+			viewCenter.x = playerPos.x + m_deadZone.width / 2.f;
+		}
+		else if (playerPos.x > viewDeadZone.left + m_deadZone.width) {
+			viewCenter.x = playerPos.x - m_deadZone.width / 2.f;
+		}
+
+		if (playerPos.y < viewDeadZone.top) {
+			viewCenter.y = playerPos.y + m_deadZone.height / 2.f;
+		}
+		else if (playerPos.y > viewDeadZone.top + m_deadZone.height) {
+			viewCenter.y = playerPos.y - m_deadZone.height / 2.f;
+		}
+
+		m_view->setCenter(viewCenter);
+	}
 	// Collision management (old code; no CollisionManager; keeping it for the moment just in case)
 	/*
 	const auto& groundShapes = m_groundsLayer->getShapes();
@@ -203,6 +251,7 @@ void World::update(uint32_t deltaMilliseconds)
 
 void World::render(sf::RenderWindow& window)
 {
+	window.setView(*m_view);
 	window.draw(*m_layerZero);
 	window.draw(*m_layerOne);
 	window.draw(*m_layerTwo);
@@ -212,4 +261,28 @@ void World::render(sf::RenderWindow& window)
 	window.draw(*m_gemsLayer);
 	m_player->render(window);
 	m_enemy->render(window);
+
+	drawDeadZone(window);
+}
+
+void World::drawDeadZone(sf::RenderWindow& window)
+{
+	// Create a rectangle shape for the dead zone
+	sf::RectangleShape deadZoneRect;
+	deadZoneRect.setSize({ m_deadZone.width, m_deadZone.height });
+	deadZoneRect.setFillColor(sf::Color(0, 0, 255, 50)); // Semi-transparent blue
+	deadZoneRect.setOutlineColor(sf::Color::Blue);       // Blue outline
+	deadZoneRect.setOutlineThickness(0.5f);
+
+	// Position the rectangle relative to the view's center
+	sf::Vector2f viewCenter = m_view->getCenter();
+	sf::Vector2f topLeft(
+		viewCenter.x - m_deadZone.width / 2.f,
+		viewCenter.y - m_deadZone.height / 2.f
+	);
+
+	deadZoneRect.setPosition(topLeft);
+
+	// Draw the rectangle
+	window.draw(deadZoneRect);
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-constexpr char* GAME_TITLE = "GameTemplate";
+constexpr char* GAME_TITLE = "RoboJump";
 constexpr uint32_t SCREEN_WIDTH = 1920u;
 constexpr uint32_t SCREEN_HEIGHT = 1080u;
 constexpr uint32_t FRAME_RATE = 60u;
