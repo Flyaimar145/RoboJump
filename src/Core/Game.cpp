@@ -9,6 +9,8 @@ bool Game::init(GameCreateInfo& createInfo)
 	assert(m_window == nullptr && m_world == nullptr && "Game is already initialized, we are about to leak memory");
 
 	m_window = new sf::RenderWindow({ createInfo.screenWidth, createInfo.screenHeight }, createInfo.gameTitle);
+	//m_window = new sf::RenderWindow({ createInfo.screenWidth, createInfo.screenHeight }, createInfo.gameTitle, sf::Style::Fullscreen);
+
 	m_window->setFramerateLimit(createInfo.frameRateLimit);
 	//sf::View view1(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
 	//view1.setCenter({ createInfo.screenWidth / 4.f, createInfo.screenHeight /4.f });

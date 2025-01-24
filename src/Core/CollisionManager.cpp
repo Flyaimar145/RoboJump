@@ -20,7 +20,7 @@ void CollisionManager::checkGroundCollision(const ObjectLayer* groundsCollisionL
 	{
 		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getBounds()))
 		{
-			printf("Speed X: %f, Speed Y: %f \n", objectToCheckCollision->getSpeed().x, objectToCheckCollision->getSpeed().y);
+			//printf("Speed X: %f, Speed Y: %f \n", objectToCheckCollision->getSpeed().x, objectToCheckCollision->getSpeed().y);
 			if (objectToCheckCollision->getSpeed().y > 800.f)
 			{
 				objectToCheckCollision->setHasTakenDamage(true);
@@ -105,7 +105,7 @@ void CollisionManager::checkCeilingCollision(const ObjectLayer* ceilingsCollisio
 	{
 		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getBounds()))
 		{
-			objectToCheckCollision->setPosition({ objectToCheckCollision->getPosition().x, shape->getGlobalBounds().top + shape->getGlobalBounds().height });
+			objectToCheckCollision->setPosition({ objectToCheckCollision->getPosition().x, shape->getGlobalBounds().top + shape->getGlobalBounds().height+2.f });
 			objectToCheckCollision->setSpeed({ objectToCheckCollision->getSpeed().x, .0f });
 			#if DEBUG_MODE
 						//printf("Ceiling Collision\n");
@@ -132,8 +132,31 @@ void CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy
 {
 	if (player->getBounds().intersects(enemy->getBounds()))
 	{
-		player->setHasTakenDamage(true);
-		//player->setIsDead(true);
+		//Check if players bottom touches enemy top
+		if (player->getBounds().top + player->getBounds().height-5.f < enemy->getBounds().top && player->getSpeed().y > 0.f)
+		{
+			printf("Player jumped on enemy \n");
+			enemy->setPosition({1000.f,1000.f });
+			//player->setSpeed({ player->getSpeed().x, -300.f });
+		}
+		else
+		{
+			printf("Player damaged by enemy \n");
+			player->setHasTakenDamage(true);
+		}
 		//printf("Player collided with enemy \n");
+	}
+}
+
+void CollisionManager::checkEnemyWallCollision(const ObjectLayer* wallsCollisionLayer, Enemy* enemy) const
+{
+	const auto& wallShapes = wallsCollisionLayer->getShapes();
+	for (const auto* shape : wallShapes)
+	{
+		if (shape->getGlobalBounds().intersects(enemy->getBounds()))
+		{
+			//printf("Enemy collided with wall \n");
+			enemy->setDirection({ -enemy->getDirection().x, enemy->getDirection().y });
+		}
 	}
 }

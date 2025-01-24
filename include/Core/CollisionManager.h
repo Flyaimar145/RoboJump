@@ -14,6 +14,7 @@ public:
 	void checkCeilingCollision(const ObjectLayer* ceilingsCollisionLayer, Player* objectToCheckCollision) const;
 	void checkGemCollision(const ObjectLayer* gemsCollisionLayer, Player* objectToCheckCollision) const;
 	void checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const;
+	void checkEnemyWallCollision(const ObjectLayer* wallsCollisionLayer, Enemy* objectToCheckCollision) const;
 private:
 	static CollisionManager* s_instance;
 };

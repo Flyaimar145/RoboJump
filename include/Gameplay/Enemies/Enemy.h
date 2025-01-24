@@ -10,17 +10,18 @@ class Enemy : public Entity
 {
 	public:
 
-		//struct EnemyDescriptor
-		//{
+		struct EnemyDescriptor : public EntityDescriptor
+		{
 		//	sf::Vector2f position;
 		//	sf::Texture* texture{ nullptr };
 		//	float tileWidth{ .0f };
 		//	float tileHeight{ .0f };
-		//};
+			sf::Vector2f direction{ .0f, .0f };
+		};
 
 		~Enemy() override = default;
 
-		//bool init(const EnemyDescriptor& enemyDescriptor);
+		bool init(const EnemyDescriptor& enemyDescriptor);
 
 		//sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
 

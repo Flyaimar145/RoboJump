@@ -2,22 +2,30 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-/*bool Enemy::init(const EnemyDescriptor& enemyDescriptor)
+bool Enemy::init(const EnemyDescriptor& enemyDescriptor)
 {
-	m_sprite.setTexture(*enemyDescriptor.texture);
-	m_sprite.setPosition(enemyDescriptor.position);
-	m_tileWidth = enemyDescriptor.tileWidth;
-	m_tileHeight = enemyDescriptor.tileHeight;
+	//m_sprite.setTexture(*enemyDescriptor.texture);
+	//m_sprite.setPosition(enemyDescriptor.position);
+	//m_tileWidth = enemyDescriptor.tileWidth;
+	//m_tileHeight = enemyDescriptor.tileHeight;
+	m_direction = enemyDescriptor.direction;
 	
-	return true;
-}*/
+	return Entity::init(enemyDescriptor);
+}
 
 void Enemy::update(float deltaMilliseconds)
 {
 	//m_sprite.setPosition(m_position);
-	m_direction.x = -1.0f;
-	m_sprite.setScale(-1.f, 1.f);
-	m_sprite.setOrigin(m_tileWidth, 0.f);
+	if(m_direction.x > 0)
+	{
+		m_sprite.setScale(1.f, 1.f);
+		m_sprite.setOrigin(0.f, 0.f);
+	}
+	else
+	{
+		m_sprite.setScale(-1.f, 1.f);
+		m_sprite.setOrigin(m_tileWidth, 0.f);
+	}
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_animationTime += deltaMilliseconds;
 	if (m_speed.y != 0)
@@ -35,7 +43,6 @@ void Enemy::update(float deltaMilliseconds)
 	}
 	else if (m_direction.x != 0.0f)
 	{
-		m_animationTime += deltaMilliseconds;
 		if (m_animationTime >= m_frameDuration)
 		{
 			m_animationTime = 0.f;

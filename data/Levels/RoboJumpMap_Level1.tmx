@@ -1,53 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="146" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="146" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="86">
  <tileset firstgid="1" source="images/tilemap/BackgroundsTileset.tsx"/>
  <tileset firstgid="97" source="images/tilemap/GUITileset.tsx"/>
  <tileset firstgid="202" source="images/tilemap/FlagsTileset.tsx"/>
  <tileset firstgid="580" source="images/tilemap/GemsTileset.tsx"/>
+ <tileset firstgid="622" source="images/tilemap/LocationsTileset.tsx"/>
+ <tileset firstgid="798" source="images/tilemap/TrapsTileset.tsx"/>
  <layer id="1" name="BackgroundLayer" width="146" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1UkRAlEQwNAxMIAJFhMsJlj8K6E1/FNSlUMOT0H2bdsO03E6TXvOCz5Pl+k63XJe9H16TM/plfOi39Nn+k6/nBdN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8NbtN+Wt2m/LX7Dblr9ltyl+z25S/Zrcpf81uU/6a3ab8Nbv9By9KP/I=
+   eJzt3LltxDAUANGFcx9N+GjCRxM+GnZfJoNtQIE5Q03wgxdJwAqYDxHa28vlcjfmfszDmNucD/hxzNOY5zEvOR/065i3Me9jPnI+6M8xX2O+x/zkfNCUvma3KX3NblP6mt2m9DW7vbqvvzeMvmf3fjSfI0Lfs28/ms/Oqp7PaxP2id28oqfzt1zV83ltwj6xmyl9zW5T+prdpvQ1u03pa3ab0tfsNqWv2e2zvT+6et7Dyuvv5rO9P7p63gNpv7Cb0tfsNqWv2W1KX7PblL5mt1f0dO64q3ue/fvRfI5W9zy3H2WeKX3NblP6mt2m9DW7fdbztezfjwjna7n9KPNM6Wt2m9LX7PbZ9qO+X9tnP1p5vtb/CeyzH608X+v/BPbdj/7zfVLf9++zH+X9TOlrdpvS1+w2pa/ZbUpfs9uUvma3KX3NblP6mt2m9DW7TelrdpvS1+w2pa/ZbUpfs9uUvma3KX3NblP6mt2m9DW7TelrdpvS1+w2pa/ZbUpfs9uUvma3KX3NblP6mt2m9DW7TelrdpvS1+w2pa/ZbUpfs9uUvma3KX3NblP6mt2m9DW7TelrdpvS1+w2pa/ZbUpfs9uUvma3KX3NblP6mt2m9DW7TelrdpvS1+w2pa/ZbUpfs9uUvma3KX3NblP6mt2m9DW7TelrdpvS1+w2pa/ZbUpfs9uUvma3KX3NblP6mt2m9DW7TelrdpvS1+w2pa/ZbUpfs9t/ZMdMNg==
   </data>
  </layer>
  <layer id="2" name="GroundAndWallsLayer" width="146" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt10FOFFAURNHeMgsSdS7qAlycODOEBK3+UNVwbnJGgimaP3g8XC6XBwAAAAAAAAAAAAAAbtqXR7+4eV+D3/1J3y96D327eEe6Pu9IJ/KOdCLvSCfyjnSi5Xd098K/3b3wNU+/Vq/X8jt6rrtn/Ov36PVqv6Mfj+6v8PnJz/Ppyv9vVdpb7ft56b6jE/6uveUtfsb/qb37lnyEzy2tvfuWfITPLa29+5Z8hM8trb37lrz3z+2avzXvBvazI629my1p7d1sSWvvZktaezc73NmcktbezZa09m62pLV3syWtvZsd7mxOSWvvZktaezdb0tq72ZLW3s0OdzanpLV3syWtvZstae3dbElr72aHO5tT0tq72ZLW3s2WtPZutqS1d7PDnc0pae3dbElr72ZLWns3W9Lau9nhzuaUtPZutqS1d7Mlrb2bLWnt3exwZ3NKWns3W9Lau9mS1t7NlrT2bna4szklrb2bLWnt3WxJa+9mS1p7Nzvc2ZyS1t7NlrT2braktXezJa29mx3ubE5Ja+9mS1p7N1vS2rvZktbezQ53NqektXezJa29my1p7d1sSWvvZoc7m1PS2rvZktbezZa09m62pLV3s+PPrXwfess7+zc9yIZI
+   eJzt28uSDEEYxfGMEcYT2OAd8GKYcN3ZjMsKi2FnjL0ZFi4LZjd4geFJsJYVKkNOqVufzu7vq/I/Eb8Iuqv5epyozKpu+yGEfQAAAAAABuxFnzq8HPm6vuMwT3vhZFcOQ3c+hn+7kl5/OHAc5u0g+rwRwpeNsFBSV/p6V+WVg/eI1dgLJ88/So/GJj83cX6al3QO+hB9q31fUY9Sjjb+/J1956fqeeufDRbr0Tq6k+e47ivr3HwcBLvQo/mw7FG1X2KPNA+WPaqS9t70adq6enQl7l+u1m5EN2u3Gvuo/LmhY5qP52GNm7auHj2K/+aPa9vR7ehOdL/RhfTc01rXMfdaHs9Dj6ZtzLq2XXdgu6Mj+WNdx+Q9ut7SJ3o0bVWP0hp2reN8kffoQWMNe9jSo7Zj2s5Hab17Hn/9xsHPAsv1KK1hTwZ6tJOtX7ln2eu6jmlb79KxnIumb5F1TfnMJN27blvvUpqfl0Bndd075notdUC5753uXff1iJSL1bl9zPXaTmPtUrKT7Zv6rv/JcvHWo1Uk7YeW7STpjmWPhq7XyHRi2aOh67W38fF3tfd0zXU8r2vpmmsV33E7Hf+8zegM/SwSbz3Kr9f6evQj/v7XEh04F197PrpAj4rEW4/y67WhHm2e0t/3xfj6S9FlelQk3nqUJ+/R12yvtKjm3qr6PGR3YtSsaz6rz5fGXK9VPcq/v61q3sOc4uchaqznXkePhq7Xjlawv65Cj+Zj7LpGj+iR0qPm9Ro9okdKj/LrtWPh89kxmVqPtpZ4r1sO5l91j9b5uUh+b3xqPdpf4n1bz72OHlX3Ee8ueT9xbPJ7CPRoPqoenT0Vws/6fmLVpbb/A9Jnke+B0KN5eh1O3sd6Ef5+L3+sRb6fRo/+D81ezfHeq4p9NkpRYz03fFFjPTd8UWM9N3xRYz03/GCfjVLUWM8NX9RYzw1f1FjPDV/UWM8NP9hnoxQ11nPDFzXWc8MXNdZzwxc11nPDD/bZKEWN9dzwRY313PBFjfXc8EWN9dzwg302SlFjPTd8UWM9N3xRYz03fFFjPTf8YJ+NUtRYzw1f1FjPDV/UWM8NX9RYzw0/2GejFDXWc8MXNdZzwxc11nPDFzXWc8MP9tkoRY313PBFjfXc8EWN9dzwRY313PCDfTZKUWM9N3xRYz03fFFjPTd8UWM9N/xgn41S1FjPDV/UWM8NX9RYzw1f1FjPDT/YZ6MUNdZzwxc11nPDFzXWc8MXNdZzww/22ShFjfXc8EWN9dzwRY313PBFjfXc8KPaK++K1rnP/g0Jy1VL
   </data>
  </layer>
  <layer id="3" name="MainLayer" width="146" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt18EJwkAQBdAkYALagQa0AxW0A29W4M2bbW2pDpgC1AlK9D0Y5rTLwPzDblUBAAAAAAAAAAAAAAAAAPCsW/Po16Ffhn4e+qn5/Ez8l3ldVYv69XOzyGYb1SUzmrlnrBnIW0eGNm/kaBm7W0X1yR1m7hlrBvIOkaHjGznaxu52UfvkDjP3jDUDAMCvi3dTiTd4if9c+fYsTFe8vUv840orRyTE/630UZ0cAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwKTdAeBSDDE=
+   eJztw7ENAAAIA6AOxv9PduwDjpCQAAAAAAAAAAAAAB92GgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACoA/1OAB8=
   </data>
  </layer>
  <objectgroup id="6" name="GroundsLayer">
-  <object id="5" name="Ground1" x="496" y="464" width="272" height="16"/>
-  <object id="6" name="Ground2" x="816" y="464" width="864" height="16"/>
-  <object id="17" name="TestGround1" x="691" y="448" width="74" height="2"/>
-  <object id="18" name="TestGround2" x="723" y="432" width="42" height="2"/>
-  <object id="19" name="TestGround3" x="899" y="432" width="26" height="2"/>
-  <object id="20" name="TestGround4" x="611" y="432" width="10" height="2"/>
-  <object id="29" x="1680" y="1584" width="224" height="16"/>
+  <object id="5" name="Zone1Ground" x="736" y="624" width="240" height="16"/>
+  <object id="6" name="Zone1Ground" x="531" y="592" width="218" height="2"/>
+  <object id="17" name="Zone1Ground" x="563" y="336" width="42" height="2"/>
+  <object id="18" name="Zone1Ground" x="563" y="528" width="42" height="2"/>
+  <object id="19" name="Zone1Ground" x="483" y="384" width="42" height="2"/>
+  <object id="20" name="Zone1Ground" x="563" y="432" width="42" height="2"/>
+  <object id="30" name="Zone1Ground" x="483" y="560" width="42" height="2"/>
+  <object id="31" name="Zone1Ground" x="483" y="480" width="42" height="2"/>
+  <object id="32" name="Zone1Ground" x="483" y="288" width="42" height="2"/>
+  <object id="33" name="Zone1Ground" x="563" y="240" width="106" height="2"/>
+  <object id="34" name="Zone1Ground" x="723" y="240" width="90" height="2"/>
+  <object id="35" name="Zone1Ground" x="867" y="240" width="42" height="2"/>
+  <object id="36" name="Zone1Ground" x="963" y="288" width="42" height="2"/>
+  <object id="37" name="Zone1Ground" x="915" y="352" width="26" height="2"/>
+  <object id="38" name="Zone1Ground" x="675" y="464" width="234" height="2"/>
+  <object id="39" name="Zone1Ground" x="611" y="400" width="58" height="2"/>
+  <object id="40" name="Zone1Ground" x="675" y="288" width="42" height="2"/>
+  <object id="41" name="Zone1Ground" x="819" y="288" width="42" height="2"/>
+  <object id="62" name="Zone1Ground" x="963" y="464" width="426" height="2"/>
  </objectgroup>
  <objectgroup id="4" name="WallsLayer">
-  <object id="1" name="Wall1" x="496" y="336" width="16" height="128"/>
-  <object id="4" name="Wall2" x="2320" y="336" width="16" height="128">
-   <properties>
-    <property name="ColliderType" value="Wall"/>
-   </properties>
-  </object>
-  <object id="21" name="TestWall4.1" x="608" y="438" width="2" height="4"/>
-  <object id="22" name="TestWall4.2" x="622" y="438" width="2" height="4"/>
-  <object id="23" name="TestWall1.1" x="688" y="454" width="2" height="4"/>
-  <object id="24" name="TestWall1.2" x="766" y="454" width="2" height="4"/>
-  <object id="25" name="TestWall2.2" x="766" y="438" width="2" height="4"/>
-  <object id="26" name="TestWall2.1" x="720" y="438" width="2" height="4"/>
-  <object id="27" name="TestWall3.1" x="896" y="446" width="2" height="4"/>
-  <object id="28" name="TestWall3.2" x="926" y="446" width="2" height="4"/>
+  <object id="1" name="Zone1Wall" x="464" y="160" width="16" height="400"/>
+  <object id="21" name="Zone1Wall" x="526" y="566" width="2" height="20"/>
+  <object id="42" name="Zone1Wall" x="526" y="486" width="2" height="20"/>
+  <object id="43" name="Zone1Wall" x="526" y="390" width="2" height="20"/>
+  <object id="44" name="Zone1Wall" x="526" y="294" width="2" height="20"/>
+  <object id="45" name="Zone1Wall" x="560" y="246" width="2" height="20"/>
+  <object id="46" name="Zone1Wall" x="560" y="342" width="2" height="20"/>
+  <object id="47" name="Zone1Wall" x="560" y="438" width="2" height="20"/>
+  <object id="48" name="Zone1Wall" x="560" y="534" width="2" height="20"/>
+  <object id="49" name="Zone1Wall" x="608" y="406" width="2" height="116"/>
+  <object id="50" name="Zone1Wall" x="608" y="278" width="2" height="52"/>
+  <object id="51" name="Zone1Wall" x="670" y="246" width="2" height="36"/>
+  <object id="52" name="Zone1Wall" x="720" y="246" width="2" height="36"/>
+  <object id="53" name="Zone1Wall" x="814" y="246" width="2" height="36"/>
+  <object id="54" name="Zone1Wall" x="864" y="246" width="2" height="36"/>
+  <object id="55" name="Zone1Wall" x="910" y="246" width="2" height="100"/>
+  <object id="56" name="Zone1Wall" x="960" y="166" width="2" height="52"/>
+  <object id="57" name="Zone1Wall" x="1008" y="246" width="2" height="36"/>
+  <object id="58" name="Zone1Wall" x="960" y="293" width="2" height="22"/>
+  <object id="59" name="Zone1Wall" x="670" y="406" width="2" height="52"/>
+  <object id="85" name="Zone1Wall" x="910" y="406" width="2" height="52"/>
+  <object id="60" name="Zone1Wall" x="960" y="470" width="2" height="148"/>
+  <object id="61" name="Zone1Wall" x="910" y="470" width="2" height="4"/>
+  <object id="63" name="Zone1Wall" x="942" y="358" width="2" height="4"/>
+  <object id="64" name="Zone1Wall" x="638" y="502" width="2" height="52"/>
+  <object id="65" name="Zone1Wall" x="750" y="598" width="2" height="20"/>
+  <object id="80" name="Zone1Wall" x="638" y="358" width="2" height="4"/>
+  <object id="81" name="Zone1Wall" x="670" y="326" width="2" height="20"/>
+  <object id="82" name="Zone1Wall" x="558" y="144" width="2" height="20"/>
+  <object id="83" name="Zone1Wall" x="928" y="166" width="2" height="20"/>
+  <object id="84" name="Zone1Wall" x="976" y="230" width="2" height="4"/>
  </objectgroup>
  <objectgroup id="7" name="CelingsLayer">
-  <object id="2" name="Ceiling" x="496" y="320" width="1840" height="16"/>
+  <object id="2" name="Zone1Ceiling" x="563" y="556" width="74" height="2"/>
+  <object id="66" name="Zone1Ceiling" x="483" y="508" width="42" height="2"/>
+  <object id="67" name="Zone1Ceiling" x="483" y="412" width="42" height="2"/>
+  <object id="68" name="Zone1Ceiling" x="483" y="316" width="42" height="2"/>
+  <object id="69" name="Zone1Ceiling" x="563" y="268" width="42" height="2"/>
+  <object id="70" name="Zone1Ceiling" x="563" y="364" width="74" height="2"/>
+  <object id="71" name="Zone1Ceiling" x="563" y="460" width="42" height="2"/>
+  <object id="72" name="Zone1Ceiling" x="642.999" y="350" width="26.003" height="2"/>
+  <object id="73" name="Zone1Ceiling" x="515" y="174" width="42" height="2"/>
+  <object id="74" name="Zone1Ceiling" x="899" y="158" width="26.003" height="2"/>
+  <object id="75" name="Zone1Ceiling" x="931" y="190" width="26.003" height="2"/>
+  <object id="76" name="Zone1Ceiling" x="979" y="238" width="26.003" height="2"/>
+  <object id="77" name="Zone1Ceiling" x="963" y="222" width="10" height="2"/>
+  <object id="78" name="Zone1Ceiling" x="963" y="316" width="26.003" height="2"/>
+  <object id="79" name="Zone1Ceiling" x="992" y="334" width="196.003" height="2"/>
  </objectgroup>
- <objectgroup id="5" name="GemsLayer">
+ <objectgroup id="5" name="GemsLayer" visible="0">
   <object id="8" name="BlueGem" x="592" y="400" width="16" height="16"/>
   <object id="9" name="PinkGem" x="624" y="400" width="16" height="16"/>
   <object id="10" name="RedGem" x="656" y="400" width="16" height="16"/>
