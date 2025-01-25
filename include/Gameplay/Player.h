@@ -21,7 +21,7 @@ public:
 
 	sf::FloatRect getAdjustedBounds() const { return sf::FloatRect(m_sprite.getGlobalBounds().left+6.f, m_sprite.getGlobalBounds().top+8.f, m_sprite.getGlobalBounds().width-12.f, m_sprite.getGlobalBounds().height-8.f); }
 	sf::Vector2f getAdjustedPosition() const { return sf::Vector2f(m_sprite.getPosition().x + 6.f, m_sprite.getPosition().y + 8.f); }
-	void updateAnimation(int totalAnimationFrames, float spriteSheetRow);
+	void setAdjustedPosition(sf::Vector2f position) { setPosition({ position.x - 6.f, position.y - 8.f }); }
 
 	void update(float deltaMilliseconds) override;
 	void render(sf::RenderWindow& window) override;
@@ -29,18 +29,11 @@ public:
 	bool getIsJumping() const { return m_isJumping; }
 	float getJumpSpeed() const { return m_jumpSpeed; }
 	float getGravity() const { return m_currentGravity; }
-	int getLiveCount() const { return m_liveCount; }
-	bool getHasTakenDamage() const { return m_hasTakenDamage; }
-	bool getIsDead() const { return m_isDead; }
 
-	void setAdjustedPosition(sf::Vector2f position) { setPosition({ position.x - 6.f, position.y - 8.f }); }
 	void setIsJumping(bool isJumping) { m_isJumping = isJumping; }
 	void setJumpSpeed(float jumpSpeed) { m_jumpSpeed = jumpSpeed; }
-	void setMakeJump(bool makeJump) { m_makeJump = makeJump; }
 	void setGravity(float gravity) { m_currentGravity = gravity; }
-	void setLiveCount(int liveCount) { m_liveCount = liveCount; }
-	void setHasTakenDamage(bool damageTaken) { m_hasTakenDamage = damageTaken; }
-	void setIsDead(bool isDead) { m_isDead = isDead; }
+	void setMakeJump(bool makeJump) { m_makeJump = makeJump; }
 
 protected:
 
@@ -48,13 +41,4 @@ protected:
 	bool m_isJumping{ false };
 	float m_jumpSpeed{ 0.0f };
 	float m_currentGravity{ 980.f };
-	int m_liveCount{ 2 };
-	bool m_hasTakenDamage{ false };
-	bool m_liveAmountChanged{ false };
-	bool m_isDead{ false };
-
-	// Animation
-	bool m_damageAnimationStarted{ false };
-	bool m_deathAnimationStarted{ false };
-	int m_deathAnimationTotalFrames{ 7 };
 };

@@ -12,6 +12,8 @@ bool Entity::init(const EntityDescriptor& entityDescriptor)
 	m_tileHeight = entityDescriptor.tileHeight;
 	m_speed = entityDescriptor.speed;
 	m_totalFrames = entityDescriptor.totalFrames;
+	m_deathAnimationTotalFrames = entityDescriptor.deathAnimationTotalFrames;
+	m_liveCount = entityDescriptor.liveCount;
 	return true;
 }
 
@@ -34,4 +36,12 @@ void Entity::render(sf::RenderWindow& window)
 	boundsRect.setOutlineThickness(.5f);
 	boundsRect.setFillColor(sf::Color::Transparent);
 	window.draw(boundsRect);
+}
+
+void Entity::updateAnimation(int totalAnimationFrames, float spriteSheetRow)
+{
+	m_animationTime = 0.f;
+	m_currentFrame = (m_currentFrame + 1) % totalAnimationFrames;
+	m_currentSpriteStartingX = m_tileWidth * m_currentFrame;
+	m_currentSpriteStartingY = m_tileHeight * spriteSheetRow;
 }

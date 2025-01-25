@@ -180,11 +180,3 @@ void Player::render(sf::RenderWindow& window)
 
 	Entity::render(window);
 }
-
-void Player::updateAnimation(int totalAnimationFrames, float spriteSheetRow)
-{
-	m_animationTime = 0.f;
-	m_currentFrame = (m_currentFrame + 1) % totalAnimationFrames;
-	m_currentSpriteStartingX = m_tileWidth * m_currentFrame;
-	m_currentSpriteStartingY = m_tileHeight * spriteSheetRow;
-}

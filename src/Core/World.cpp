@@ -66,6 +66,8 @@ bool World::load()
 	playerDescriptor.tileHeight = 32.f;
 	playerDescriptor.jumpSpeed = 300.f; 
 	playerDescriptor.totalFrames = 12;
+	playerDescriptor.deathAnimationTotalFrames = 7;
+	playerDescriptor.liveCount = 2;
 	Player* player = new Player();
 	const bool playerLoaded = player->init(playerDescriptor);
 	m_player = player;
@@ -79,7 +81,9 @@ bool World::load()
 	enemyDescriptor.tileWidth = 32.f;
 	enemyDescriptor.tileHeight = 32.f;
 	enemyDescriptor.totalFrames = 12;
+	enemyDescriptor.deathAnimationTotalFrames = 7;
 	enemyDescriptor.direction = { -1.f, 0.f };
+	enemyDescriptor.liveCount = 1;
 	Enemy* enemy = new Enemy();
 	const bool enemyLoaded = enemy->init(enemyDescriptor);
 	m_enemy = enemy;
