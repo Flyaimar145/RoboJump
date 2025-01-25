@@ -7,11 +7,6 @@
 
 bool Player::init(const PlayerDescriptor& playerDescriptor)
 {
-	//m_sprite.setTexture(*playerDescriptor.texture);
-	//m_sprite.setPosition(playerDescriptor.position);
-	//m_tileWidth = playerDescriptor.tileWidth;
-	//m_tileHeight = playerDescriptor.tileHeight;
-	//m_speed = playerDescriptor.speed;
 	m_jumpSpeed = playerDescriptor.jumpSpeed;
 	Entity::init(playerDescriptor);
 	return true;
@@ -55,49 +50,23 @@ void Player::update(float deltaMilliseconds)
 		m_isJumping = true;
 		m_speed.y = -m_jumpSpeed;
 	}
-	//printf("Gravity: %f\n", m_currentGravity);
 	// Apply gravity
-
 	if (m_currentGravity > 0.0f)
 	{
 		m_speed.y += m_currentGravity * (deltaMilliseconds / 1000.f);
 	}
-
 	// Check if player is on the ground
 	if (!m_isJumping && m_currentGravity == 0.0f)
 	{
 		m_speed.y = 0.0f;
-		m_direction.y = 0.0f;
-	}
-	else
-	{
-		m_direction.y = 1.0f;
 	}
 
-	/*
-	if (m_isJumping)
-	{
-		m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
-	}
-	else if (m_currentGravity > 0.0f)
-	{
-		m_direction.y = 1.0f;
-	}
-	else
-	{
-		m_direction.y = .0f;
-	}
-	m_speed.y += m_currentGravity * (deltaMilliseconds / 1000.f);
-	*/
-	//printf("Speed Y: %f\n", m_speed.y);
-
-	// Update final positioN
-	// IMPORTANT NOTE!! We are using delta time to change the position according to the elapsed time so, it doesn't matter how many FPS (calls to update per second) we do, 
-	// the sprite changes according to the elapsed time and not to the number of calls
+	// Update final position
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
-	//m_position.y += (m_direction.y * m_speed.y * deltaMilliseconds);
 	
+
+	//Player's info
 	//printf("X: %f, Y: %f \n", m_position.x, m_position.y);
 	//printf("Sprite X: %f, Sprite Y: %f \n", m_sprite.getPosition().x, m_sprite.getPosition().y);
 	//("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
@@ -151,7 +120,7 @@ void Player::update(float deltaMilliseconds)
 	}
 	else if (m_isDead)
 	{
-		// Reset the current frame to 0 when damage is taken
+		// Reset the current frame to 0 when damage is taken, so the animation starts from the beginning
 		if (!m_deathAnimationStarted)
 		{
 			m_currentFrame = 0;
@@ -195,24 +164,12 @@ void Player::update(float deltaMilliseconds)
 			updateAnimation(m_totalFrames, 0.f);
 		}
 	}
-	//m_sprite.setPosition(m_position);
 	Entity::update(deltaMilliseconds);
 }
 
 void Player::render(sf::RenderWindow& window)
 {
-	// Extend this mechanism to be able to support animations
-	//m_sprite.setTextureRect(sf::IntRect(m_currentSpriteStartingX, m_currentSpriteStartingY, m_tileWidth, m_tileHeight));
-
-	//window.draw(m_sprite);
-
-	//const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
-	//sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
-	//boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
-	//boundsRect.setOutlineColor(sf::Color::Blue);
-	//boundsRect.setOutlineThickness(.5f);
-	//boundsRect.setFillColor(sf::Color::Transparent);
-	//window.draw(boundsRect);
+	//Show adjusted bounds
 	const sf::FloatRect adjustedBounds = this->getAdjustedBounds();
 	sf::RectangleShape boundsRect(sf::Vector2f(adjustedBounds.width, adjustedBounds.height));
 	boundsRect.setPosition(adjustedBounds.left, adjustedBounds.top);

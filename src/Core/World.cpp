@@ -51,12 +51,7 @@ bool World::load()
 
 	// Dead zone is defined relative to the center of the view
 	m_deadZone = sf::FloatRect(deadZoneX, deadZoneY, deadZoneWidth, deadZoneHeight);
-	//m_view1.setCenter({ createInfo.screenWidth / 4.f, createInfo.screenHeight /4.f });
 
-	//sf::View view1({ 0.f, 0.f, 960.f, 540.f });
-
-
-	//m_window->setView(m_view);
 
 	// To-Do, read ALL from file, this is just a quick example to understand that here is where entities are created but consider grouping/managing actors in a smarter way
 	
@@ -66,10 +61,10 @@ bool World::load()
 	Player::PlayerDescriptor playerDescriptor;
 	playerDescriptor.texture = playerTexture1;
 	playerDescriptor.position = { 0.f, 0.f };
-	playerDescriptor.speed = { 100.f * millisecondsToSeconds, 100.f * millisecondsToSeconds }; // 400 units per second, or 0.4 units per millisecond, using the latter so it's in alignment with delta time
+	playerDescriptor.speed = { 100.f * millisecondsToSeconds, 100.f * millisecondsToSeconds }; 
 	playerDescriptor.tileWidth = 32.f;
 	playerDescriptor.tileHeight = 32.f;
-	playerDescriptor.jumpSpeed = 300.f; // 300 units per second, or 0.4 units per millisecond, using the latter so it's in alignment with delta time
+	playerDescriptor.jumpSpeed = 300.f; 
 	playerDescriptor.totalFrames = 12;
 	Player* player = new Player();
 	const bool playerLoaded = player->init(playerDescriptor);
@@ -80,7 +75,7 @@ bool World::load()
 	Enemy::EnemyDescriptor enemyDescriptor;
 	enemyDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
 	enemyDescriptor.position = { MAP_TILE_SIZE * 24.f, MAP_TILE_SIZE * 17.f };
-	enemyDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds }; // 400 units per second, or 0.4 units per millisecond, using the latter so it's in alignment with delta time
+	enemyDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds }; 
 	enemyDescriptor.tileWidth = 32.f;
 	enemyDescriptor.tileHeight = 32.f;
 	enemyDescriptor.totalFrames = 12;
@@ -115,11 +110,9 @@ void World::update(uint32_t deltaMilliseconds)
 
 	// Update player
 	m_player->update(deltaMilliseconds);
-	//printf("Player Position: %f, %f \n", m_player->getPosition().x, m_player->getPosition().y);
 
 	// Update enemy
 	m_enemy->update(deltaMilliseconds);
-	//printf("Enemy Position: %f, %f \n", m_enemy->getPosition().x, m_enemy->getPosition().y);
 
 	// Adjust the view's center based on the dead zone
 	sf::Vector2f playerPos = m_player->getPosition();
@@ -152,105 +145,6 @@ void World::update(uint32_t deltaMilliseconds)
 
 		m_view->setCenter(viewCenter);
 	}
-	// Collision management (old code; no CollisionManager; keeping it for the moment just in case)
-	/*
-	const auto& groundShapes = m_groundsLayer->getShapes();
-	bool isGrounded = false;
-	for (const auto* shape : groundShapes)
-	{	
-		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
-		{
-			isGrounded = true;
-			m_player->setGravity(.0f);
-			m_player->setIsJumping(false);
-			m_player->setPosition({ m_player->getPosition().x, shape->getGlobalBounds().top - m_player->getBounds().height +1.f});
-			#if DEBUG_MODE
-				//printf("Ground Collision \n");
-			#endif
-		}
-	}
-	if (!isGrounded)
-	{
-		m_player->setGravity(980.f);
-	}
-	
-	const auto& wallShapes = m_wallsLayer->getShapes();
-	bool isCollidingWithWall = false;
-	bool collidedLeft = false;
-	bool collidedRight = false;
-	for (const auto* shape : wallShapes)
-	{
-		//printf("Player Bounds \n");
-		//printf("Left: %f \n", m_player->getBounds().left);
-		//printf("Top: %f \n", m_player->getBounds().top);
-		//printf("Right: %f \n", m_player->getBounds().left + m_player->getBounds().width);
-		//printf("Bottom: %f \n", m_player->getBounds().top + m_player->getBounds().height);
-		
-		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
-		{
-			sf::FloatRect playerBounds = m_player->getBounds();
-			sf::FloatRect wallBounds = shape->getGlobalBounds();
-
-			// Check if the player is moving right and collides with the left side of the wall
-			if (m_player->getDirection().x > 0 && playerBounds.left + playerBounds.width > wallBounds.left && playerBounds.left < wallBounds.left)
-			{
-				m_player->setPosition({ wallBounds.left - playerBounds.width, m_player->getPosition().y });
-				isCollidingWithWall = true;
-				collidedLeft = true;
-			}
-			// Check if the player is moving left and collides with the right side of the wall
-			else if (m_player->getDirection().x < 0 && playerBounds.left < wallBounds.left + wallBounds.width && playerBounds.left + playerBounds.width > wallBounds.left + wallBounds.width)
-			{
-				m_player->setPosition({ wallBounds.left + wallBounds.width, m_player->getPosition().y });
-				isCollidingWithWall = true;
-				collidedRight = true;
-
-			}
-			#if DEBUG_MODE
-			//printf("Wall Collision \n");
-			//printf("Collided Left: %d, Collided Right: %d", collidedLeft, collidedRight);
-			#endif
-		}
-	}
-	// Allow movement away from the wall
-	sf::Vector2f newDirection = m_player->getDirection();
-	// If collidedLeft, disallow left movement (negative x-direction)
-	if (collidedLeft && newDirection.x < 0)
-	{
-		newDirection.x = 0.f;
-	}
-	// If collidedRight, disallow right movement (positive x-direction)
-	if (collidedRight && newDirection.x > 0)
-	{
-		newDirection.x = 0.f;
-	}
-	// Update the player's direction with the new direction
-	m_player->setDirection(newDirection);
-	
-	const auto& ceilingShapes = m_ceilingsLayer->getShapes();
-	for (const auto* shape : ceilingShapes)
-	{
-		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
-		{
-			m_player->setPosition({ m_player->getPosition().x, shape->getGlobalBounds().top + shape->getGlobalBounds().height });
-			m_player->setSpeed({ m_player->getSpeed().x, .0f });
-		#if DEBUG_MODE
-					//printf("Ceiling Collision\n");
-		#endif
-		}
-	}
-	
-	const auto& gemShapes = m_gemsLayer->getShapes();
-	for (const auto* shape : gemShapes)
-	{
-		if (shape->getGlobalBounds().intersects(m_player->getBounds()))
-		{
-			#if DEBUG_MODE
-				//printf("Gem collected \n");
-			#endif
-		}
-	}
-	*/
 }
 
 void World::render(sf::RenderWindow& window)

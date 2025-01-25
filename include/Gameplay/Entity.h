@@ -31,9 +31,7 @@ public:
 
 	sf::Vector2f getSpeed() const { return m_speed; }
 	sf::Vector2f getDirection() const { return m_direction; }
-	//float getGravity() const { return m_currentGravity; }
 
-	//void setGravity(float gravity) { m_currentGravity = gravity; }
 	void setSpeed(sf::Vector2f speed) { m_speed = speed; }
 	void setDirection(sf::Vector2f direction) { m_direction = direction; }
 
@@ -42,7 +40,6 @@ protected:
 	sf::Sprite m_sprite;
 	sf::Vector2f m_direction{ .0f, .0f };
 	sf::Vector2f m_speed{ .0f, .0f };
-	//float m_currentGravity{ 980.f };
 
 	// Animation
 	float m_tileWidth{ .0f };

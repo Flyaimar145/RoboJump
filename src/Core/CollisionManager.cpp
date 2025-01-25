@@ -20,7 +20,7 @@ void CollisionManager::checkGroundCollision(const ObjectLayer* groundsCollisionL
 	{
 		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getAdjustedBounds()))
 		{
-			//printf("Speed X: %f, Speed Y: %f \n", objectToCheckCollision->getSpeed().x, objectToCheckCollision->getSpeed().y);
+			// Falling from a certain height will kill the player
 			if (objectToCheckCollision->getSpeed().y > 800.f)
 			{
 				objectToCheckCollision->setHasTakenDamage(true);
@@ -49,13 +49,6 @@ void CollisionManager::checkWallCollision(const ObjectLayer* wallsCollisionLayer
 	bool collidedRight = false;
 	for (const auto* shape : wallShapes)
 	{
-		//printf("Player Bounds \n");
-		/*
-		printf("Left: %f \n", m_player->getBounds().left);
-		printf("Top: %f \n", m_player->getBounds().top);
-		printf("Right: %f \n", m_player->getBounds().left + m_player->getBounds().width);
-		printf("Bottom: %f \n", m_player->getBounds().top + m_player->getBounds().height);
-		*/
 		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getAdjustedBounds()))
 		{
 			sf::FloatRect playerBounds = objectToCheckCollision->getAdjustedBounds();
@@ -136,11 +129,10 @@ void CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy
 		//Check if players bottom touches enemy top
 		if (player->getAdjustedBounds().top + player->getAdjustedBounds().height-5.f < enemy->getBounds().top && player->getSpeed().y > 0.f)
 		{
-			printf("Player jumped on enemy \n");
+			//printf("Player jumped on enemy \n");
 			player->setMakeJump(true);
 			enemy->setHasTakenDamage(true);
 			enemy->setCanMakeDamage(false);
-			//player->setSpeed({ player->getSpeed().x, -300.f });
 		}
 		else
 		{

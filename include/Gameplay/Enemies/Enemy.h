@@ -12,10 +12,6 @@ class Enemy : public Entity
 
 		struct EnemyDescriptor : public EntityDescriptor
 		{
-		//	sf::Vector2f position;
-		//	sf::Texture* texture{ nullptr };
-		//	float tileWidth{ .0f };
-		//	float tileHeight{ .0f };
 			sf::Vector2f direction{ .0f, .0f };
 		};
 
@@ -23,7 +19,6 @@ class Enemy : public Entity
 
 		bool init(const EnemyDescriptor& enemyDescriptor);
 
-		//sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
 		void updateAnimation(int totalAnimationFrames, float spriteSheetRow);
 
 		void update(float deltaMilliseconds) override;
@@ -48,11 +43,4 @@ class Enemy : public Entity
 		int m_liveCount{ 1 };
 		bool m_isDead{ false };
 		int m_deathAnimationTotalFrames{ 7 };
-
-
-		//sf::Sprite m_sprite;
-		//float m_tileWidth{ .0f };
-		//float m_tileHeight{ .0f };
-		//float m_currentSpriteStartingX{ .0f };
-		//float m_currentSpriteStartingY{ .0f };
 };
