@@ -20,7 +20,7 @@ World::~World()
 	delete m_groundsLayer;
 	delete m_wallsLayer;
 	delete m_ceilingsLayer;
-	delete m_gemsLayer;
+	delete m_trapsLayer;
 	delete m_map;
 }
 
@@ -38,7 +38,7 @@ bool World::load()
 	m_groundsLayer = new ObjectLayer(*m_map, 3);
 	m_wallsLayer = new ObjectLayer(*m_map, 4);
 	m_ceilingsLayer = new ObjectLayer(*m_map, 5);
-	m_gemsLayer = new ObjectLayer(*m_map, 6);
+	m_trapsLayer = new ObjectLayer(*m_map, 6);
 
 	m_layerZero->setOffset({ .0f, .0f });
 
@@ -88,7 +88,7 @@ bool World::load()
 	Enemy* enemy = new Enemy();
 	const bool enemyLoaded = enemy->init(enemyDescriptor);
 	m_enemy = enemy;
-	enemy->setPosition({ MAP_TILE_SIZE * 54.f, MAP_TILE_SIZE * 27.f });
+	enemy->setPosition({ MAP_TILE_SIZE * 49.f, MAP_TILE_SIZE * 27.f });
 
 
 	return playerLoaded && enemyLoaded;
@@ -107,7 +107,7 @@ void World::update(uint32_t deltaMilliseconds)
 	CollisionManager::getInstance()->checkGroundCollision(m_groundsLayer, m_player);
 	CollisionManager::getInstance()->checkWallCollision(m_wallsLayer, m_player);
 	CollisionManager::getInstance()->checkCeilingCollision(m_ceilingsLayer, m_player);
-	CollisionManager::getInstance()->checkGemCollision(m_gemsLayer, m_player);
+	CollisionManager::getInstance()->checkTrapCollision(m_trapsLayer, m_player);
 
 	CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, m_enemy);
 
@@ -262,7 +262,7 @@ void World::render(sf::RenderWindow& window)
 	window.draw(*m_groundsLayer);
 	window.draw(*m_wallsLayer);
 	window.draw(*m_ceilingsLayer);
-	window.draw(*m_gemsLayer);
+	window.draw(*m_trapsLayer);
 	m_player->render(window);
 	m_enemy->render(window);
 

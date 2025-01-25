@@ -48,7 +48,7 @@ class World
 		ObjectLayer* m_groundsLayer{ nullptr };
 		ObjectLayer* m_wallsLayer{ nullptr };
 		ObjectLayer* m_ceilingsLayer{ nullptr };
-		ObjectLayer* m_gemsLayer{ nullptr };
+		ObjectLayer* m_trapsLayer{ nullptr };
 
 		sf::View* m_view{ nullptr };
 		sf::FloatRect m_deadZone;

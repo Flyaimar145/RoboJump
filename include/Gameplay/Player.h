@@ -24,8 +24,6 @@ public:
 
 	bool init(const PlayerDescriptor& playerDescriptor);
 
-	//sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
-	//sf::FloatRect getBounds() const override{ return sf::FloatRect(m_sprite.getGlobalBounds().left, m_sprite.getGlobalBounds().top, m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().height); }
 	sf::FloatRect getAdjustedBounds() const { return sf::FloatRect(m_sprite.getGlobalBounds().left+6.f, m_sprite.getGlobalBounds().top+8.f, m_sprite.getGlobalBounds().width-12.f, m_sprite.getGlobalBounds().height-8.f); }
 	sf::Vector2f getAdjustedPosition() const { return sf::Vector2f(m_sprite.getPosition().x + 6.f, m_sprite.getPosition().y + 8.f); }
 	void updateAnimation(int totalAnimationFrames, float spriteSheetRow);

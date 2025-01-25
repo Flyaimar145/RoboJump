@@ -12,7 +12,7 @@ public:
 	void checkGroundCollision(const ObjectLayer* groundsCollisionLayer, Player* objectToCheckCollision) const;
 	void checkWallCollision(const ObjectLayer* wallsCollisionLayer, Player* objectToCheckCollision) const;
 	void checkCeilingCollision(const ObjectLayer* ceilingsCollisionLayer, Player* objectToCheckCollision) const;
-	void checkGemCollision(const ObjectLayer* gemsCollisionLayer, Player* objectToCheckCollision) const;
+	void checkTrapCollision(const ObjectLayer* trapsCollisionLayer, Player* objectToCheckCollision) const;
 	void checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const;
 	void checkEnemyWallCollision(const ObjectLayer* wallsCollisionLayer, Enemy* objectToCheckCollision) const;
 private:
