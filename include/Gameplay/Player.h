@@ -27,7 +27,7 @@ public:
 	//sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
 	//sf::FloatRect getBounds() const override{ return sf::FloatRect(m_sprite.getGlobalBounds().left, m_sprite.getGlobalBounds().top, m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().height); }
 	sf::FloatRect getAdjustedBounds() const { return sf::FloatRect(m_sprite.getGlobalBounds().left+6.f, m_sprite.getGlobalBounds().top+8.f, m_sprite.getGlobalBounds().width-12.f, m_sprite.getGlobalBounds().height-8.f); }
-	//sf::Vector2f getAdjustedPosition() const { return sf::Vector2f(m_sprite.getPosition().x + 6.f, m_sprite.getPosition().y + 8.f); }
+	sf::Vector2f getAdjustedPosition() const { return sf::Vector2f(m_sprite.getPosition().x + 6.f, m_sprite.getPosition().y + 8.f); }
 	void updateAnimation(int totalAnimationFrames, float spriteSheetRow);
 
 	void update(float deltaMilliseconds) override;
@@ -42,8 +42,10 @@ public:
 	bool getHasTakenDamage() const { return m_hasTakenDamage; }
 	bool getIsDead() const { return m_isDead; }
 
+	void setAdjustedPosition(sf::Vector2f position) { setPosition({ position.x - 6.f, position.y - 8.f }); }
 	void setIsJumping(bool isJumping) { m_isJumping = isJumping; }
 	void setJumpSpeed(float jumpSpeed) { m_jumpSpeed = jumpSpeed; }
+	void setMakeJump(bool makeJump) { m_makeJump = makeJump; }
 	void setGravity(float gravity) { m_currentGravity = gravity; }
 	void setLiveCount(int liveCount) { m_liveCount = liveCount; }
 	void setHasTakenDamage(bool damageTaken) { m_hasTakenDamage = damageTaken; }
@@ -57,11 +59,13 @@ protected:
 	//sf::Sprite m_sprite;
 	//sf::Vector2f m_direction{ .0f, .0f };
 	//sf::Vector2f m_speed{ .0f, .0f };
+	bool m_makeJump{ false };
 	bool m_isJumping{ false };
 	float m_jumpSpeed{ 0.0f };
 	float m_currentGravity{ 980.f };
 	int m_liveCount{ 2 };
 	bool m_hasTakenDamage{ false };
+	bool m_damageAnimationStarted{ false };
 	bool m_liveAmountChanged{ false };
 
 	// Animation
@@ -76,6 +80,4 @@ protected:
 	bool m_isDead{ false };
 	bool m_deathAnimationStarted{ false };
 	int m_deathAnimationTotalFrames{ 7 };
-
-	bool m_damageAnimationStarted{ false };
 };

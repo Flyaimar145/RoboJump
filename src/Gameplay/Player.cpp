@@ -49,8 +49,9 @@ void Player::update(float deltaMilliseconds)
 		m_direction.x = .0f;
 	}
 
-	if (isJumpingInput && !m_isJumping)
+	if ((isJumpingInput && !m_isJumping) || m_makeJump)
 	{
+		m_makeJump = false;
 		m_isJumping = true;
 		m_speed.y = -m_jumpSpeed;
 	}
@@ -122,25 +123,7 @@ void Player::update(float deltaMilliseconds)
 
 	// Update animation
 	m_animationTime += deltaMilliseconds;
-	if (m_isDead)
-	{
-		// Reset the current frame to 0 when damage is taken
-		if (!m_deathAnimationStarted)
-		{
-			m_currentFrame = 0;
-			m_deathAnimationStarted = true;
-		}
-
-		if (m_animationTime >= m_frameDuration)
-		{
-			updateAnimation(m_deathAnimationTotalFrames, 4.f);
-			if (m_currentFrame == m_deathAnimationTotalFrames - 1)
-			{
-				m_position = { 1000.f, 1000.f };
-			}
-		}
-	}
-	else if (m_hasTakenDamage)
+	if (m_hasTakenDamage)
 	{
 		// First moment of taking damage: Reset the current frame to 0 to start the animation from the beginning, and reduce the live count
 		if (!m_damageAnimationStarted)
@@ -163,6 +146,24 @@ void Player::update(float deltaMilliseconds)
 				{
 					m_isDead = true;
 				}
+			}
+		}
+	}
+	else if (m_isDead)
+	{
+		// Reset the current frame to 0 when damage is taken
+		if (!m_deathAnimationStarted)
+		{
+			m_currentFrame = 0;
+			m_deathAnimationStarted = true;
+		}
+
+		if (m_animationTime >= m_frameDuration)
+		{
+			updateAnimation(m_deathAnimationTotalFrames, 4.f);
+			if (m_currentFrame == m_deathAnimationTotalFrames - 1)
+			{
+				m_position = { 1000.f, 1000.f };
 			}
 		}
 	}

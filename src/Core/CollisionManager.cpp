@@ -18,7 +18,7 @@ void CollisionManager::checkGroundCollision(const ObjectLayer* groundsCollisionL
 	bool isGrounded = false;
 	for (const auto* shape : groundShapes)
 	{
-		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getBounds()))
+		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getAdjustedBounds()))
 		{
 			//printf("Speed X: %f, Speed Y: %f \n", objectToCheckCollision->getSpeed().x, objectToCheckCollision->getSpeed().y);
 			if (objectToCheckCollision->getSpeed().y > 800.f)
@@ -29,7 +29,7 @@ void CollisionManager::checkGroundCollision(const ObjectLayer* groundsCollisionL
 			isGrounded = true;
 			objectToCheckCollision->setGravity(.0f);
 			objectToCheckCollision->setIsJumping(false);
-			objectToCheckCollision->setPosition({ objectToCheckCollision->getPosition().x, shape->getGlobalBounds().top - objectToCheckCollision->getBounds().height + 0.1f });
+			objectToCheckCollision->setAdjustedPosition({ objectToCheckCollision->getAdjustedPosition().x, shape->getGlobalBounds().top - objectToCheckCollision->getAdjustedBounds().height + 0.1f });
 			#if DEBUG_MODE
 						//printf("Ground Collision \n");
 			#endif
@@ -56,22 +56,22 @@ void CollisionManager::checkWallCollision(const ObjectLayer* wallsCollisionLayer
 		printf("Right: %f \n", m_player->getBounds().left + m_player->getBounds().width);
 		printf("Bottom: %f \n", m_player->getBounds().top + m_player->getBounds().height);
 		*/
-		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getBounds()))
+		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getAdjustedBounds()))
 		{
-			sf::FloatRect playerBounds = objectToCheckCollision->getBounds();
+			sf::FloatRect playerBounds = objectToCheckCollision->getAdjustedBounds();
 			sf::FloatRect wallBounds = shape->getGlobalBounds();
 
 			// Check if the player is moving right and collides with the left side of the wall
 			if (objectToCheckCollision->getDirection().x > 0 && playerBounds.left + playerBounds.width > wallBounds.left && playerBounds.left < wallBounds.left)
 			{
-				objectToCheckCollision->setPosition({ wallBounds.left - playerBounds.width -1.f, objectToCheckCollision->getPosition().y });
+				objectToCheckCollision->setAdjustedPosition({ wallBounds.left - playerBounds.width -1.f, objectToCheckCollision->getAdjustedPosition().y });
 				isCollidingWithWall = true;
 				collidedLeft = true;
 			}
 			// Check if the player is moving left and collides with the right side of the wall
 			else if (objectToCheckCollision->getDirection().x < 0 && playerBounds.left < wallBounds.left + wallBounds.width && playerBounds.left + playerBounds.width > wallBounds.left + wallBounds.width)
 			{
-				objectToCheckCollision->setPosition({ wallBounds.left + wallBounds.width+1.f, objectToCheckCollision->getPosition().y });
+				objectToCheckCollision->setAdjustedPosition({ wallBounds.left + wallBounds.width+1.f, objectToCheckCollision->getAdjustedPosition().y });
 				isCollidingWithWall = true;
 				collidedRight = true;
 
@@ -103,9 +103,9 @@ void CollisionManager::checkCeilingCollision(const ObjectLayer* ceilingsCollisio
 	const auto& ceilingShapes = ceilingsCollisionLayer->getShapes();
 	for (const auto* shape : ceilingShapes)
 	{
-		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getBounds()))
+		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getAdjustedBounds()))
 		{
-			objectToCheckCollision->setPosition({ objectToCheckCollision->getPosition().x, shape->getGlobalBounds().top + shape->getGlobalBounds().height+2.f });
+			objectToCheckCollision->setAdjustedPosition({ objectToCheckCollision->getAdjustedPosition().x, shape->getGlobalBounds().top + shape->getGlobalBounds().height+2.f });
 			objectToCheckCollision->setSpeed({ objectToCheckCollision->getSpeed().x, .0f });
 			#if DEBUG_MODE
 						//printf("Ceiling Collision\n");
@@ -130,19 +130,24 @@ void CollisionManager::checkGemCollision(const ObjectLayer* gemsCollisionLayer, 
 
 void CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const
 {
-	if (player->getBounds().intersects(enemy->getBounds()))
+	if (player->getAdjustedBounds().intersects(enemy->getBounds()))
 	{
 		//Check if players bottom touches enemy top
-		if (player->getBounds().top + player->getBounds().height-5.f < enemy->getBounds().top && player->getSpeed().y > 0.f)
+		if (player->getAdjustedBounds().top + player->getAdjustedBounds().height-5.f < enemy->getBounds().top && player->getSpeed().y > 0.f)
 		{
 			printf("Player jumped on enemy \n");
-			enemy->setPosition({1000.f,1000.f });
+			player->setMakeJump(true);
+			enemy->setHasTakenDamage(true);
+			enemy->setCanMakeDamage(false);
 			//player->setSpeed({ player->getSpeed().x, -300.f });
 		}
 		else
 		{
-			printf("Player damaged by enemy \n");
-			player->setHasTakenDamage(true);
+			//printf("Player damaged by enemy \n");
+			if (enemy->getCanMakeDamage())
+			{
+				player->setHasTakenDamage(true);
+			}
 		}
 		//printf("Player collided with enemy \n");
 	}
