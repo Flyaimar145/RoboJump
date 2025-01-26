@@ -15,7 +15,7 @@ class Enemy : public Entity
 			sf::Vector2f initialDirection{ .0f, .0f };
 		};
 
-		~Enemy() override = default;
+		virtual ~Enemy() override = default;
 
 		bool init(const EnemyDescriptor& enemyDescriptor);
 

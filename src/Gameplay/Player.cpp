@@ -5,6 +5,25 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
+Player::PlayerDescriptor Player::load()
+{
+	json playerInfo = loadJsonFromFile(GAMEINFOJSON_PLAYER)["Player"];
+	json gameInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
+	sf::Texture* playerFirstTexture = AssetManager::getInstance()->loadTexture(playerInfo["firstTexture"].get<std::string>().c_str());
+	sf::Texture* oneLifeLeftTexture = AssetManager::getInstance()->loadTexture(playerInfo["oneLifeLeftTexture"].get<std::string>().c_str());
+	Player::PlayerDescriptor playerDescriptor;
+	playerDescriptor.firstTexture = playerFirstTexture;
+	playerDescriptor.position = { gameInfo["mapTileSize"] * playerInfo["positionX"].get<float>(), gameInfo["mapTileSize"] * playerInfo["positionY"].get<float>() };
+	playerDescriptor.speed = { playerInfo["speedX"].get<float>() * millisecondsToSeconds, playerInfo["speedY"].get<float>() * millisecondsToSeconds };
+	playerDescriptor.tileWidth = playerInfo["tileWidth"].get<float>();
+	playerDescriptor.tileHeight = playerInfo["tileHeight"].get<float>();
+	playerDescriptor.jumpSpeed = playerInfo["jumpSpeed"].get<float>();
+	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
+	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
+	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();
+	return playerDescriptor;
+}
+
 bool Player::init(const PlayerDescriptor& playerDescriptor)
 {
 	m_jumpSpeed = playerDescriptor.jumpSpeed;

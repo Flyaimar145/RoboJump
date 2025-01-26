@@ -32,7 +32,7 @@ World::~World()
 
 bool World::load()
 {
-	constexpr float millisecondsToSeconds = 1 / 1000.f;
+	//constexpr float millisecondsToSeconds = 1 / 1000.f;
 
 	// Load level
 	m_level = new Level();
@@ -56,18 +56,9 @@ bool World::load()
 	// Player
 	//sf::Texture* playerTexture1 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png");
 	//sf::Texture* playerTexture2 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png");
-	sf::Texture* playerFirstTexture = AssetManager::getInstance()->loadTexture(playerInfo["firstTexture"].get<std::string>().c_str());
+	/*sf::Texture* playerFirstTexture = AssetManager::getInstance()->loadTexture(playerInfo["firstTexture"].get<std::string>().c_str());
 	sf::Texture* oneLifeLeftTexture = AssetManager::getInstance()->loadTexture(playerInfo["oneLifeLeftTexture"].get<std::string>().c_str());
-	Player::PlayerDescriptor playerDescriptor;
-	//playerDescriptor.firstTexture = playerTexture1;
-	//playerDescriptor.position = { gameInfo["mapTileSize"] * 56.f, gameInfo["mapTileSize"] * 47.f};
-	//playerDescriptor.speed = { 100.f * millisecondsToSeconds, 100.f * millisecondsToSeconds }; 
-	//playerDescriptor.tileWidth = 32.f;
-	//playerDescriptor.tileHeight = 32.f;
-	//playerDescriptor.jumpSpeed = 300.f; 
-	//playerDescriptor.totalFrames = 12;
-	//playerDescriptor.deathAnimationTotalFrames = 7;
-	//playerDescriptor.lifeCount = 2;
+	Player::PlayerDescriptor playerDescriptor;	
 	playerDescriptor.firstTexture = playerFirstTexture;
 	playerDescriptor.position = { gameInfo["mapTileSize"] * playerInfo["positionX"].get<float>(), gameInfo["mapTileSize"] * playerInfo["positionY"].get<float>() };
 	playerDescriptor.speed = { playerInfo["speedX"].get<float>() * millisecondsToSeconds, playerInfo["speedY"].get<float>() * millisecondsToSeconds };
@@ -76,10 +67,12 @@ bool World::load()
 	playerDescriptor.jumpSpeed = playerInfo["jumpSpeed"].get<float>();
 	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
 	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
-	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();
+	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();*/
 	
+
 	Player* player = new Player();
-	const bool playerLoaded = player->init(playerDescriptor);
+	Player::PlayerDescriptor playerDescriptor2 = player->load();
+	const bool playerLoaded = player->init(playerDescriptor2);
 	m_player = player;
 	//player->setPosition({ MAP_TILE_SIZE * 56.f, MAP_TILE_SIZE * 47.f });
 
@@ -121,21 +114,15 @@ bool World::load()
 
 void World::update(uint32_t deltaMilliseconds)
 {
+	// Update level
 	m_level->update(deltaMilliseconds);
 
-	// Check for collisions (We could do it in a function here or have a collision manager if it gets complex)
-	// Collision management (with CollisionManager)
-	CollisionManager::getInstance()->checkGroundCollision(m_level->getGroundsLayer(), m_player);
-	CollisionManager::getInstance()->checkWallCollision(m_level->getWallsLayer(), m_player);
-	CollisionManager::getInstance()->checkCeilingCollision(m_level->getCeilingsLayer(), m_player);
-	CollisionManager::getInstance()->checkTrapCollision(m_level->getTrapsLayer(), m_player);
+	// Update player (collision detection and player->update)
+	updatePlayer(deltaMilliseconds);
 
-	CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, m_enemy);
 
 	CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemy);
 
-	// Update player
-	m_player->update(deltaMilliseconds);
 
 	// Update enemy
 	m_enemy->update(deltaMilliseconds);
@@ -207,4 +194,112 @@ void World::drawDeadZone(sf::RenderWindow& window)
 
 	// Draw the rectangle
 	window.draw(deadZoneRect);
+}
+
+void World::updatePlayer(uint32_t deltaMilliseconds)
+{
+	// Check for ground collisions
+	bool isGrounded = false;
+	const sf::Shape* collidedGroundShape = CollisionManager::getInstance()->checkGroundCollision(m_level->getGroundsLayer(), m_player);
+	if (collidedGroundShape != nullptr)
+	{
+		// Falling from a certain height will kill the player
+		if (m_player->getSpeed().y > 800.f)
+		{
+			m_player->setHasTakenDamage(true);
+			m_player->setIsDead(true);
+		}
+		isGrounded = true;
+		m_player->setGravity(.0f);
+		m_player->setIsJumping(false);
+		m_player->setAdjustedPosition({ m_player->getAdjustedPosition().x, collidedGroundShape->getGlobalBounds().top - m_player->getAdjustedBounds().height + 0.1f });
+	}
+	if (!isGrounded)
+	{
+		m_player->setGravity(980.f);
+	}
+
+
+
+	// Check for wall collisions
+	bool isCollidingWithWall = false;
+	bool collidedLeft = false;
+	bool collidedRight = false;
+	const sf::Shape* collidedWallShape = CollisionManager::getInstance()->checkWallCollision(m_level->getWallsLayer(), m_player);
+	if (collidedWallShape != nullptr)
+	{
+		sf::FloatRect playerBounds = m_player->getAdjustedBounds();
+		sf::FloatRect wallBounds = collidedWallShape->getGlobalBounds();
+
+		// Check if the player is moving right and collides with the left side of the wall
+		if (m_player->getDirection().x > 0 && playerBounds.left + playerBounds.width > wallBounds.left && playerBounds.left < wallBounds.left)
+		{
+			m_player->setAdjustedPosition({ wallBounds.left - playerBounds.width - 1.f, m_player->getAdjustedPosition().y });
+			isCollidingWithWall = true;
+			collidedLeft = true;
+		}
+		// Check if the player is moving left and collides with the right side of the wall
+		else if (m_player->getDirection().x < 0 && playerBounds.left < wallBounds.left + wallBounds.width && playerBounds.left + playerBounds.width > wallBounds.left + wallBounds.width)
+		{
+			m_player->setAdjustedPosition({ wallBounds.left + wallBounds.width + 1.f, m_player->getAdjustedPosition().y });
+			isCollidingWithWall = true;
+			collidedRight = true;
+
+		}
+	}
+	// Allow movement away from the wall
+	sf::Vector2f newDirection = m_player->getDirection();
+	// If collidedLeft, disallow left movement (negative x-direction)
+	if (collidedLeft && newDirection.x < 0)
+	{
+		newDirection.x = 0.f;
+	}
+	// If collidedRight, disallow right movement (positive x-direction)
+	if (collidedRight && newDirection.x > 0)
+	{
+		newDirection.x = 0.f;
+	}
+	m_player->setDirection(newDirection);
+
+
+
+
+	// Check for ceiling collisions
+	const sf::Shape* collidedCeilingShape = CollisionManager::getInstance()->checkCeilingCollision(m_level->getCeilingsLayer(), m_player);
+	if (collidedCeilingShape != nullptr)
+	{
+		m_player->setAdjustedPosition({ m_player->getAdjustedPosition().x, collidedCeilingShape->getGlobalBounds().top + collidedCeilingShape->getGlobalBounds().height + 2.f });
+		m_player->setSpeed({ m_player->getSpeed().x, .0f });
+	}
+
+
+	// Check for trap collisions
+	const sf::Shape* collidedTrapShape = CollisionManager::getInstance()->checkTrapCollision(m_level->getTrapsLayer(), m_player);
+	if (collidedTrapShape != nullptr)
+	{
+		m_player->setHasTakenDamage(true);
+	}
+
+	// Check for enemy collisions
+	bool isCollidingWithEnemy = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, m_enemy);
+	if (isCollidingWithEnemy)
+	{
+		if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < m_enemy->getBounds().top && m_player->getSpeed().y > 0.f)
+		{
+			//printf("Player jumped on enemy \n");
+			m_player->setMakeJump(true);
+			m_enemy->setHasTakenDamage(true);
+			m_enemy->setCanMakeDamage(false);
+		}
+		else
+		{
+			//printf("Player damaged by enemy \n");
+			if (m_enemy->getCanMakeDamage())
+			{
+				m_player->setHasTakenDamage(true);
+			}
+		}
+	}
+
+	m_player->update(deltaMilliseconds);
 }

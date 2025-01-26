@@ -4,6 +4,10 @@
 #include <Gameplay/Entity.h>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <External/json.hpp>
+#include <Utils/Constants.h>
+
+using json = nlohmann::json;
 
 
 class Player : public Entity
@@ -17,6 +21,7 @@ public:
 
 	~Player() override = default;
 
+	PlayerDescriptor load();
 	bool init(const PlayerDescriptor& playerDescriptor);
 
 	sf::FloatRect getAdjustedBounds() const { return sf::FloatRect(m_sprite.getGlobalBounds().left+6.f, m_sprite.getGlobalBounds().top+8.f, m_sprite.getGlobalBounds().width-12.f, m_sprite.getGlobalBounds().height-8.f); }

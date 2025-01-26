@@ -6,7 +6,8 @@
 
 using json = nlohmann::json;
 
-constexpr char* GAME_TITLE = "RoboJump";
+constexpr float millisecondsToSeconds = 1 / 1000.f;
+
 constexpr char* GAMEINFOJSON_CONFIG = "../Data/Config/GameInfo_Config.json";
 constexpr char* GAMEINFOJSON_ENEMIES = "../Data/CONFIG/GameInfo_Enemies.json";
 constexpr char* GAMEINFOJSON_PLAYER = "../Data/CONFIG/GameInfo_Player.json";

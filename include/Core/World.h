@@ -51,4 +51,5 @@ class World
 		sf::View* m_view{ nullptr };
 		sf::FloatRect m_deadZone;
 		void drawDeadZone(sf::RenderWindow& window);
+		void updatePlayer(uint32_t deltaMilliseconds);
 };

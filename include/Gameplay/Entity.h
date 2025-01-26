@@ -22,7 +22,7 @@ public:
 		int lifeCount{ 0 };
 	};
 
-	~Entity() override = default;
+	virtual ~Entity() override = default;
 
 	bool init(const EntityDescriptor& entityDescriptor);
 

@@ -9,11 +9,11 @@ class CollisionManager
 public:
 	static CollisionManager* getInstance();
 	~CollisionManager() = default;
-	void checkGroundCollision(const ObjectLayer* groundsCollisionLayer, Player* objectToCheckCollision) const;
-	void checkWallCollision(const ObjectLayer* wallsCollisionLayer, Player* objectToCheckCollision) const;
-	void checkCeilingCollision(const ObjectLayer* ceilingsCollisionLayer, Player* objectToCheckCollision) const;
-	void checkTrapCollision(const ObjectLayer* trapsCollisionLayer, Player* objectToCheckCollision) const;
-	void checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const;
+	const sf::Shape* checkGroundCollision(const ObjectLayer* groundsCollisionLayer, Player* objectToCheckCollision) const;
+	const sf::Shape* checkWallCollision(const ObjectLayer* wallsCollisionLayer, Player* objectToCheckCollision) const;
+	const sf::Shape* checkCeilingCollision(const ObjectLayer* ceilingsCollisionLayer, Player* objectToCheckCollision) const;
+	const sf::Shape* checkTrapCollision(const ObjectLayer* trapsCollisionLayer, Player* objectToCheckCollision) const;
+	bool checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const;
 	void checkEnemyWallCollision(const ObjectLayer* wallsCollisionLayer, Enemy* objectToCheckCollision) const;
 private:
 	static CollisionManager* s_instance;
