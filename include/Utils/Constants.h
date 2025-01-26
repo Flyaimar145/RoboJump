@@ -1,7 +1,25 @@
 #pragma once
+#include <External/json.hpp>
+#include <string>
+#include <fstream>
+#include <stdexcept>
+
+using json = nlohmann::json;
 
 constexpr char* GAME_TITLE = "RoboJump";
-constexpr uint32_t SCREEN_WIDTH = 1920u;
-constexpr uint32_t SCREEN_HEIGHT = 1080u;
-constexpr uint32_t FRAME_RATE = 60u;
-constexpr uint32_t MAP_TILE_SIZE = 16u;
+constexpr char* GAMEINFOJSON_CONFIG = "../Data/Config/GameInfo_Config.json";
+constexpr char* GAMEINFOJSON_ENEMIES = "../Data/CONFIG/GameInfo_Enemies.json";
+constexpr char* GAMEINFOJSON_PLAYER = "../Data/CONFIG/GameInfo_Player.json";
+
+inline json loadJsonFromFile(const std::string& filePath)
+{
+    std::ifstream file(filePath);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open file: " + filePath);
+    }
+
+    json data;
+    file >> data;
+    return data;
+}

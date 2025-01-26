@@ -13,28 +13,28 @@ using json = nlohmann::json;
 
 int main()
 {
-	std::ifstream gameInfoFile("../data/GameInfo.json");
-	if (!gameInfoFile.is_open())
-	{
-		printf("GameInfo.json file could not be opened\n");
-		return 0;
-	}
-
-	json gameInfoJSON;
-	gameInfoFile >> gameInfoJSON;
+	//std::ifstream gameInfoFile("../data/GameInfo.json");
+	//if (!gameInfoFile.is_open())
+	//{
+	//	printf("GameInfo.json file could not be opened\n");
+	//	return 0;
+	//}
+        
+	//json gameInfoJSON;
+	//gameInfoFile >> gameInfoJSON;
 	//Print the full json file to see if it was loaded correctly
     //std::cout << gameInfo.dump(4) << std::endl;
 
 	//Get the game info from file instead of hardcoding it
-	auto gameInfo = gameInfoJSON["GameInfo"];
-    Game::GameCreateInfo gameCI;
-    gameCI.gameTitle = gameInfo["gameTitle"].get<std::string>();
-    gameCI.screenWidth = gameInfo["screenWidth"];
-    gameCI.screenHeight = gameInfo["screenHeight"];
-    gameCI.frameRateLimit = gameInfo["frameRateLimit"];
+	//auto gameInfo = gameInfoJSON["GameInfo"];
+    //Game::GameCreateInfo gameCI;
+    //gameCI.gameTitle = gameInfo["gameTitle"].get<std::string>();
+    //gameCI.screenWidth = gameInfo["screenWidth"];
+    //gameCI.screenHeight = gameInfo["screenHeight"];
+    //gameCI.frameRateLimit = gameInfo["frameRateLimit"];
 
     Game game;
-	const bool gameInitialized = game.init(gameCI, &gameInfoJSON);
+	const bool gameInitialized = game.init();
 
     if (gameInitialized == false)
     {

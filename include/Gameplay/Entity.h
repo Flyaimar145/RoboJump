@@ -13,13 +13,13 @@ public:
 	struct EntityDescriptor
 	{
 		sf::Vector2f position{ .0f, .0f };
-		sf::Texture* texture{ nullptr };
+		sf::Texture* firstTexture{ nullptr };
 		float tileWidth{ .0f };
 		float tileHeight{ .0f };
 		sf::Vector2f speed{ .0f, .0f };
 		int totalFrames{ 0 };
 		int deathAnimationTotalFrames{ 0 };
-		int liveCount{ 0 };
+		int lifeCount{ 0 };
 	};
 
 	~Entity() override = default;
@@ -35,13 +35,13 @@ public:
 
 	sf::Vector2f getSpeed() const { return m_speed; }
 	sf::Vector2f getDirection() const { return m_direction; }
-	int getLiveCount() const { return m_liveCount; }
+	int getLifeCount() const { return m_lifeCount; }
 	bool getHasTakenDamage() const { return m_hasTakenDamage; }
 	bool getIsDead() const { return m_isDead; }
 
 	void setSpeed(sf::Vector2f speed) { m_speed = speed; }
 	void setDirection(sf::Vector2f direction) { m_direction = direction; }
-	void setLiveCount(int liveCount) { m_liveCount = liveCount; }
+	void setLifeCount(int lifeCount) { m_lifeCount = lifeCount; }
 	void setHasTakenDamage(bool damageTaken) { m_hasTakenDamage = damageTaken; }
 	void setIsDead(bool isDead) { m_isDead = isDead; }
 
@@ -63,7 +63,7 @@ protected:
 	int m_totalFrames{ 0 };
 	int m_deathAnimationTotalFrames{ 0 };
 
-	int m_liveCount{ 0 };
+	int m_lifeCount{ 0 };
 	bool m_hasTakenDamage{ false };
 	bool m_isDead{ false };
 	bool m_liveAmountChanged{ false };

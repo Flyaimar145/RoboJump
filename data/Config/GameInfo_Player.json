@@ -1,0 +1,17 @@
+{
+     "Player":
+     {
+          "firstTexture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png",
+          "oneLifeLeftTexture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png",
+          "positionX": 56,
+          "positionY": 47,
+          "speedX": 100,
+          "speedY": 0,
+          "tileWidth": 32,
+          "tileHeight": 32,
+          "totalFrames": 12,
+          "deathAnimationTotalFrames": 7,
+          "jumpSpeed": 300,
+          "lifeCount": 1
+     }
+ }

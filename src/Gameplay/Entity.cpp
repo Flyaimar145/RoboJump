@@ -5,7 +5,7 @@
 
 bool Entity::init(const EntityDescriptor& entityDescriptor)
 {
-	m_sprite.setTexture(*entityDescriptor.texture);
+	m_sprite.setTexture(*entityDescriptor.firstTexture);
 	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tileWidth, m_tileHeight));
 	this->setPosition(entityDescriptor.position);
 	m_tileWidth = entityDescriptor.tileWidth;
@@ -13,7 +13,7 @@ bool Entity::init(const EntityDescriptor& entityDescriptor)
 	m_speed = entityDescriptor.speed;
 	m_totalFrames = entityDescriptor.totalFrames;
 	m_deathAnimationTotalFrames = entityDescriptor.deathAnimationTotalFrames;
-	m_liveCount = entityDescriptor.liveCount;
+	m_lifeCount = entityDescriptor.lifeCount;
 	return true;
 }
 

@@ -17,17 +17,18 @@ class Game
 {
 	public:
 
-		struct GameCreateInfo
-		{
-			std::string gameTitle{ "Game Title Example" };
-			uint32_t screenWidth{ 1920 };
-			uint32_t screenHeight{ 1080 };
-			uint32_t frameRateLimit{ 60 };
-		};
+		//struct GameCreateInfo
+		//{
+		//	std::string gameTitle{ "Game Title Example" };
+		//	uint32_t screenWidth{ 1920 };
+		//	uint32_t screenHeight{ 1080 };
+		//	uint32_t frameRateLimit{ 60 };
+		//};
 
 		~Game();
 
-		bool init(GameCreateInfo& createInfo, const json* gameInfoJSON);
+		//bool init(GameCreateInfo& createInfo, const json* gameInfoJSON);
+		bool init();
 
 		bool isRunning() const;
 

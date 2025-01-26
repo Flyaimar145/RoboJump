@@ -24,7 +24,7 @@ void Cactus::update(float deltaMilliseconds)
 			m_currentFrame = 0;
 			m_damageAnimationStarted = true;
 			printf("Damage taken\n");
-			m_liveCount--;
+			m_lifeCount--;
 			//m_liveAmountChanged = true;
 		}
 
@@ -35,7 +35,7 @@ void Cactus::update(float deltaMilliseconds)
 			{
 				m_hasTakenDamage = false;
 				m_damageAnimationStarted = false;
-				if (m_liveCount <= 0)
+				if (m_lifeCount <= 0)
 				{
 					m_isDead = true;
 				}

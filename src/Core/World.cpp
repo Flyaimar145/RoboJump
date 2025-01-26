@@ -30,26 +30,13 @@ World::~World()
 	delete m_level;
 }
 
-bool World::load(const json* gameInfoJSON)
+bool World::load()
 {
 	constexpr float millisecondsToSeconds = 1 / 1000.f;
 
 	// Load level
 	m_level = new Level();
 	const bool levelLoaded = m_level->load();
-	// To-Do, Load level: this should have its own class
-	//m_map = new tmx::Map();
-	//m_map->load("../Data/Levels/RoboJumpMap_Level1.tmx");
-	//m_layerZero = new MapLayer(*m_map, 0);
-	//m_layerOne = new MapLayer(*m_map, 1);
-	//m_layerTwo = new MapLayer(*m_map, 2);
-
-	//m_groundsLayer = new ObjectLayer(*m_map, 3);
-	//m_wallsLayer = new ObjectLayer(*m_map, 4);
-	//m_ceilingsLayer = new ObjectLayer(*m_map, 5);
-	//m_trapsLayer = new ObjectLayer(*m_map, 6);
-
-	//m_layerZero->setOffset({ .0f, .0f });
 
 	m_view = new sf::View(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
 	// Define the dead zone
@@ -64,19 +51,33 @@ bool World::load(const json* gameInfoJSON)
 
 	// To-Do, read ALL from file, this is just a quick example to understand that here is where entities are created but consider grouping/managing actors in a smarter way
 	
+	json playerInfo = loadJsonFromFile(GAMEINFOJSON_PLAYER)["Player"];
+	json gameInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
 	// Player
-	sf::Texture* playerTexture1 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png");
-	sf::Texture* playerTexture2 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png");
+	//sf::Texture* playerTexture1 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png");
+	//sf::Texture* playerTexture2 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png");
+	sf::Texture* playerFirstTexture = AssetManager::getInstance()->loadTexture(playerInfo["firstTexture"].get<std::string>().c_str());
+	sf::Texture* oneLifeLeftTexture = AssetManager::getInstance()->loadTexture(playerInfo["oneLifeLeftTexture"].get<std::string>().c_str());
 	Player::PlayerDescriptor playerDescriptor;
-	playerDescriptor.texture = playerTexture1;
-	playerDescriptor.position = { MAP_TILE_SIZE * 56.f, MAP_TILE_SIZE * 47.f };
-	playerDescriptor.speed = { 100.f * millisecondsToSeconds, 100.f * millisecondsToSeconds }; 
-	playerDescriptor.tileWidth = 32.f;
-	playerDescriptor.tileHeight = 32.f;
-	playerDescriptor.jumpSpeed = 300.f; 
-	playerDescriptor.totalFrames = 12;
-	playerDescriptor.deathAnimationTotalFrames = 7;
-	playerDescriptor.liveCount = 2;
+	//playerDescriptor.firstTexture = playerTexture1;
+	//playerDescriptor.position = { gameInfo["mapTileSize"] * 56.f, gameInfo["mapTileSize"] * 47.f};
+	//playerDescriptor.speed = { 100.f * millisecondsToSeconds, 100.f * millisecondsToSeconds }; 
+	//playerDescriptor.tileWidth = 32.f;
+	//playerDescriptor.tileHeight = 32.f;
+	//playerDescriptor.jumpSpeed = 300.f; 
+	//playerDescriptor.totalFrames = 12;
+	//playerDescriptor.deathAnimationTotalFrames = 7;
+	//playerDescriptor.lifeCount = 2;
+	playerDescriptor.firstTexture = playerFirstTexture;
+	playerDescriptor.position = { gameInfo["mapTileSize"] * playerInfo["positionX"].get<float>(), gameInfo["mapTileSize"] * playerInfo["positionY"].get<float>() };
+	playerDescriptor.speed = { playerInfo["speedX"].get<float>() * millisecondsToSeconds, playerInfo["speedY"].get<float>() * millisecondsToSeconds };
+	playerDescriptor.tileWidth = playerInfo["tileWidth"].get<float>();
+	playerDescriptor.tileHeight = playerInfo["tileHeight"].get<float>();
+	playerDescriptor.jumpSpeed = playerInfo["jumpSpeed"].get<float>();
+	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
+	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
+	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();
+	
 	Player* player = new Player();
 	const bool playerLoaded = player->init(playerDescriptor);
 	m_player = player;
@@ -84,15 +85,15 @@ bool World::load(const json* gameInfoJSON)
 
 	// Enemy (Cactus)
 	Enemy::EnemyDescriptor cactusDescriptor;
-	cactusDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
-	cactusDescriptor.position = { MAP_TILE_SIZE * 51.f, MAP_TILE_SIZE * 37.f };
+	cactusDescriptor.firstTexture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
+	cactusDescriptor.position = { gameInfo["mapTileSize"] * 51.f, gameInfo["mapTileSize"] * 37.f };
 	cactusDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
 	cactusDescriptor.tileWidth = 32.f;
 	cactusDescriptor.tileHeight = 32.f;
 	cactusDescriptor.totalFrames = 12;
 	cactusDescriptor.deathAnimationTotalFrames = 7;
 	cactusDescriptor.initialDirection = { -1.f, 0.f };
-	cactusDescriptor.liveCount = 1;
+	cactusDescriptor.lifeCount = 1;
 	Cactus* enemy = new Cactus();
 	const bool enemyLoaded = enemy->init(cactusDescriptor);
 	m_enemy = enemy;
@@ -101,15 +102,15 @@ bool World::load(const json* gameInfoJSON)
 
 	// Enemy (Frog)
 	Enemy::EnemyDescriptor enemyFrogDescriptor;
-	enemyFrogDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png");
-	enemyFrogDescriptor.position = { MAP_TILE_SIZE * 136.f, MAP_TILE_SIZE * 34.f };
+	enemyFrogDescriptor.firstTexture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png");
+	enemyFrogDescriptor.position = { gameInfo["mapTileSize"] * 136.f, gameInfo["mapTileSize"] * 34.f };
 	enemyFrogDescriptor.speed = { 0.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
 	enemyFrogDescriptor.tileWidth = 64.f;
 	enemyFrogDescriptor.tileHeight = 32.f;
 	enemyFrogDescriptor.totalFrames = 11;
 	enemyFrogDescriptor.deathAnimationTotalFrames = 7;
 	enemyFrogDescriptor.initialDirection = { 1.f, 0.f };
-	enemyFrogDescriptor.liveCount = 1;
+	enemyFrogDescriptor.lifeCount = 1;
 	Enemy* enemyFrog = new Enemy();
 	const bool enemyFrogLoaded = enemyFrog->init(enemyFrogDescriptor);
 	m_enemyFrog = enemyFrog;
@@ -120,19 +121,10 @@ bool World::load(const json* gameInfoJSON)
 
 void World::update(uint32_t deltaMilliseconds)
 {
-	// To-Do: update level
-	//m_layerZero->update(sf::milliseconds(deltaMilliseconds));
-	//m_layerOne->update(sf::milliseconds(deltaMilliseconds));
-	//m_layerTwo->update(sf::milliseconds(deltaMilliseconds));
 	m_level->update(deltaMilliseconds);
 
 	// Check for collisions (We could do it in a function here or have a collision manager if it gets complex)
 	// Collision management (with CollisionManager)
-	//CollisionManager::getInstance()->checkGroundCollision(m_groundsLayer, m_player);
-	//CollisionManager::getInstance()->checkWallCollision(m_wallsLayer, m_player);
-	//CollisionManager::getInstance()->checkCeilingCollision(m_ceilingsLayer, m_player);
-	//CollisionManager::getInstance()->checkTrapCollision(m_trapsLayer, m_player);
-
 	CollisionManager::getInstance()->checkGroundCollision(m_level->getGroundsLayer(), m_player);
 	CollisionManager::getInstance()->checkWallCollision(m_level->getWallsLayer(), m_player);
 	CollisionManager::getInstance()->checkCeilingCollision(m_level->getCeilingsLayer(), m_player);
@@ -140,7 +132,6 @@ void World::update(uint32_t deltaMilliseconds)
 
 	CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, m_enemy);
 
-	//CollisionManager::getInstance()->checkEnemyWallCollision(m_wallsLayer, m_enemy);
 	CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemy);
 
 	// Update player
@@ -186,14 +177,9 @@ void World::update(uint32_t deltaMilliseconds)
 void World::render(sf::RenderWindow& window)
 {
 	window.setView(*m_view);
-	//window.draw(*m_layerZero);
-	//window.draw(*m_layerOne);
-	//window.draw(*m_layerTwo);
-	//window.draw(*m_groundsLayer);
-	//window.draw(*m_wallsLayer);
-	//window.draw(*m_ceilingsLayer);
-	//window.draw(*m_trapsLayer);
+
 	m_level->render(window);
+
 	m_player->render(window);
 	m_enemy->render(window);
 	m_enemyFrog->render(window);

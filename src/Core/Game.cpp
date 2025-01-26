@@ -3,8 +3,10 @@
 #include <Core/World.h>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include <Utils/Constants.h>
+#include <External/json.hpp>
 
-bool Game::init(GameCreateInfo& createInfo, const json* gameInfoJSON)
+/*bool Game::init(GameCreateInfo& createInfo, const json* gameInfoJSON)
 {
 	assert(m_window == nullptr && m_world == nullptr && "Game is already initialized, we are about to leak memory");
 
@@ -15,6 +17,22 @@ bool Game::init(GameCreateInfo& createInfo, const json* gameInfoJSON)
 	m_gameInfoJSON = gameInfoJSON;
 	m_world = new World();
 	const bool loadOk = m_world->load(gameInfoJSON);
+
+	return loadOk;
+}*/
+
+bool Game::init()
+{
+	assert(m_window == nullptr && m_world == nullptr && "Game is already initialized, we are about to leak memory");
+
+	json gameConfigInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
+
+	m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>());
+	//m_window = new sf::RenderWindow({ createInfo.screenWidth, createInfo.screenHeight }, createInfo.gameTitle, sf::Style::Fullscreen);
+
+	m_window->setFramerateLimit(gameConfigInfo["frameRateLimit"]);
+	m_world = new World();
+	const bool loadOk = m_world->load();
 
 	return loadOk;
 }

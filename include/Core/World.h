@@ -32,7 +32,7 @@ class World
 		~World();
 
 		// TO-DO: Ideally the scene should be read from file.
-		bool load(const json* gameInfoJSON);
+		bool load();
 
 		// To-Do: Implement a unload()
 
@@ -47,15 +47,6 @@ class World
 		Enemy* m_enemyFrog{ nullptr };
 
 		Level* m_level{ nullptr };
-		// To-Do: This should be in its own class, something like "Level" should work
-		//tmx::Map* m_map{ nullptr };
-		//MapLayer* m_layerZero{ nullptr };
-		//MapLayer* m_layerOne{ nullptr };
-		//MapLayer* m_layerTwo{ nullptr };
-		//ObjectLayer* m_groundsLayer{ nullptr };
-		//ObjectLayer* m_wallsLayer{ nullptr };
-		//ObjectLayer* m_ceilingsLayer{ nullptr };
-		//ObjectLayer* m_trapsLayer{ nullptr };
 
 		sf::View* m_view{ nullptr };
 		sf::FloatRect m_deadZone;

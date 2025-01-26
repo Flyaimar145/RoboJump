@@ -80,7 +80,7 @@ void Player::update(float deltaMilliseconds)
 	{ 
 		m_liveAmountChanged = false;
 		//Update texture for when 1 live left
-		if (m_liveCount <= 1)
+		if (m_lifeCount <= 1)
 		{
 			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png"));
 		}
@@ -100,7 +100,7 @@ void Player::update(float deltaMilliseconds)
 			m_currentFrame = 0;
 			m_damageAnimationStarted = true;
 			printf("Damage taken\n");
-			m_liveCount--;
+			m_lifeCount--;
 			m_liveAmountChanged = true;
 		}
 
@@ -111,7 +111,7 @@ void Player::update(float deltaMilliseconds)
 			{
 				m_hasTakenDamage = false;
 				m_damageAnimationStarted = false;
-				if (m_liveCount <= 0)
+				if (m_lifeCount <= 0)
 				{
 					m_isDead = true;
 				}
