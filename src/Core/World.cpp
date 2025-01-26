@@ -1,9 +1,11 @@
 #include <Core/AssetManager.h>
 #include <Core/CollisionManager.h>
+#include <Core/Level.h>
 #include <Core/World.h>
 #include <Gameplay/Player.h>
 #include <Gameplay/Entity.h>
 #include <Gameplay/Enemies/Enemy.h>
+#include <Gameplay/Enemies/Cactus.h>
 #include <Render/SFMLOrthogonalLayer.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -14,33 +16,40 @@
 World::~World()
 {
 	delete m_player;
-	delete m_layerZero;
-	delete m_layerOne;
-	delete m_layerTwo;
-	delete m_groundsLayer;
-	delete m_wallsLayer;
-	delete m_ceilingsLayer;
-	delete m_trapsLayer;
-	delete m_map;
+	delete m_enemy;
+	delete m_enemyFrog;
+	//delete m_layerZero;
+	//delete m_layerOne;
+	//delete m_layerTwo;
+	//delete m_groundsLayer;
+	//delete m_wallsLayer;
+	//delete m_ceilingsLayer;
+	//delete m_trapsLayer;
+	//delete m_map;
+	delete m_view;
+	delete m_level;
 }
 
-bool World::load()
+bool World::load(const json* gameInfoJSON)
 {
 	constexpr float millisecondsToSeconds = 1 / 1000.f;
 
+	// Load level
+	m_level = new Level();
+	const bool levelLoaded = m_level->load();
 	// To-Do, Load level: this should have its own class
-	m_map = new tmx::Map();
-	m_map->load("../Data/Levels/RoboJumpMap_Level1.tmx");
-	m_layerZero = new MapLayer(*m_map, 0);
-	m_layerOne = new MapLayer(*m_map, 1);
-	m_layerTwo = new MapLayer(*m_map, 2);
+	//m_map = new tmx::Map();
+	//m_map->load("../Data/Levels/RoboJumpMap_Level1.tmx");
+	//m_layerZero = new MapLayer(*m_map, 0);
+	//m_layerOne = new MapLayer(*m_map, 1);
+	//m_layerTwo = new MapLayer(*m_map, 2);
 
-	m_groundsLayer = new ObjectLayer(*m_map, 3);
-	m_wallsLayer = new ObjectLayer(*m_map, 4);
-	m_ceilingsLayer = new ObjectLayer(*m_map, 5);
-	m_trapsLayer = new ObjectLayer(*m_map, 6);
+	//m_groundsLayer = new ObjectLayer(*m_map, 3);
+	//m_wallsLayer = new ObjectLayer(*m_map, 4);
+	//m_ceilingsLayer = new ObjectLayer(*m_map, 5);
+	//m_trapsLayer = new ObjectLayer(*m_map, 6);
 
-	m_layerZero->setOffset({ .0f, .0f });
+	//m_layerZero->setOffset({ .0f, .0f });
 
 	m_view = new sf::View(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
 	// Define the dead zone
@@ -60,7 +69,7 @@ bool World::load()
 	sf::Texture* playerTexture2 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png");
 	Player::PlayerDescriptor playerDescriptor;
 	playerDescriptor.texture = playerTexture1;
-	playerDescriptor.position = { 0.f, 0.f };
+	playerDescriptor.position = { MAP_TILE_SIZE * 56.f, MAP_TILE_SIZE * 47.f };
 	playerDescriptor.speed = { 100.f * millisecondsToSeconds, 100.f * millisecondsToSeconds }; 
 	playerDescriptor.tileWidth = 32.f;
 	playerDescriptor.tileHeight = 32.f;
@@ -71,52 +80,75 @@ bool World::load()
 	Player* player = new Player();
 	const bool playerLoaded = player->init(playerDescriptor);
 	m_player = player;
-	player->setPosition({ MAP_TILE_SIZE * 40.f, MAP_TILE_SIZE * 23.f });
+	//player->setPosition({ MAP_TILE_SIZE * 56.f, MAP_TILE_SIZE * 47.f });
 
-	// Enemy
-	Enemy::EnemyDescriptor enemyDescriptor;
-	enemyDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
-	enemyDescriptor.position = { MAP_TILE_SIZE * 24.f, MAP_TILE_SIZE * 17.f };
-	enemyDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds }; 
-	enemyDescriptor.tileWidth = 32.f;
-	enemyDescriptor.tileHeight = 32.f;
-	enemyDescriptor.totalFrames = 12;
-	enemyDescriptor.deathAnimationTotalFrames = 7;
-	enemyDescriptor.direction = { -1.f, 0.f };
-	enemyDescriptor.liveCount = 1;
-	Enemy* enemy = new Enemy();
-	const bool enemyLoaded = enemy->init(enemyDescriptor);
+	// Enemy (Cactus)
+	Enemy::EnemyDescriptor cactusDescriptor;
+	cactusDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
+	cactusDescriptor.position = { MAP_TILE_SIZE * 51.f, MAP_TILE_SIZE * 37.f };
+	cactusDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
+	cactusDescriptor.tileWidth = 32.f;
+	cactusDescriptor.tileHeight = 32.f;
+	cactusDescriptor.totalFrames = 12;
+	cactusDescriptor.deathAnimationTotalFrames = 7;
+	cactusDescriptor.initialDirection = { -1.f, 0.f };
+	cactusDescriptor.liveCount = 1;
+	Cactus* enemy = new Cactus();
+	const bool enemyLoaded = enemy->init(cactusDescriptor);
 	m_enemy = enemy;
-	enemy->setPosition({ MAP_TILE_SIZE * 49.f, MAP_TILE_SIZE * 27.f });
+	//enemy->setPosition({ MAP_TILE_SIZE * 51.f, MAP_TILE_SIZE * 37.f });
 
 
-	return playerLoaded && enemyLoaded;
+	// Enemy (Frog)
+	Enemy::EnemyDescriptor enemyFrogDescriptor;
+	enemyFrogDescriptor.texture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png");
+	enemyFrogDescriptor.position = { MAP_TILE_SIZE * 136.f, MAP_TILE_SIZE * 34.f };
+	enemyFrogDescriptor.speed = { 0.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
+	enemyFrogDescriptor.tileWidth = 64.f;
+	enemyFrogDescriptor.tileHeight = 32.f;
+	enemyFrogDescriptor.totalFrames = 11;
+	enemyFrogDescriptor.deathAnimationTotalFrames = 7;
+	enemyFrogDescriptor.initialDirection = { 1.f, 0.f };
+	enemyFrogDescriptor.liveCount = 1;
+	Enemy* enemyFrog = new Enemy();
+	const bool enemyFrogLoaded = enemyFrog->init(enemyFrogDescriptor);
+	m_enemyFrog = enemyFrog;
+	//enemyFrog->setPosition({ MAP_TILE_SIZE * 136.f, MAP_TILE_SIZE * 34.f });
+
+	return playerLoaded && enemyLoaded && enemyFrogLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
 {
 	// To-Do: update level
-	m_layerZero->update(sf::milliseconds(deltaMilliseconds));
-	m_layerOne->update(sf::milliseconds(deltaMilliseconds));
-	m_layerTwo->update(sf::milliseconds(deltaMilliseconds));
-
+	//m_layerZero->update(sf::milliseconds(deltaMilliseconds));
+	//m_layerOne->update(sf::milliseconds(deltaMilliseconds));
+	//m_layerTwo->update(sf::milliseconds(deltaMilliseconds));
+	m_level->update(deltaMilliseconds);
 
 	// Check for collisions (We could do it in a function here or have a collision manager if it gets complex)
 	// Collision management (with CollisionManager)
-	CollisionManager::getInstance()->checkGroundCollision(m_groundsLayer, m_player);
-	CollisionManager::getInstance()->checkWallCollision(m_wallsLayer, m_player);
-	CollisionManager::getInstance()->checkCeilingCollision(m_ceilingsLayer, m_player);
-	CollisionManager::getInstance()->checkTrapCollision(m_trapsLayer, m_player);
+	//CollisionManager::getInstance()->checkGroundCollision(m_groundsLayer, m_player);
+	//CollisionManager::getInstance()->checkWallCollision(m_wallsLayer, m_player);
+	//CollisionManager::getInstance()->checkCeilingCollision(m_ceilingsLayer, m_player);
+	//CollisionManager::getInstance()->checkTrapCollision(m_trapsLayer, m_player);
+
+	CollisionManager::getInstance()->checkGroundCollision(m_level->getGroundsLayer(), m_player);
+	CollisionManager::getInstance()->checkWallCollision(m_level->getWallsLayer(), m_player);
+	CollisionManager::getInstance()->checkCeilingCollision(m_level->getCeilingsLayer(), m_player);
+	CollisionManager::getInstance()->checkTrapCollision(m_level->getTrapsLayer(), m_player);
 
 	CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, m_enemy);
 
-	CollisionManager::getInstance()->checkEnemyWallCollision(m_wallsLayer, m_enemy);
+	//CollisionManager::getInstance()->checkEnemyWallCollision(m_wallsLayer, m_enemy);
+	CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemy);
 
 	// Update player
 	m_player->update(deltaMilliseconds);
 
 	// Update enemy
 	m_enemy->update(deltaMilliseconds);
+	m_enemyFrog->update(deltaMilliseconds);
 
 	// Adjust the view's center based on the dead zone
 	sf::Vector2f playerPos = m_player->getPosition();
@@ -154,15 +186,17 @@ void World::update(uint32_t deltaMilliseconds)
 void World::render(sf::RenderWindow& window)
 {
 	window.setView(*m_view);
-	window.draw(*m_layerZero);
-	window.draw(*m_layerOne);
-	window.draw(*m_layerTwo);
-	window.draw(*m_groundsLayer);
-	window.draw(*m_wallsLayer);
-	window.draw(*m_ceilingsLayer);
-	window.draw(*m_trapsLayer);
+	//window.draw(*m_layerZero);
+	//window.draw(*m_layerOne);
+	//window.draw(*m_layerTwo);
+	//window.draw(*m_groundsLayer);
+	//window.draw(*m_wallsLayer);
+	//window.draw(*m_ceilingsLayer);
+	//window.draw(*m_trapsLayer);
+	m_level->render(window);
 	m_player->render(window);
 	m_enemy->render(window);
+	m_enemyFrog->render(window);
 
 	//drawDeadZone(window);
 }

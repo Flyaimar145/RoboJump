@@ -4,7 +4,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
-bool Game::init(GameCreateInfo& createInfo)
+bool Game::init(GameCreateInfo& createInfo, const json* gameInfoJSON)
 {
 	assert(m_window == nullptr && m_world == nullptr && "Game is already initialized, we are about to leak memory");
 
@@ -12,15 +12,9 @@ bool Game::init(GameCreateInfo& createInfo)
 	//m_window = new sf::RenderWindow({ createInfo.screenWidth, createInfo.screenHeight }, createInfo.gameTitle, sf::Style::Fullscreen);
 
 	m_window->setFramerateLimit(createInfo.frameRateLimit);
-	//sf::View view1(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
-	//view1.setCenter({ createInfo.screenWidth / 4.f, createInfo.screenHeight /4.f });
-	
-	//sf::View view1({ 0.f, 0.f, 960.f, 540.f });
-
-
-	//m_window->setView(view1);
+	m_gameInfoJSON = gameInfoJSON;
 	m_world = new World();
-	const bool loadOk = m_world->load();
+	const bool loadOk = m_world->load(gameInfoJSON);
 
 	return loadOk;
 }

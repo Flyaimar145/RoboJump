@@ -28,18 +28,22 @@ set(PROJECT_HEADERS
     include/Core/CollisionManager.h
     include/Core/Game.h
     include/Core/World.h
+    include/Core/Level.h
 
     include/Gameplay/Enemies/Enemy.h
     include/Gameplay/GameObject.h
     include/Gameplay/Enemies/Zombie.h
     include/Gameplay/Enemies/Stomp.h
-    include/Gameplay/Enemies/Patrol.h
+    include/Gameplay/Enemies/Frog.h
+    include/Gameplay/Enemies/Cactus.h
     include/Gameplay/Player.h
     include/Gameplay/Entity.h
 
     include/Render/SFMLOrthogonalLayer.h
 
     include/UI/UIScreenMainMenu.h
+
+    include/External/json.hpp
 )
 
 set(PROJECT_SOURCES 
@@ -48,10 +52,12 @@ set(PROJECT_SOURCES
     src/Core/CollisionManager.cpp
     src/Core/Game.cpp
     src/Core/World.cpp
+    src/Core/Level.cpp
 
     src/Gameplay/Enemies/Enemy.cpp
     src/Gameplay/Enemies/Stomp.cpp
-    src/Gameplay/Enemies/Patrol.cpp
+    src/Gameplay/Enemies/Cactus.cpp
+    src/Gameplay/Enemies/Frog.cpp
     src/Gameplay/Enemies/Zombie.cpp
     src/Gameplay/Player.cpp
     src/Gameplay/Entity.cpp

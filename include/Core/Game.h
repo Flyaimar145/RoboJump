@@ -2,11 +2,14 @@
 
 #include <cstdint>
 #include <string>
+#include <External/json.hpp>
 
 namespace sf
 {
 	class RenderWindow;
 }
+
+using json = nlohmann::json;
 
 class World;
 
@@ -24,7 +27,7 @@ class Game
 
 		~Game();
 
-		bool init(GameCreateInfo& createInfo);
+		bool init(GameCreateInfo& createInfo, const json* gameInfoJSON);
 
 		bool isRunning() const;
 
@@ -35,4 +38,5 @@ class Game
 
 		sf::RenderWindow* m_window{ nullptr };
 		World* m_world{ nullptr };
+		const json* m_gameInfoJSON{ nullptr };
 };

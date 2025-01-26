@@ -109,10 +109,10 @@ void CollisionManager::checkCeilingCollision(const ObjectLayer* ceilingsCollisio
 
 void CollisionManager::checkTrapCollision(const ObjectLayer* trapsCollisionLayer, Player* objectToCheckCollision) const
 {
-	const auto& gemShapes = trapsCollisionLayer->getShapes();
-	for (const auto* shape : gemShapes)
+	const auto& trapShapes = trapsCollisionLayer->getShapes();
+	for (const auto* shape : trapShapes)
 	{
-		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getBounds()))
+		if (shape->getGlobalBounds().intersects(objectToCheckCollision->getAdjustedBounds()))
 		{
 			objectToCheckCollision->setHasTakenDamage(true);
 			#if DEBUG_MODE

@@ -1,21 +1,40 @@
 
 #include <cstdio>
+#include <iostream>
 #include <Core/Game.h>
 #include <SFML/System/Clock.hpp>
 #include <Utils/Constants.h>
 
+#include <External/json.hpp>
+#include <fstream>
+
+using json = nlohmann::json;
+
+
 int main()
 {
+	std::ifstream gameInfoFile("../data/GameInfo.json");
+	if (!gameInfoFile.is_open())
+	{
+		printf("GameInfo.json file could not be opened\n");
+		return 0;
+	}
 
-    // To-Do: Load game config from file instead of hardcoding values in code
+	json gameInfoJSON;
+	gameInfoFile >> gameInfoJSON;
+	//Print the full json file to see if it was loaded correctly
+    //std::cout << gameInfo.dump(4) << std::endl;
+
+	//Get the game info from file instead of hardcoding it
+	auto gameInfo = gameInfoJSON["GameInfo"];
     Game::GameCreateInfo gameCI;
-    gameCI.gameTitle = GAME_TITLE;
-    gameCI.screenWidth = SCREEN_WIDTH;
-    gameCI.screenHeight = SCREEN_HEIGHT;
-    gameCI.frameRateLimit = FRAME_RATE;
+    gameCI.gameTitle = gameInfo["gameTitle"].get<std::string>();
+    gameCI.screenWidth = gameInfo["screenWidth"];
+    gameCI.screenHeight = gameInfo["screenHeight"];
+    gameCI.frameRateLimit = gameInfo["frameRateLimit"];
 
     Game game;
-    const bool gameInitialized = game.init(gameCI);
+	const bool gameInitialized = game.init(gameCI, &gameInfoJSON);
 
     if (gameInitialized == false)
     {

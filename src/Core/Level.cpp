@@ -1,0 +1,52 @@
+#include <Core/Level.h>
+#include <tmxlite/Map.hpp>
+#include <Render/SFMLOrthogonalLayer.h>
+#include <SFML/Graphics/RenderWindow.hpp>
+
+Level::~Level()
+{
+	delete m_layerZero;
+	delete m_layerOne;
+	delete m_layerTwo;
+	delete m_groundsLayer;
+	delete m_wallsLayer;
+	delete m_ceilingsLayer;
+	delete m_trapsLayer;
+	delete m_map;
+}
+bool Level::load()
+{
+	m_map = new tmx::Map();
+	m_map->load("../Data/Levels/RoboJumpMap_Level1.tmx");
+	m_layerZero = new MapLayer(*m_map, 0);
+	m_layerOne = new MapLayer(*m_map, 1);
+	m_layerTwo = new MapLayer(*m_map, 2);
+
+	m_groundsLayer = new ObjectLayer(*m_map, 3);
+	m_wallsLayer = new ObjectLayer(*m_map, 4);
+	m_ceilingsLayer = new ObjectLayer(*m_map, 5);
+	m_trapsLayer = new ObjectLayer(*m_map, 6);
+
+	m_layerZero->setOffset({ .0f, .0f });
+	
+	return true;
+}
+
+void Level::update(uint32_t deltaMilliseconds)
+{
+	m_layerZero->update(sf::milliseconds(deltaMilliseconds));
+	m_layerOne->update(sf::milliseconds(deltaMilliseconds));
+	m_layerTwo->update(sf::milliseconds(deltaMilliseconds));
+}
+
+void Level::render(sf::RenderWindow& window)
+{
+	window.draw(*m_layerZero);
+	window.draw(*m_layerOne);
+	window.draw(*m_layerTwo);
+
+	window.draw(*m_groundsLayer);
+	window.draw(*m_wallsLayer);
+	window.draw(*m_ceilingsLayer);
+	window.draw(*m_trapsLayer);
+}

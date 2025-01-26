@@ -1,0 +1,49 @@
+{
+     "GameInfo":
+     {
+          "gameTitle": "RoboJump",
+          "screenWidth": 1920,
+          "screenHeight": 1080,
+          "frameRateLimit": 60,
+          "mapTileSize": 16
+     },
+     "Enemies":
+     {
+          "Cactus": [
+               {
+                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
+                    "positionX": 51,
+                    "positionY": 37,
+                    "speedX": 100,
+                    "speedY": 0,
+                    "tileWidth": 32,
+                    "tileHeight": 32,
+                    "totalFrames": 12,
+                    "deathAnimationTotalFrames": 7,
+                    "initialDirectionX": -1,
+                    "initialDirectionY": 0,
+                    "liveCount": 1
+               },
+               {
+                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
+                    "positionX": 100,
+                    "positionY": 32,
+                    "speedX": 50,
+                    "speedY": 0,
+                    "tileWidth": 32,
+                    "tileHeight": 32,
+                    "totalFrames": 12,
+                    "deathAnimationTotalFrames": 7,
+                    "initialDirectionX": -1,
+                    "initialDirectionY": 0,
+                    "liveCount": 1
+               }
+          ],
+          "Frog": [
+               
+          ],
+          "Stomp": [
+               
+          ]
+     }
+ }

@@ -12,7 +12,7 @@ class Enemy : public Entity
 
 		struct EnemyDescriptor : public EntityDescriptor
 		{
-			sf::Vector2f direction{ .0f, .0f };
+			sf::Vector2f initialDirection{ .0f, .0f };
 		};
 
 		~Enemy() override = default;

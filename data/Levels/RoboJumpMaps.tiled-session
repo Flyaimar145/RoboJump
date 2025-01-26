@@ -12,19 +12,19 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "RoboJumpMap_Level1.tmx": {
-            "scale": 2,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 1168.25,
-                "y": 799.75
+                "x": 2096.333333333333,
+                "y": 561
             }
         },
         "demo.tmx": {
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 479.3333333333333,
-                "y": 255.33333333333326
+                "x": 479.33333333333337,
+                "y": 255.99999999999994
             }
         },
         "demo.tmx#tileset": {
