@@ -1,5 +1,11 @@
 #include <Gameplay/Enemies/Cactus.h>
 
+bool Cactus::init(const EnemyDescriptor& enemyDescriptor)
+{
+	m_enemyType = Enemy::EnemyType::Cactus;
+	return Enemy::init(enemyDescriptor);
+}
+
 void Cactus::update(float deltaMilliseconds)
 {
 	if (m_direction.x > 0)
@@ -61,6 +67,7 @@ void Cactus::update(float deltaMilliseconds)
 		}
 	}
 	else
+	{
 		if (m_speed.y != 0)
 		{
 			if (m_speed.y > 0.0f)
@@ -88,5 +95,6 @@ void Cactus::update(float deltaMilliseconds)
 				updateAnimation(m_totalFrames, 0.f);
 			}
 		}
+	}
 	Enemy::update(deltaMilliseconds);
 }

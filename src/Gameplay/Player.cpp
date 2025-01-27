@@ -36,12 +36,7 @@ void Player::update(float deltaMilliseconds)
 	bool isMovingLeftInput = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 	bool isMovingRightInput = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 	bool isJumpingInput = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
-	bool isDyingInput = sf::Keyboard::isKeyPressed(sf::Keyboard::K);
 
-	if (isDyingInput)
-	{
-		m_isDead = true;
-	}
 	bool isMoving = isMovingLeftInput || isMovingRightInput;
 	if (isMoving)
 	{

@@ -14,6 +14,7 @@ EnemyManager::~EnemyManager()
 	{
 		delete enemy;
 	}
+	m_enemiesVector.clear();
 }
 
 bool EnemyManager::loadEnemies() 
@@ -38,8 +39,9 @@ bool EnemyManager::loadEnemies()
 			}
 			else if (enemyType == "Stomp")
 			{
-				//currentEnemy = new Stomp();
-				printf("Stomp enemy not implemented yet\n");
+				currentEnemy = new Stomp();
+				//assert("Stomp enemy not implemented yet\n");
+				m_stompTypeEnemiesVector.push_back(currentEnemy);
 			}
 			else
 			{

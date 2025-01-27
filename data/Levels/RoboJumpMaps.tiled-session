@@ -12,19 +12,19 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "RoboJumpMap_Level1.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 6,
+            "scale": 4,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 1168.3333333333333,
-                "y": 879.6666666666666
+                "x": 1440,
+                "y": 879.875
             }
         },
         "demo.tmx": {
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 479.3333333333333,
-                "y": 255.33333333333326
+                "x": 480,
+                "y": 255.3333333333333
             }
         },
         "demo.tmx#tileset": {
@@ -32,7 +32,7 @@
             "scaleInEditor": 1
         },
         "images/tilemap/BackgroundsTileset.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1.5
         },
         "images/tilemap/BoxesTileset.tsx": {

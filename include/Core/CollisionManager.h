@@ -4,6 +4,9 @@
 #include <Gameplay/Entity.h>
 #include <Gameplay/Player.h>
 #include <Gameplay/Enemies/Enemy.h>
+#include <Gameplay/Enemies/Cactus.h>
+#include <Gameplay/Enemies/Frog.h>
+
 class CollisionManager
 {
 public:

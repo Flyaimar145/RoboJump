@@ -29,6 +29,7 @@ class EnemyManager
 		std::vector<Enemy*>& getEnemiesVector() { return m_enemiesVector; }
 		std::vector<Enemy*>& getCactusTypeEnemiesVector() { return m_cactusTypeEnemiesVector; }
 		std::vector<Enemy*>& getFrogTypeEnemiesVector() { return m_frogTypeEnemiesVector; }
+		std::vector<Enemy*>& getStompTypeEnemiesVector() { return m_stompTypeEnemiesVector; }
 
 	private:
 		std::vector<Enemy*> m_enemiesVector;

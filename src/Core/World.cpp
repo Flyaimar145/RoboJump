@@ -106,6 +106,11 @@ void World::update(uint32_t deltaMilliseconds)
 	{
 		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), cactus);
 	}
+
+	for (Enemy* stomp : m_enemyManager->getStompTypeEnemiesVector())
+	{
+		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), stomp);
+	}
 	//CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemyManager->getEnemiesVector()[0]);
 
 
@@ -268,26 +273,50 @@ void World::updatePlayer(uint32_t deltaMilliseconds)
 	}
 
 	// Check for enemy collisions
-	for (Enemy* cactus : m_enemyManager->getCactusTypeEnemiesVector())
+	for (Enemy* enemy : m_enemyManager->getEnemiesVector())
 	{
-		bool isCollidingWithEnemy = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, cactus);
+		bool isCollidingWithEnemy = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, enemy);
 		if (isCollidingWithEnemy)
 		{
-			if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < cactus->getBounds().top && m_player->getSpeed().y > 0.f)
+			switch (enemy->getEnemyType())
 			{
-				//printf("Player jumped on enemy \n");
-				m_player->setMakeJump(true);
-				cactus->setHasTakenDamage(true);
-				cactus->setCanMakeDamage(false);
+				case Enemy::EnemyType::Cactus:
+					if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < enemy->getBounds().top && m_player->getSpeed().y > 0.f)
+					{
+						//printf("Player jumped on enemy \n");
+						m_player->setMakeJump(true);
+						enemy->setHasTakenDamage(true);
+						enemy->setCanMakeDamage(false);
+					}
+					else
+					{
+						//printf("Player damaged by enemy \n");
+						if (enemy->getCanMakeDamage())
+						{
+							m_player->setHasTakenDamage(true);
+						}
+					}
+					break;
+
+				case Enemy::EnemyType::Frog:
+					//printf("Player touched a Frog \n");
+					enemy->onPlayerCollision();
+					if (enemy->getCanMakeDamage())
+					{
+						m_player->setHasTakenDamage(true);
+					}
+					break;
+				
+				case Enemy::EnemyType::Stomp:
+
+					break;
+
+				default:
+
+					break;
+
 			}
-			else
-			{
-				//printf("Player damaged by enemy \n");
-				if (cactus->getCanMakeDamage())
-				{
-					m_player->setHasTakenDamage(true);
-				}
-			}
+			
 		}
 	}
 	
