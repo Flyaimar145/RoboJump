@@ -14,25 +14,38 @@
                     "deathAnimationTotalFrames": 7,
                     "initialDirectionX": -1,
                     "initialDirectionY": 0,
-                    "liveCount": 1
+                    "lifeCount": 1
                },
                {
                     "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
-                    "positionX": 100,
-                    "positionY": 32,
+                    "positionX": 121,
+                    "positionY": 28,
                     "speedX": 50,
                     "speedY": 0,
                     "tileWidth": 32,
                     "tileHeight": 32,
                     "totalFrames": 12,
                     "deathAnimationTotalFrames": 7,
-                    "initialDirectionX": -1,
+                    "initialDirectionX": 1,
                     "initialDirectionY": 0,
-                    "liveCount": 1
+                    "lifeCount": 1
                }
           ],
           "Frog": [
-               
+               {
+                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "positionX": 136,
+                    "positionY": 34,
+                    "speedX": 0,
+                    "speedY": 0,
+                    "tileWidth": 64,
+                    "tileHeight": 32,
+                    "totalFrames": 11,
+                    "deathAnimationTotalFrames": 7,
+                    "initialDirectionX": 1,
+                    "initialDirectionY": 0,
+                    "lifeCount": 1
+               }
           ],
           "Stomp": [
                

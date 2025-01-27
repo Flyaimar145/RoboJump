@@ -12,6 +12,8 @@ Level::~Level()
 	delete m_wallsLayer;
 	delete m_ceilingsLayer;
 	delete m_trapsLayer;
+	delete m_enemyWallsLayer;
+
 	delete m_map;
 }
 bool Level::load()
@@ -26,6 +28,7 @@ bool Level::load()
 	m_wallsLayer = new ObjectLayer(*m_map, 4);
 	m_ceilingsLayer = new ObjectLayer(*m_map, 5);
 	m_trapsLayer = new ObjectLayer(*m_map, 6);
+	m_enemyWallsLayer = new ObjectLayer(*m_map, 7);
 
 	m_layerZero->setOffset({ .0f, .0f });
 	
@@ -49,4 +52,5 @@ void Level::render(sf::RenderWindow& window)
 	window.draw(*m_wallsLayer);
 	window.draw(*m_ceilingsLayer);
 	window.draw(*m_trapsLayer);
+	window.draw(*m_enemyWallsLayer);
 }

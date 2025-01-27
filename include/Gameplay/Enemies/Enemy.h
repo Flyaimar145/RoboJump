@@ -19,7 +19,7 @@ class Enemy : public Entity
 
 		bool init(const EnemyDescriptor& enemyDescriptor);
 
-		void update(float deltaMilliseconds) override;
+		virtual void update(float deltaMilliseconds) override;
 		void render(sf::RenderWindow& window) override;
 
 		bool getCanMakeDamage() const { return m_canMakeDamage; }

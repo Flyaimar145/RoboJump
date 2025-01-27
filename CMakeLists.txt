@@ -26,6 +26,7 @@ set(PROJECT_HEADERS
 
     include/Core/AssetManager.h
     include/Core/CollisionManager.h
+    include/Core/EnemyManager.h
     include/Core/Game.h
     include/Core/World.h
     include/Core/Level.h
@@ -50,6 +51,7 @@ set(PROJECT_SOURCES
 
     src/Core/AssetManager.cpp
     src/Core/CollisionManager.cpp
+    src/Core/EnemyManager.cpp
     src/Core/Game.cpp
     src/Core/World.cpp
     src/Core/Level.cpp

@@ -2,6 +2,7 @@
 #include <Core/CollisionManager.h>
 #include <Core/Level.h>
 #include <Core/World.h>
+#include <Core/EnemyManager.h>
 #include <Gameplay/Player.h>
 #include <Gameplay/Entity.h>
 #include <Gameplay/Enemies/Enemy.h>
@@ -16,16 +17,9 @@
 World::~World()
 {
 	delete m_player;
-	delete m_enemy;
-	delete m_enemyFrog;
-	//delete m_layerZero;
-	//delete m_layerOne;
-	//delete m_layerTwo;
-	//delete m_groundsLayer;
-	//delete m_wallsLayer;
-	//delete m_ceilingsLayer;
-	//delete m_trapsLayer;
-	//delete m_map;
+	//delete m_enemy;
+	//delete m_enemyFrog;
+
 	delete m_view;
 	delete m_level;
 }
@@ -53,31 +47,19 @@ bool World::load()
 	
 	json playerInfo = loadJsonFromFile(GAMEINFOJSON_PLAYER)["Player"];
 	json gameInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
-	// Player
-	//sf::Texture* playerTexture1 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png");
-	//sf::Texture* playerTexture2 = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png");
-	/*sf::Texture* playerFirstTexture = AssetManager::getInstance()->loadTexture(playerInfo["firstTexture"].get<std::string>().c_str());
-	sf::Texture* oneLifeLeftTexture = AssetManager::getInstance()->loadTexture(playerInfo["oneLifeLeftTexture"].get<std::string>().c_str());
-	Player::PlayerDescriptor playerDescriptor;	
-	playerDescriptor.firstTexture = playerFirstTexture;
-	playerDescriptor.position = { gameInfo["mapTileSize"] * playerInfo["positionX"].get<float>(), gameInfo["mapTileSize"] * playerInfo["positionY"].get<float>() };
-	playerDescriptor.speed = { playerInfo["speedX"].get<float>() * millisecondsToSeconds, playerInfo["speedY"].get<float>() * millisecondsToSeconds };
-	playerDescriptor.tileWidth = playerInfo["tileWidth"].get<float>();
-	playerDescriptor.tileHeight = playerInfo["tileHeight"].get<float>();
-	playerDescriptor.jumpSpeed = playerInfo["jumpSpeed"].get<float>();
-	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
-	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
-	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();*/
 	
-
+	// Player
 	Player* player = new Player();
 	Player::PlayerDescriptor playerDescriptor2 = player->load();
 	const bool playerLoaded = player->init(playerDescriptor2);
 	m_player = player;
-	//player->setPosition({ MAP_TILE_SIZE * 56.f, MAP_TILE_SIZE * 47.f });
 
+
+	m_enemyManager = new EnemyManager();
+	const bool enemiesLoaded = m_enemyManager->loadEnemies();
+	
 	// Enemy (Cactus)
-	Enemy::EnemyDescriptor cactusDescriptor;
+	/*Enemy::EnemyDescriptor cactusDescriptor;
 	cactusDescriptor.firstTexture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
 	cactusDescriptor.position = { gameInfo["mapTileSize"] * 51.f, gameInfo["mapTileSize"] * 37.f };
 	cactusDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
@@ -89,12 +71,11 @@ bool World::load()
 	cactusDescriptor.lifeCount = 1;
 	Cactus* enemy = new Cactus();
 	const bool enemyLoaded = enemy->init(cactusDescriptor);
-	m_enemy = enemy;
-	//enemy->setPosition({ MAP_TILE_SIZE * 51.f, MAP_TILE_SIZE * 37.f });
+	m_enemy = enemy;*/
 
 
 	// Enemy (Frog)
-	Enemy::EnemyDescriptor enemyFrogDescriptor;
+	/*Enemy::EnemyDescriptor enemyFrogDescriptor;
 	enemyFrogDescriptor.firstTexture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png");
 	enemyFrogDescriptor.position = { gameInfo["mapTileSize"] * 136.f, gameInfo["mapTileSize"] * 34.f };
 	enemyFrogDescriptor.speed = { 0.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
@@ -104,12 +85,11 @@ bool World::load()
 	enemyFrogDescriptor.deathAnimationTotalFrames = 7;
 	enemyFrogDescriptor.initialDirection = { 1.f, 0.f };
 	enemyFrogDescriptor.lifeCount = 1;
-	Enemy* enemyFrog = new Enemy();
+	Enemy* enemyFrog = new Frog();
 	const bool enemyFrogLoaded = enemyFrog->init(enemyFrogDescriptor);
-	m_enemyFrog = enemyFrog;
-	//enemyFrog->setPosition({ MAP_TILE_SIZE * 136.f, MAP_TILE_SIZE * 34.f });
+	m_enemyFrog = enemyFrog;*/
 
-	return playerLoaded && enemyLoaded && enemyFrogLoaded;
+	return playerLoaded && enemiesLoaded;//enemyLoaded&& enemyFrogLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
@@ -121,12 +101,18 @@ void World::update(uint32_t deltaMilliseconds)
 	updatePlayer(deltaMilliseconds);
 
 
-	CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemy);
+	//CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemy);
+	for (Enemy* cactus : m_enemyManager->getCactusTypeEnemiesVector())
+	{
+		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), cactus);
+	}
+	//CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemyManager->getEnemiesVector()[0]);
 
 
 	// Update enemy
-	m_enemy->update(deltaMilliseconds);
-	m_enemyFrog->update(deltaMilliseconds);
+	//m_enemy->update(deltaMilliseconds);
+	//m_enemyFrog->update(deltaMilliseconds);
+	m_enemyManager->update(deltaMilliseconds);
 
 	// Adjust the view's center based on the dead zone
 	sf::Vector2f playerPos = m_player->getPosition();
@@ -168,8 +154,9 @@ void World::render(sf::RenderWindow& window)
 	m_level->render(window);
 
 	m_player->render(window);
-	m_enemy->render(window);
-	m_enemyFrog->render(window);
+	//m_enemy->render(window);
+	//m_enemyFrog->render(window);
+	m_enemyManager->render(window);
 
 	//drawDeadZone(window);
 }
@@ -281,25 +268,29 @@ void World::updatePlayer(uint32_t deltaMilliseconds)
 	}
 
 	// Check for enemy collisions
-	bool isCollidingWithEnemy = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, m_enemy);
-	if (isCollidingWithEnemy)
+	for (Enemy* cactus : m_enemyManager->getCactusTypeEnemiesVector())
 	{
-		if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < m_enemy->getBounds().top && m_player->getSpeed().y > 0.f)
+		bool isCollidingWithEnemy = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, cactus);
+		if (isCollidingWithEnemy)
 		{
-			//printf("Player jumped on enemy \n");
-			m_player->setMakeJump(true);
-			m_enemy->setHasTakenDamage(true);
-			m_enemy->setCanMakeDamage(false);
-		}
-		else
-		{
-			//printf("Player damaged by enemy \n");
-			if (m_enemy->getCanMakeDamage())
+			if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < cactus->getBounds().top && m_player->getSpeed().y > 0.f)
 			{
-				m_player->setHasTakenDamage(true);
+				//printf("Player jumped on enemy \n");
+				m_player->setMakeJump(true);
+				cactus->setHasTakenDamage(true);
+				cactus->setCanMakeDamage(false);
+			}
+			else
+			{
+				//printf("Player damaged by enemy \n");
+				if (cactus->getCanMakeDamage())
+				{
+					m_player->setHasTakenDamage(true);
+				}
 			}
 		}
 	}
+	
 
 	m_player->update(deltaMilliseconds);
 }

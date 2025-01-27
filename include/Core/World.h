@@ -8,6 +8,7 @@ class Player;
 class Enemy;
 class Cactus;
 class Level;
+class EnemyManager;
 
 using json = nlohmann::json;
 
@@ -43,10 +44,11 @@ class World
 
 		// This is just an example. Think a good way to group the actors of your game. If they need any type of manager, etc...
 		Player* m_player{ nullptr };
-		Cactus* m_enemy{ nullptr };
-		Enemy* m_enemyFrog{ nullptr };
+		//Cactus* m_enemy{ nullptr };
+		//Enemy* m_enemyFrog{ nullptr };
 
 		Level* m_level{ nullptr };
+		EnemyManager* m_enemyManager{ nullptr };
 
 		sf::View* m_view{ nullptr };
 		sf::FloatRect m_deadZone;

@@ -37,6 +37,8 @@ public:
 	ObjectLayer* getWallsLayer() const { return m_wallsLayer; }
 	ObjectLayer* getCeilingsLayer() const { return m_ceilingsLayer; }
 	ObjectLayer* getTrapsLayer() const { return m_trapsLayer; }
+	ObjectLayer* getEnemyWallsLayer() const { return m_enemyWallsLayer; }
+	
 
 private:
 	
@@ -48,5 +50,6 @@ private:
 	ObjectLayer* m_wallsLayer{ nullptr };
 	ObjectLayer* m_ceilingsLayer{ nullptr };
 	ObjectLayer* m_trapsLayer{ nullptr };
+	ObjectLayer* m_enemyWallsLayer{ nullptr };
 
 };
