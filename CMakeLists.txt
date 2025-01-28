@@ -27,6 +27,8 @@ set(PROJECT_HEADERS
     include/Core/AssetManager.h
     include/Core/CollisionManager.h
     include/Core/EnemyManager.h
+    include/Core/GemManager.h
+    include/Core/PowerUpManager.h
     include/Core/Game.h
     include/Core/World.h
     include/Core/Level.h
@@ -39,6 +41,7 @@ set(PROJECT_HEADERS
     include/Gameplay/Enemies/Cactus.h
     include/Gameplay/Player.h
     include/Gameplay/Entity.h
+    include/Gameplay/Gem.h
 
     include/Render/SFMLOrthogonalLayer.h
 
@@ -52,6 +55,8 @@ set(PROJECT_SOURCES
     src/Core/AssetManager.cpp
     src/Core/CollisionManager.cpp
     src/Core/EnemyManager.cpp
+    src/Core/GemManager.cpp
+    src/Core/PowerUpManager.cpp
     src/Core/Game.cpp
     src/Core/World.cpp
     src/Core/Level.cpp
@@ -63,6 +68,8 @@ set(PROJECT_SOURCES
     src/Gameplay/Enemies/Zombie.cpp
     src/Gameplay/Player.cpp
     src/Gameplay/Entity.cpp
+    src/Gameplay/Gem.cpp
+
 
     src/Render/SFMLOrthogonalLayer.cpp
 

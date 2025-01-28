@@ -74,6 +74,18 @@ bool CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy
 	return false;
 }
 
+Gem* CollisionManager::checkCollisionBetweenPlayerAndGem(Player* player, std::vector<Gem*> gems) const
+{
+	for (Gem* gem : gems)
+	{
+		if (player->getAdjustedBounds().intersects(gem->getBounds()))
+		{
+			return gem;
+		}
+	}
+	return nullptr;
+}
+
 void CollisionManager::checkEnemyWallCollision(const ObjectLayer* wallsCollisionLayer, Enemy* enemy) const
 {
 	const auto& wallShapes = wallsCollisionLayer->getShapes();

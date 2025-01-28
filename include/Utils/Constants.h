@@ -9,8 +9,9 @@ using json = nlohmann::json;
 constexpr float millisecondsToSeconds = 1 / 1000.f;
 
 constexpr char* GAMEINFOJSON_CONFIG = "../Data/Config/GameInfo_Config.json";
-constexpr char* GAMEINFOJSON_ENEMIES = "../Data/CONFIG/GameInfo_Enemies.json";
-constexpr char* GAMEINFOJSON_PLAYER = "../Data/CONFIG/GameInfo_Player.json";
+constexpr char* GAMEINFOJSON_ENEMIES = "../Data/Config/GameInfo_Enemies.json";
+constexpr char* GAMEINFOJSON_PLAYER = "../Data/Config/GameInfo_Player.json";
+constexpr char* GAMEINFOJSON_GEMS = "../Data/Config/GameInfo_Gems.json";
 
 inline json loadJsonFromFile(const std::string& filePath)
 {

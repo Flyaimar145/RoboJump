@@ -37,6 +37,24 @@
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
+               },
+               {
+                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
+                    "positionX": 125,
+                    "positionY": 51,
+                    "offsetForAdjustedBoundsLeft": 6,
+                    "offsetForAdjustedBoundsTop": 8,
+                    "offsetForAdjustedBoundsWidth": 12,
+                    "offsetForAdjustedBoundsHeight": 8,
+                    "speedX": 50,
+                    "speedY": 0,
+                    "tileWidth": 32,
+                    "tileHeight": 32,
+                    "totalFrames": 12,
+                    "deathAnimationTotalFrames": 7,
+                    "initialDirectionX": 1,
+                    "initialDirectionY": 0,
+                    "lifeCount": 1
                }
           ],
           "Frog": [

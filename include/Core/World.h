@@ -9,6 +9,8 @@ class Enemy;
 class Cactus;
 class Level;
 class EnemyManager;
+class Gem;
+class GemManager;
 
 using json = nlohmann::json;
 
@@ -45,10 +47,14 @@ class World
 
 		Level* m_level{ nullptr };
 		EnemyManager* m_enemyManager{ nullptr };
+		GemManager* m_gemManager{ nullptr };
+
 
 		sf::View* m_view{ nullptr };
 		sf::FloatRect m_deadZone;
 		void drawDeadZone(sf::RenderWindow& window);
+		void updateDeadZone();
 		void checkPlayerEnvironmentCollisions();
+		void checkPlayerGemsCollisions();
 		void checkPlayerEnemiesCollisions();
 };

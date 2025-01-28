@@ -95,7 +95,7 @@ void Player::update(float deltaMilliseconds)
 		}
 		else 
 		{
-			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2"));
+			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png"));
 		}
 	}
 

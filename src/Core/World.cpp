@@ -3,8 +3,10 @@
 #include <Core/Level.h>
 #include <Core/World.h>
 #include <Core/EnemyManager.h>
+#include <Core/GemManager.h>
 #include <Gameplay/Player.h>
 #include <Gameplay/Entity.h>
+#include <Gameplay/Gem.h>
 #include <Gameplay/Enemies/Enemy.h>
 #include <Gameplay/Enemies/Cactus.h>
 #include <Render/SFMLOrthogonalLayer.h>
@@ -35,6 +37,9 @@ bool World::load()
 	float deadZoneY = (m_view->getSize().y - deadZoneHeight) / 2.f;
 	m_deadZone = sf::FloatRect(deadZoneX, deadZoneY, deadZoneWidth, deadZoneHeight);
 
+	m_gemManager = new GemManager();
+	const bool gemsLoaded = m_gemManager->loadGems();
+
 	Player* player = new Player();
 	Player::PlayerDescriptor playerDescriptor2 = player->load();
 	const bool playerLoaded = player->init(playerDescriptor2);
@@ -43,16 +48,21 @@ bool World::load()
 	m_enemyManager = new EnemyManager();
 	const bool enemiesLoaded = m_enemyManager->loadEnemies();
 
-	return playerLoaded && enemiesLoaded;
+	return playerLoaded && enemiesLoaded && gemsLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
 {
 	m_level->update(deltaMilliseconds);
 
+	m_gemManager->update(deltaMilliseconds);
+
 	m_player->update(deltaMilliseconds);
 	checkPlayerEnvironmentCollisions();
 	checkPlayerEnemiesCollisions();
+	checkPlayerGemsCollisions();
+
+	updateDeadZone();
 
 	m_enemyManager->update(deltaMilliseconds);
 
@@ -70,9 +80,47 @@ void World::update(uint32_t deltaMilliseconds)
 			stomp->onPlayerCollision();
 		}
 	}
+}
 
-	
+void World::render(sf::RenderWindow& window)
+{
+	window.setView(*m_view);
 
+	m_level->render(window);
+
+	m_player->render(window);
+
+	m_gemManager->render(window);
+
+	m_enemyManager->render(window);
+
+	//drawDeadZone(window);
+}
+
+void World::drawDeadZone(sf::RenderWindow& window)
+{
+	// Create a rectangle shape for the dead zone
+	sf::RectangleShape deadZoneRect;
+	deadZoneRect.setSize({ m_deadZone.width, m_deadZone.height });
+	deadZoneRect.setFillColor(sf::Color(0, 0, 255, 50)); // Semi-transparent blue
+	deadZoneRect.setOutlineColor(sf::Color::Blue);       // Blue outline
+	deadZoneRect.setOutlineThickness(0.5f);
+
+	// Position the rectangle relative to the view's center
+	sf::Vector2f viewCenter = m_view->getCenter();
+	sf::Vector2f topLeft(
+		viewCenter.x - m_deadZone.width / 2.f,
+		viewCenter.y - m_deadZone.height / 2.f
+	);
+
+	deadZoneRect.setPosition(topLeft);
+
+	// Draw the rectangle
+	window.draw(deadZoneRect);
+}
+
+void World::updateDeadZone()
+{
 	// Adjust the view's center based on the dead zone
 	sf::Vector2f playerPos = m_player->getPosition();
 	sf::Vector2f viewCenter = m_view->getCenter();
@@ -103,41 +151,6 @@ void World::update(uint32_t deltaMilliseconds)
 
 		m_view->setCenter(viewCenter);
 	}
-}
-
-void World::render(sf::RenderWindow& window)
-{
-	window.setView(*m_view);
-
-	m_level->render(window);
-
-	m_player->render(window);
-
-	m_enemyManager->render(window);
-
-	//drawDeadZone(window);
-}
-
-void World::drawDeadZone(sf::RenderWindow& window)
-{
-	// Create a rectangle shape for the dead zone
-	sf::RectangleShape deadZoneRect;
-	deadZoneRect.setSize({ m_deadZone.width, m_deadZone.height });
-	deadZoneRect.setFillColor(sf::Color(0, 0, 255, 50)); // Semi-transparent blue
-	deadZoneRect.setOutlineColor(sf::Color::Blue);       // Blue outline
-	deadZoneRect.setOutlineThickness(0.5f);
-
-	// Position the rectangle relative to the view's center
-	sf::Vector2f viewCenter = m_view->getCenter();
-	sf::Vector2f topLeft(
-		viewCenter.x - m_deadZone.width / 2.f,
-		viewCenter.y - m_deadZone.height / 2.f
-	);
-
-	deadZoneRect.setPosition(topLeft);
-
-	// Draw the rectangle
-	window.draw(deadZoneRect);
 }
 
 void World::checkPlayerEnvironmentCollisions()
@@ -265,7 +278,10 @@ void World::checkPlayerEnemiesCollisions()
 
 			case Enemy::EnemyType::Stomp:
 				//printf("Player touched a Stomp \n");
-				m_player->setHasTakenDamage(true);
+				if (enemy->getCanMakeDamage())
+				{
+					m_player->setHasTakenDamage(true);
+				}
 				break;
 
 			default:
@@ -274,5 +290,15 @@ void World::checkPlayerEnemiesCollisions()
 
 			}
 		}
+	}
+}
+
+void World::checkPlayerGemsCollisions()
+{
+	Gem* collidedGem = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndGem(m_player, m_gemManager->getGemsVector());
+	if (collidedGem != nullptr)
+	{
+		m_player->addPoints(collidedGem->getPoints());
+		m_gemManager->destroyGem(collidedGem);
 	}
 }
