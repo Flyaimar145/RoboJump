@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="180" height="110" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="175">
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="200" height="130" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="263">
  <tileset firstgid="1" source="images/tilemap/BackgroundsTileset.tsx"/>
  <tileset firstgid="97" source="images/tilemap/GUITileset.tsx"/>
  <tileset firstgid="202" source="images/tilemap/FlagsTileset.tsx"/>
  <tileset firstgid="580" source="images/tilemap/GemsTileset.tsx"/>
  <tileset firstgid="622" source="images/tilemap/LocationsTileset.tsx"/>
  <tileset firstgid="798" source="images/tilemap/TrapsTileset.tsx"/>
- <layer id="1" name="BackgroundLayer" width="180" height="110">
+ <tileset firstgid="1176" source="images/tilemap/ChestTileSet.tsx"/>
+ <layer id="1" name="BackgroundLayer" width="200" height="130">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer id="2" name="GroundAndWallsLayer" width="180" height="110">
+ <layer id="2" name="GroundAndWallsLayer" width="200" height="130">
   <data encoding="base64" compression="zlib">
-   eJztnM1uHEUQx1trEiRAwAE4AO8APBAgArmCNwk4J2JQQoJAIYfABQhBQpwwoKwdkCAXCAkPEHgM4EAQJ0KPdjspl6s/p2eqeqdK+su7M707H/Xb/1R3z3jHGLOjEqe5qkjceVMpz8rz+oubi1bFnTeVsqw8r7e4mWhZ3LlTKc9D8bw1cXFzrDzX55k7l1RuufdBeW5H0nmeoriZaFnKsyxx89C6lGcZwjnh5qJVKc8yxM3Bukh55hfMBTcPrUt55hc3A+sk5Zlf3Aysk5RnfpaV6fXl+bLVjx59nvi5UDtpUp7Xi+fLZj+z14w/fjAHmXWfvxZpxy18rrkZfsVqO6KjzPvYIs9fW/0yM+aGVU44ZkP8d/EVwzGl8IxzUJtPH4uu3Vtmed7vzJZ/KZ2KfJdEcfB82ez34xKeUwN6Nadf4/Ndi2fIJ4xNsO4oaNu1ux5gGPPdvd/ssX9T4Nl58ndWv630+0A8u3A5DPl1t34ofimvrpG/Y57j7bzVMe7Ydu8xzzAPTt8TPt1Juldz8TwGwzBurfI0Vv2BvZjiPNeDKWFfpgKyDc9FyEsw8+76CdnuJI1vLp65gqOepniu4cFDRgrzXUirRabGc1dPj1FDz9HfUpa5eE4N5ZmX5y5cH3HMviE83yU8/ztibZYTyrOf51dtzl5b6YTV6yu9gXIJ18Xa4OUwhqg9MLd9fBnynHI8HKE8+3k+b3P1wUqnrbasTlq9g3Lo1n24kq/NGWI5jKF4pvjuy/PF1bF+pDw3wzOM0ysWT3tYhct8bSDPxwkOavJcy5epsYyUMQyuUJ6XPLvaYtPjN5Dns6i2OEfwTLWh/Nldtz+1r7+tdDz4XGK2c724pVCelzy72uJChGd3ncWC111fG6oOcW1reTPFsY9v5Xl9eY6F47lkLtzNBVB1iAs8D16qbfR+buL3+YSUUlvAfrMTdZ2j+s0+hfrcoT6otHs8JPEM8+RYLJlHTOG55XjTHtMppG3iOF0fIkW+/kesT+1Cik9L4hmOb1zs0Zd3PF8EdbW0ca4+4eMZe+45D7uUfP0P5blOvdEnurladz+N1HGuPuHjuWMPjmPm6CTB+Jbn3MGx8Jfs+yPdMsPPMifPsfGNvuE8eqj7UMcOWIu97eF5a8XertVehq7O6NrE58vQI6T4MjfPsfGNXXCuS2LdeHaePJ/dq8mOIZ4dy7/O/Pc3U7oxOzhGRI0NUaE8p9UbjsebhUyHeD5klx22ur8h1h3P24BD2N+4kMCy71mUmx7PxjU11QfR8Y208Q14/y1m8m/7/p8IiyGen7TLnrJ6ugGe3TlxNQbkGQqzHHqOKkWQ8ZSQ4tOSeIZ+E+P58Eb4/IZ4fsYue9bqOaE8uz7Wy+Zg38/Hc+gZqhDfKdynhFSe8TLuesN3PYzJeRXmuZvnvlRJR9BfXxunOVpGtenkxgq6uUIfz/gZqW5M52pPT3Y+v4e+G4eObxzkOTa+cZ3IWYnwXMzYz6fA85ybG8cz7ANeIH6n8FqU4rmh9e68h/qCOr5xkOfY+MZ1wltrxBg8z9Fr6n0Oz1SNQfFcch2jrms3IjzDUJ7T642WeKbOp8+jF0A1eMbP+tW4pqWMbXShPKePb7TEM8VvqS9TPMfqqNqBx6N986vKc9r4xq2BcjY0zwuT7tc5PEuL9+w+va/1812eh57vhgHnf4d8xqpjuetr+dZjzlvm+WO7T58oz3d57uZDuvGn2LxIjYBjf0P6s6uHMcN4PWwTqqEl8ux8Wf15P8+Pbxhze7acF+mYzrn3PNQ/oWIsnrEnU+zidTGezwvj2fmy+vM9fWP2zzl8ZvLuPT+TMZ7UBQfPFN9wTCPFn4+b5Ryhb0xzyHDzJDFJmUfh5DnG95Cq9Qxsp0VkOTy/kOE5ahvKD9fzhNJ8tyWeW5XzW7hsTiz3nfvUMegxAvuxNN9VnvmY3jF0rRw6/9w8t+rHyvN4nOfmQHlWniULnucF+LtAy0KqyXOoj9dqfaE8DyNYdywigox/afVTQD+btEgZj1gXZpXn4TnG6uYJQzy717umTqxLvaA8y+HZx7dbDn1Zee4vyieU5zosQ2530LKdQA6U5zpMqz/XYxkvw68pjkt5fmDDmAetHkLPT06F51gfego84+McgusdQ7NdUj//YWvvP1f6y+p5y+4LVi9u+F9vmnC+c8YPWxbmeQqq6cuxsYwSnv8D95sYy+oxq+NWJwKvrxDfz800NabT139jn+H2zlbk6+fBdXhMg/ocznWI5zsrns9anbN6N/D6SmBbeJtjeyZ17KWfVZ6HYdnHNFU/+1hO9WcY3f8euU3cN+54hr+pWO7H5LvPdkPHEuoPqtJ4jnEO1/vaOe4onh+2DD+y0qOI5/vs+0MbB/+fDuXPvlon9fqewhxuU7KdnH2J1TDcrLSgkho59XO54xuPbSyfhXgC8Uxxm8JzH39M5bTGtSC1huJmpQWlMFrKfq3xZ+z7VK6HYDrnt5LDfin33Ky0IIrnVM5hrqk58No8pyqXId9vJMdPF55t1biGKM/1eE5lh1q3Z/UFIdgmJXzbzWW6dk0Qel+yLd95VZ7LecbLhxYM3/xgDZ5zOPN9Tx//LtkP3JabFemCeRuT4Rr+nKoclvp6eMjHc/ePWsfNi3Rx8FuDZ1yrz9Ffn5fX8ssUTocQNy+Sxc1xH559vOb4YAq/pceUsz/Ks/KcyxbFb4ipEGu1vDn1e2A7bmakaixWfc+xwOUpUcKJrxZdmDBHMY5LPutbl/JbUp7l8JyilOi7jRw/xW1z/Lh2TY2/j5sbqeJmeGyeQ7xQ/KawPEafUHmeNs8lNWmMoVrbzv1eqj03N1LFzfBQPPfhsZZC48fKs/JsBOxjLoep4yg5LCvPyjMeXwn935CS78vluq+4uZEqbob78NyXyZbFzY1UcedFpTwrzypubqSKOy81NaX6g5sbqeLOi0p5Vp7zdGdGe3fLfs7NjVRx50WSWmKemxup4s5LDlstb0d5njbPU+NTeVaepyxubqSKOy8hTcVrledp8KxSnpVnWRrqGsPNjVRx51ulPCvPfJJS03NzI1XceSnhRApTyrM8cedFpTwrz3UV83uJ1wNubqSKOy8q5Vl5VnFzI1XceVEpz1PnWWI9qzzLEHdeVMqz8qzi5kaquPOiUp6VZxU3N1LFnReV8qw8q7i5kSruvKiUZ+VZ9T+h1hvo
+   eJztnV2TJEUVhsse5QIM9UL8f6Lc6jaoww0wGIsSwYd7sXoD+C3cuGAwu6sRShDq7uIPQH8GcgGEVzNWxvYJzmSfk3kyK7+6+n0j3pie6qzuqq7z1DmZWdU9TRAEQRAEQVAtncLwwO4ttw234O7ewnsGHzD4AB8w+AAfMPgAHzD4AB8w2Ohv8HHc5rEATsAHrPMBgw94nw1wAj5gnQ8YfMDgA3zAKWyAEfBh9a9n/03xb4zrhdqNZvABPlJ4eD+wfX+d9hmg9d+PtOvtrbKsl787+yziJztvI/iYpndmX26m6cEmbVuJgRBPTn/ssE8WPvixL8GKH+9abFO7F2bf3zz87O8rfj7yWuCjfs5w8X0/gw+reC7pmU84CyX54PHOdY099yRr69rdCzDh8+L+v7Zg+8BHXs5wn/2fZ/975/9U4oNEMdEqn/g8SLmkRNw8peyvO/cTM8QK/e/zwY8D+S9CHnHulUuOjY8WTHB9tDvuLfnQHqfyEeor+HlDEmeFfxahc5PPEOV3zopzK16OjY9e6tEfkfgokSNqysKQU6vaC3y0keuPtOiDbL2/uWz04sMq8LEuPpyoz96yr55TV3E+/tewFk0R+GjHx/fmGPj+zj+Y/cOdf+TFBn8u1sZfzlWj1vI5WJI3OB+W/ekh8NGOj9fmY/+zna/PPp39zOyfeDFBz/18Z63Ni8Jyrlp8SLws5ePmbl9/AT66qTcfXNd3sX1diX2+TGvD+XhaiKuSfJTKG9JYlWWMqpfARx0+qJa6ppwPOR8/9WqplwQ+pDZS/qA65c358Z8K7Q9nQ2IlNVccksBHHT6olroR4YPqCt+8ztDaSHUXtS2VOyQuNF7AB/iw8hET8ZFz7QnNbUl1F8m/7iTXZ97/2yl+3V/IllqKj2OQpTwsjWNopn7/s5v9dUNjAq2u0QIfV487xXbOPLuFj0PWc/M+Pe/5TNhP6oNZTJ/Tq5v9dS2fYe08Aj6ujl/dXDBWQ3zcZP2S0cZFl0jjw88JLwkcaNb6b+DjC/Xmo5TctRF0fd2o46JLpPHhYpmPe6f4GYGZU+Wz43Mx357/f8Itm8BHST5i41dLRTmk1nXzrcVrzx8rfJzuYvn27DsJvruRazEtb/BzDvrndfiIjV/dZscuR46PnPuuRhXljO3mixr0KY8PYuNfG/3+DskPNvtjgNLYnyTw0ae+ovP/h5mMrC1/PMc4oLjm/bUbBja0ewU/VHKK3yeR+nAYv2rHB68h+P0Hfox/Ov//eSTu18IHfSZUU50pce6zEbpv1mLOjEXon9fng58P77FjLPHxyEl4Xw6ZD+rzfmfa74ufKfEcumc2xIuFI4vAR5/6Ssv/MdO51OfDXVfyy0J+wvurtSFvvWVSG2caC3Jz6Rof/j2xbszu7sKcQXnojvfavjB+VZ+P2PjVPSEGcuzPLba+f5COL39sNfHB++Q3BO55rrTkhNDz9LmH+uYYv6rPR2z86p5w7i+hFnxsvcfS/yl8nAlxLfGRk2elvPsgwgcX+KjDR0yHxofPQSiHnDOn8OGPyZL8e8VL5FzL2JUT+GjHhz9+dUh8SDzk5g2Jj1jdWFr+fIh2/QH4aMcHH7/6qFIM1ObjfLLnkxQ+RtPL8za9gv5HNT5qX1/Cxa+3qHlPrWPD9RG0531uDpmP1+dtegN8VOPDze+58crYPF8J8bHimvmD+hM+E/7zvE2oDzIiH5Q3kD/q8vH4yTR9tnk4z+cYSbmXJ9RflNSKDz9nSCz4z8X4eG0wPihvIH/U87vT1Tm0X01p9/K8mDD+6NSDD4kXPmZlyR9PTw/n0LUx8Jqieb+Ya88LHiMfMV5qutR3MjifR5bzGoszsfXahuKi1/3oI3xnO/g4bFM+4Mu2wnLtmFvnQFrIzxet8gL4WLclRm5Ncl9DssaQ9rsetTRavgAf63YsL4QY4b/V0UrgIy7wUdb8+J6zv+feMt+1aqpQn3u0egp8rMu8zjqPmDPz1ux/eP5n7EAJsow3jc4A+FifNQbcPHqID3p823Zoohq9PgIfx2ke9xovtJznDfABPtZujYNb3jJniQ3wAT7Wap8Lnwn+WOIil49HT6bpsdlf9e6/Bx/1BT7yObk1yazk9D8+nvsu/935E+O1JcSHNiaWMt48osHHYdjS37CMX4X4uGDXi02R72khvSe8fm9GrPdJWrYRfIxtrd/Nn/PHrKT1/NgJ8XGZyYcWk6mxWpqTHE5p3dNGDqnVNvRwaTY0RqT+h8ZGjfzBGY2dn1vysuR9Q/tSch9GyFE95Pa9JB8xbvjzWjuKY4mPr81MfH3nbyzIH1ptZ4k963neb5PzPinbUpoJ8FGeD4ut65Ua3/37tD8PL/ntadm5Pyfuc3KGdX3kj+UqxYc1Z6S4FB9WuTyTG5+huF2aH3LaIX+UUQ0+rNzw2JGuOenBR07949c3Oef7c+W9YjUg+Kir2nxYa37puTuzfx/wHwp/Fv44cCymUxxiQvo/5720zxV85Ks0H0v6JTXqr9/O/t1k4yvER0q8aef7JfklZztKMgI+lvXNWzGRU39p41f++pZ5klC8laiBQlyF8m/p7QAfD1WKj5LWrn/3l/P4pmuvHhOuwfLjXhs/fk95b8s5OCceW59PlsyRbafjVC4frY/tkvyhje/691qF5klyeMjdL8u6Oe8BPtJVm4/LTfh+qBZ8WBWqr3weQjEait1SucP6Orwd+EhXDh81Yl26lzbmnHttQ5LmPzROUs/9lryS+pyFTfCxTKPw0XquQ5JWX6Wc7/22KfmidJ/Efz0X5y6XawyEngMfbbjQ8kTpXEAKje/6vpu4L1Lsa+duy7q51upXiQ/kjzRZ+Ch5TuuRJ1KvT1zSLjfml9Re1vbgI10txhn5+W1kPpbEdymH5i/AR3u1jodUPkK1EZ//Tpn/GNmhceTQev69LVIb8JGu0fkIxfbS+fOY/bp+6Th1yvo15hLBR7r8z956DK1z3Ev5oLm9t4XXz+Gj1lxMTVZKGXyka/T8QZJyQO38MXKsg482Ah+H51wewUe6RuSDf88b9c+luYkSfBzKub8EUxYOtHbgo65pXjB1HrBn/7x3PJds54z8ka4SfFiO0ZK6Snp9t6wmH9p1lYecb8BHulrlj5L9jtTXrJk/Dokh8JGuVnzQveRuTk/7HmlJI/IxavyDj/IasX/OVXr+Y03xDj7qy8pH6D6nUHyF7olNUY/x3ZrclHpt9M/ravT8QcL8x3LHxnDBx75G5MMy/5EyfuVqNKrPjtnIH+nK4SOnNug5/+F0SIyUruvo9cBHutx+02dQ8/jm1lWh75ZOZc29Fv321Nq8OUH+qKHR5z/WrFc35V7rwpBzQvEf65OAj7q1QO78x5q1lI9P5/U/m/35Js5HTp8cfIzZPz8WLeXjy/P55SuzHzlZnj/Ahyzw0U9vLuTjmzMXj8/+lsKHn9stHOD63auq+R0z0rLYbxa0+i2DQxKvo7THyB91VDN/lBynPOa8w+so/viDDeqr2tL4GO2apGPmg9dRjgl6HKuvwMdypVx/1TPHfOlkf8z/k4LjoyML9VU/9f4+NKvpN8+5rb9/PqqeNfJNNZXLHVqtlcNHypgv+Bjba+TDOr7L6yit1tL44PkZ+SNdLflYUqOV4ONjY23G22lesj6ta+WjZX2F8d2r6pk/UnjR+Hh5/vuKMc4udutdRti6YO9xKbwvZ5PXSPT4QlnHX9fKh1Rf+bXWRUKthPxh16HXV6/Pf99I5COWe2LxrcU4PeYcluBDq6/o8Qfon1fTyHzw/CLFmTSm1epaWGfr+n6erLHduH63jmrz0Xoe5bThex2awUe6Rs4fqaa+ZUr7nPeo2b7F5wM+7OL3R7X20muuR3Lu7/pZ2yz9ftClBh/t4r3WMVwTb6MZfKw/3lL2Z237vtTgA+7lUrVVTYOP9Rt1Xb7Bx3pN3/3Y671773+J7QIf4x6bVrE3aiz32Fb/9cEH3CpWtfYj8wk+4FyPHNelDD5gWPcx8wHDFkMQBEEQBEEQBEEQBEEQBEEQBEEQdLz6P1aBU6U=
   </data>
  </layer>
- <layer id="3" name="MainLayer" width="180" height="110">
+ <layer id="3" name="MainLayer" width="200" height="130">
   <data encoding="base64" compression="zlib">
-   eJzt10EOwWAUhdGXltoD9oAF0T1gD9i1OxHGmvilOSe58zf4Jq8KAAAAAAAAAAAAAAAAAAAAeFl2VUO26lpfAtOt0/Em2+qZGdil43120DMANDUs3gOAuTj2Vads7FtfAtOd0/Elu+qZP/D5P3zzQ9zS8T176BkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAfeQIEigVy
+   eJzt3FlKXEEYBeCy7bRDdmCMugNNNIsxQd2BEXUBFxQS92CSF01eMrxk2F6OKHijFKSlJ9rvgwNFg1AP90AV/lQpAAAAAAAAAAAAAAAAAAAAAABMsyedUnrJXGfcO4HJs5RePEuW9QPuWU8vNpIX+gEAjFCvexsAYDR2ZkvZTfZmx70TmDyH6cVRcqwfTKH2/eshd7B36cX75Ew/AAAAGAGzsFBnFhbqzMICAAAAAAAAAAAAAAAwCvOdsvY8eZmMey8waRbSi5VkUz/gnsX0YjXZ0g8AgL6031WvreGxar+rXlvDY9V+V722BgAAAAAAAKZDbY7EfAnU50jMl0B9jsR8CQAAAAAAAAAAAAAAAAAAAAAAANzyviPUed8R6rzvCAAwWO7nUOd+DnUPuZ+fd0v5kHxMPnWHtze4sp1v7HXy5jpN1k1+a/7379tnpEGelxZmSllMns78+/tF9nmZfE6+6AdDtp9v7G1ycJ0m62a/j360z0iDPC+tpBerydqdfnzNPr8l35Mf+sGQneQbO016N8m6OemjH+0z0iD/n7GZXmwlr+7042f2+Cv5nfzRDwAAAAAAAAAAAAAAAAAAAAAAmEp/AXLgRR0=
   </data>
  </layer>
  <objectgroup id="6" name="GroundsLayer">
@@ -64,6 +65,28 @@
   <object id="147" name="Zone2Ground" x="1827" y="864" width="138" height="2"/>
   <object id="148" name="Zone2Ground" x="2099" y="512" width="42" height="2"/>
   <object id="149" name="Zone2Ground" x="1843" y="512" width="58" height="2"/>
+  <object id="175" name="Zone3Ground" x="1731" y="928" width="42" height="2"/>
+  <object id="176" name="Zone3Ground" x="1715" y="1120" width="74" height="2"/>
+  <object id="177" name="Zone3Ground" x="1555" y="1072" width="122" height="2"/>
+  <object id="178" name="Zone3Ground" x="1619" y="944" width="58" height="2"/>
+  <object id="184" name="Zone3Ground" x="1715" y="1712" width="138" height="2"/>
+  <object id="185" name="Zone3Ground" x="1859" y="1664" width="58" height="2"/>
+  <object id="186" name="Zone3Ground" x="2019" y="1664" width="154" height="2"/>
+  <object id="187" name="Zone3Ground" x="1923" y="1712" width="90" height="2"/>
+  <object id="189" name="Zone3Ground" x="1827" y="1088" width="106" height="2"/>
+  <object id="190" name="Zone3Ground" x="1827" y="1200" width="154" height="2"/>
+  <object id="191" name="Zone3Ground" x="1715" y="1248" width="74" height="2"/>
+  <object id="192" name="Zone3Ground" x="1555" y="1248" width="122" height="2"/>
+  <object id="193" name="Zone3Ground" x="1507" y="1328" width="74" height="2"/>
+  <object id="195" name="Zone3Ground" x="1347" y="1392" width="74" height="2"/>
+  <object id="196" name="Zone3Ground" x="1507" y="1456" width="74" height="2"/>
+  <object id="197" name="Zone3Ground" x="1347" y="1520" width="74" height="2"/>
+  <object id="198" name="Zone3Ground" x="1379" y="1568" width="218" height="2"/>
+  <object id="199" name="Zone3Ground" x="1603" y="1616" width="74" height="2"/>
+  <object id="200" name="Zone3Ground" x="1683" y="1680" width="26" height="2"/>
+  <object id="201" name="Zone3Ground" x="2275" y="1664" width="138" height="2"/>
+  <object id="202" name="Zone3Ground" x="2419" y="1712" width="314" height="2"/>
+  <object id="203" name="Zone3Ground" x="2179" y="1712" width="90" height="2"/>
  </objectgroup>
  <objectgroup id="4" name="WallsLayer">
   <object id="1" name="Zone1Wall" x="464" y="320" width="16" height="400"/>
@@ -129,11 +152,52 @@
   <object id="120" name="Zone2Wall" x="2144" y="774" width="2" height="20"/>
   <object id="121" name="Zone2Wall" x="2080" y="806" width="2" height="36"/>
   <object id="122" name="Zone2Wall" x="1968" y="854" width="2" height="4"/>
-  <object id="123" name="Zone2Wall" x="1824" y="870" width="2" height="84"/>
-  <object id="124" name="Zone2Wall" x="1678" y="790" width="2" height="84"/>
+  <object id="123" name="Zone2Wall" x="1824" y="870" width="2" height="164"/>
+  <object id="124" name="Zone2Wall" x="1678" y="790" width="2" height="36"/>
   <object id="125" name="Zone2Wall" x="1742" y="406" width="2" height="20"/>
   <object id="163" name="Zone2Wall" x="2112.09" y="627.273" width="2" height="20"/>
   <object id="165" name="Zone2Wall" x="1870" y="574" width="2" height="4"/>
+  <object id="179" name="Zone2Wall" x="1646" y="838" width="2" height="4"/>
+  <object id="180" name="Zone2Wall" x="1630" y="854" width="2" height="20"/>
+  <object id="213" name="Zone3Wall" x="1678" y="950" width="2" height="68"/>
+  <object id="214" name="Zone3Wall" x="1616" y="950" width="2" height="68"/>
+  <object id="215" name="Zone3Wall" x="1550" y="886" width="2" height="180"/>
+  <object id="216" name="Zone3Wall" x="1728" y="934" width="2" height="4"/>
+  <object id="217" name="Zone3Wall" x="1774" y="934" width="2" height="4"/>
+  <object id="218" name="Zone3Wall" x="1824" y="1094" width="2" height="52"/>
+  <object id="219" name="Zone3Wall" x="1934" y="1094" width="2" height="52"/>
+  <object id="220" name="Zone3Wall" x="1984" y="1046" width="2" height="148"/>
+  <object id="221" name="Zone3Wall" x="1678" y="1078" width="2" height="100"/>
+  <object id="222" name="Zone3Wall" x="1712" y="1126" width="2" height="4"/>
+  <object id="223" name="Zone3Wall" x="1790" y="1126" width="2" height="4"/>
+  <object id="224" name="Zone3Wall" x="1824" y="1206" width="2" height="260"/>
+  <object id="225" name="Zone3Wall" x="1678" y="1254" width="2" height="244"/>
+  <object id="226" name="Zone3Wall" x="1712" y="1254" width="2" height="4"/>
+  <object id="227" name="Zone3Wall" x="1790" y="1254" width="2" height="4"/>
+  <object id="228" name="Zone3Wall" x="1470" y="1190" width="2" height="20"/>
+  <object id="229" name="Zone3Wall" x="1552" y="1254" width="2" height="36"/>
+  <object id="230" name="Zone3Wall" x="1584" y="1302" width="2" height="20"/>
+  <object id="231" name="Zone3Wall" x="1584" y="1430" width="2" height="20"/>
+  <object id="232" name="Zone3Wall" x="1342" y="1366" width="2" height="20"/>
+  <object id="233" name="Zone3Wall" x="1342" y="1494" width="2" height="20"/>
+  <object id="234" name="Zone3Wall" x="1374" y="1414" width="2" height="68"/>
+  <object id="235" name="Zone3Wall" x="1552" y="1350" width="2" height="68"/>
+  <object id="236" name="Zone3Wall" x="1374" y="1222" width="2" height="132"/>
+  <object id="237" name="Zone3Wall" x="1504" y="1334" width="2" height="4"/>
+  <object id="238" name="Zone3Wall" x="1422" y="1398" width="2" height="4"/>
+  <object id="239" name="Zone3Wall" x="1504" y="1462" width="2" height="4"/>
+  <object id="240" name="Zone3Wall" x="1422" y="1526" width="2" height="4"/>
+  <object id="241" name="Zone3Wall" x="1598" y="1574" width="2" height="36"/>
+  <object id="242" name="Zone3Wall" x="1678" y="1622" width="2" height="52"/>
+  <object id="243" name="Zone3Wall" x="1710" y="1686" width="2" height="20"/>
+  <object id="244" name="Zone3Wall" x="1856" y="1670" width="2" height="36"/>
+  <object id="245" name="Zone3Wall" x="1918" y="1670" width="2" height="36"/>
+  <object id="246" name="Zone3Wall" x="2016" y="1670" width="2" height="36"/>
+  <object id="247" name="Zone3Wall" x="2174" y="1670" width="2" height="36"/>
+  <object id="248" name="Zone3Wall" x="2272" y="1670" width="2" height="36"/>
+  <object id="249" name="Zone3Wall" x="2414" y="1670" width="2" height="36"/>
+  <object id="261" name="Zone3Wall" x="1374" y="1526" width="2" height="36"/>
+  <object id="262" name="Zone3Wall" x="2736" y="1510" width="2" height="196"/>
  </objectgroup>
  <objectgroup id="7" name="CelingsLayer">
   <object id="2" name="Zone1Ceiling" x="563" y="716" width="74" height="2"/>
@@ -166,6 +230,17 @@
   <object id="162" name="Zone2Ceiling" x="2259" y="638" width="42" height="2"/>
   <object id="164" name="Zone2Ceiling" x="1872" y="565" width="10" height="2"/>
   <object id="174" name="Zone2Ceiling" x="1984" y="686" width="160" height="1.5"/>
+  <object id="181" name="Zone2Ceiling" x="1651" y="830" width="26" height="2"/>
+  <object id="182" name="Zone3Ceiling" x="1555" y="878" width="74" height="2"/>
+  <object id="183" name="Zone3Ceiling" x="1619" y="1022" width="58" height="2"/>
+  <object id="204" name="Zone3Ceiling" x="1827" y="1038" width="154" height="2"/>
+  <object id="205" name="Zone3Ceiling" x="1827" y="1150" width="106" height="2"/>
+  <object id="206" name="Zone3Ceiling" x="1475" y="1182" width="202" height="2"/>
+  <object id="207" name="Zone3Ceiling" x="1555" y="1294" width="26" height="2"/>
+  <object id="208" name="Zone3Ceiling" x="1347" y="1358" width="26" height="2"/>
+  <object id="209" name="Zone3Ceiling" x="1554" y="1422" width="26" height="2"/>
+  <object id="210" name="Zone3Ceiling" x="1346" y="1486" width="26" height="2"/>
+  <object id="211" name="Zone3Ceiling" x="1554" y="1502" width="122" height="2"/>
  </objectgroup>
  <objectgroup id="5" name="TrapsLayer">
   <object id="12" name="Zone1Spikes" x="816" y="437.875" width="48" height="10.125"/>
@@ -173,6 +248,34 @@
   <object id="167" name="Zone2Saw" x="2103.5" y="473" width="32" height="32">
    <ellipse/>
   </object>
+  <object id="250" name="Zone3Saw" x="1783.67" y="952.333" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="251" name="Zone3Saw" x="1735.33" y="953" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="253" name="Zone3Saw" x="1688" y="953" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="254" name="Zone3Saw" x="1688" y="1128.67" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="255" name="Zone3Saw" x="1783.67" y="1128.33" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="256" name="Zone3Saw" x="2183.67" y="1673" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="257" name="Zone3Saw" x="2232" y="1673" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="258" name="Zone3Saw" x="2424.33" y="1625" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="259" name="Zone3Saw" x="2423.67" y="1545" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="260" name="Zone3MultiTrap" x="1920" y="1672" width="96" height="40"/>
  </objectgroup>
  <objectgroup id="8" name="EnemyWallsLayer">
   <object id="168" name="Zone1EnemyWall" x="676" y="582" width="2" height="36"/>

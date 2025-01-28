@@ -7,15 +7,15 @@
           "offsetForAdjustedBoundsTop": 8,
           "offsetForAdjustedBoundsWidth": 12,
           "offsetForAdjustedBoundsHeight": 8,
-          "positionX": 127,
-          "positionY": 39,
-          "speedX": 100,
+          "positionX": 117,
+          "positionY": 73,
+          "speedX": 200,
           "speedY": 0,
           "tileWidth": 32,
           "tileHeight": 32,
           "totalFrames": 12,
           "deathAnimationTotalFrames": 7,
-          "jumpSpeed": 350,
+          "jumpSpeed": 300,
           "lifeCount": 2
      }
  }

@@ -82,7 +82,7 @@ void Stomp::update(float deltaMilliseconds)
 				m_hasToRise = false;
 			}
 		}
-		else if (m_direction.x != 0.0f)
+		else if (m_speed.x != 0.0f)
 		{
 			if (m_animationTime >= m_frameDuration)
 			{

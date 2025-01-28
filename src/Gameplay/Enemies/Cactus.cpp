@@ -82,7 +82,7 @@ void Cactus::update(float deltaMilliseconds)
 				m_currentSpriteStartingY = m_tileHeight * 3.f;
 			}
 		}
-		else if (m_direction.x != 0.0f)
+		else if (m_speed.x != 0.0f)
 		{
 			if (m_animationTime >= m_frameDuration)
 			{

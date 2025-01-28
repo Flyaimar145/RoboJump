@@ -30,7 +30,7 @@ bool World::load()
 
 	m_view = new sf::View(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
 	float deadZoneWidth = m_view->getSize().x * 0.15f;
-	float deadZoneHeight = m_view->getSize().y * 0.25f;
+	float deadZoneHeight = m_view->getSize().y * 0.15f;
 	float deadZoneX = (m_view->getSize().x - deadZoneWidth) / 2.f;
 	float deadZoneY = (m_view->getSize().y - deadZoneHeight) / 2.f;
 	m_deadZone = sf::FloatRect(deadZoneX, deadZoneY, deadZoneWidth, deadZoneHeight);
@@ -243,7 +243,7 @@ void World::checkPlayerEnemiesCollisions()
 				{
 					m_player->setMakeJump(true);
 					enemy->setHasTakenDamage(true);
-					enemy->setCanMakeDamage(false);
+					//enemy->setCanMakeDamage(false);
 				}
 				else
 				{
