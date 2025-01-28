@@ -28,7 +28,7 @@ class Enemy : public Entity
 		virtual void onPlayerCollision() {};
 
 		virtual void update(float deltaMilliseconds) override;
-		void render(sf::RenderWindow& window) override;
+		virtual void render(sf::RenderWindow& window) override;
 
 		bool getCanMakeDamage() const { return m_canMakeDamage; }
 		Enemy::EnemyType getEnemyType() const { return m_enemyType; }
@@ -37,8 +37,6 @@ class Enemy : public Entity
 		void setEnemyType(Enemy::EnemyType enemyType) { m_enemyType = enemyType; }
 
 	protected:
-
-		
 
 		EnemyType m_enemyType;
 		bool m_canMakeDamage{ true };

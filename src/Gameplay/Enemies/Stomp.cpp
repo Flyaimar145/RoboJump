@@ -1,12 +1,13 @@
 #include <Gameplay/Enemies/Stomp.h>
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 bool Stomp::init(const EnemyDescriptor& enemyDescriptor)
 {
 	m_enemyType = Enemy::EnemyType::Stomp;
-	m_hasToAttack = false;
-	m_canMakeDamage = false;
 	m_frameDuration = 100.f;
+	m_initialPositionY = enemyDescriptor.position.y;
+	m_detectionZone = sf::FloatRect(enemyDescriptor.position.x + enemyDescriptor.tileWidth/2.f - 2.f, enemyDescriptor.position.y + enemyDescriptor.tileHeight*2 -2.f , 2.f, 2.f);
 	return Enemy::init(enemyDescriptor);
 }
 
@@ -17,10 +18,6 @@ void Stomp::onPlayerCollision()
 
 void Stomp::update(float deltaMilliseconds)
 {
-
-	bool hasToAttackInput = sf::Keyboard::isKeyPressed(sf::Keyboard::K);
-
-
 	if (m_direction.x > 0)
 	{
 		m_sprite.setScale(1.f, 1.f);
@@ -33,26 +30,38 @@ void Stomp::update(float deltaMilliseconds)
 	}
 
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
-
+	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
+	
+	//Move the m_detectionZone rectangle with the Stomp
+	m_detectionZone.left = m_position.x + m_tileWidth / 2.f - 2.f;
+	m_detectionZone.top = m_position.y + m_tileHeight * 2 - 2.f;
 
 	m_animationTime += deltaMilliseconds;
-	if (hasToAttackInput)
+
+	if (m_hasToAttack)
 	{
+		
 		if (!m_attackAnimationStarted)
 		{
+			m_beforeFallingDirectionX = m_direction.x;
+			m_direction.x = 0.f;
 			m_currentFrame = 0;
 			m_attackAnimationStarted = true;
+		}
+		if (m_position.y < m_initialPositionY + m_heightToFall)
+		{
+			m_speed.y = m_fallingSpeed;
+		}
+		else
+		{
+			m_speed.y = 0.f;
 		}
 		if (m_animationTime >= m_frameDuration)
 		{
 			updateAnimation(m_totalFrames, 2.f);
-			if (m_currentFrame == 6)
-			{
-				m_canMakeDamage = true;
-			}
 			if (m_currentFrame == m_totalFrames - 1)
 			{
-				m_canMakeDamage = false;
+				m_hasToRise = true;
 				m_hasToAttack = false;
 				m_attackAnimationStarted = false;
 			}
@@ -60,17 +69,17 @@ void Stomp::update(float deltaMilliseconds)
 	}
 	else
 	{
-		if (m_speed.y != 0)
+		if (m_hasToRise)
 		{
-			if (m_speed.y > 0.0f)
+			if (m_position.y > m_initialPositionY)
 			{
-				m_currentSpriteStartingX = m_tileWidth * 1.f;
-				m_currentSpriteStartingY = m_tileHeight * 3.f;
+				m_speed.y = -m_fallingSpeed;
 			}
 			else
 			{
-				m_currentSpriteStartingX = m_tileWidth * 0.f;
-				m_currentSpriteStartingY = m_tileHeight * 3.f;
+				m_direction.x = m_beforeFallingDirectionX;
+				m_speed.y = 0.f;
+				m_hasToRise = false;
 			}
 		}
 		else if (m_direction.x != 0.0f)
@@ -90,4 +99,16 @@ void Stomp::update(float deltaMilliseconds)
 	}
 
 	Enemy::update(deltaMilliseconds);
+}
+
+void Stomp::render(sf::RenderWindow& window)
+{
+	Enemy::render(window);
+	sf::RectangleShape detectionZoneRect(sf::Vector2f(m_detectionZone.width, m_detectionZone.height));
+	detectionZoneRect.setPosition(m_detectionZone.left, m_detectionZone.top);
+	detectionZoneRect.setOutlineColor(sf::Color::Green);
+	detectionZoneRect.setOutlineThickness(.5f);
+	detectionZoneRect.setFillColor(sf::Color::Transparent);
+	window.draw(detectionZoneRect);
+
 }

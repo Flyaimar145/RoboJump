@@ -20,6 +20,10 @@ public:
 		int totalFrames{ 0 };
 		int deathAnimationTotalFrames{ 0 };
 		int lifeCount{ 0 };
+		float offsetForAdjustedBoundsLeft{ 0.f };
+		float offsetForAdjustedBoundsTop{ 0.f };
+		float offsetForAdjustedBoundsWidth{ 0.f };
+		float offsetForAdjustedBoundsHeight{ 0.f };
 	};
 
 	virtual ~Entity() override = default;
@@ -27,6 +31,9 @@ public:
 	bool init(const EntityDescriptor& entityDescriptor);
 
 	sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
+	sf::FloatRect getAdjustedBounds() const { return sf::FloatRect(m_sprite.getGlobalBounds().left + m_offsetForAdjustedBoundsLeft, m_sprite.getGlobalBounds().top + m_offsetForAdjustedBoundsTop, m_sprite.getGlobalBounds().width - m_offsetForAdjustedBoundsWidth, m_sprite.getGlobalBounds().height - m_offsetForAdjustedBoundsHeight); }
+	sf::Vector2f getAdjustedPosition() const { return sf::Vector2f(m_sprite.getPosition().x + m_offsetForAdjustedBoundsLeft, m_sprite.getPosition().y + m_offsetForAdjustedBoundsTop); }
+	void setAdjustedPosition(sf::Vector2f position) { setPosition({ position.x - m_offsetForAdjustedBoundsLeft, position.y - m_offsetForAdjustedBoundsTop }); }
 
 	void update(float deltaMilliseconds) override;
 	void render(sf::RenderWindow& window) override;
@@ -50,6 +57,11 @@ protected:
 	sf::Sprite m_sprite;
 	sf::Vector2f m_direction{ .0f, .0f };
 	sf::Vector2f m_speed{ .0f, .0f };
+
+	float m_offsetForAdjustedBoundsLeft{ 0.f };
+	float m_offsetForAdjustedBoundsTop{ 0.f };
+	float m_offsetForAdjustedBoundsWidth{ 0.f };
+	float m_offsetForAdjustedBoundsHeight{ 0.f };
 
 	// Animation
 	float m_tileWidth{ .0f };

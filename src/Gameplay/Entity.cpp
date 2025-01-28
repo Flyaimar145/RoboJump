@@ -14,6 +14,10 @@ bool Entity::init(const EntityDescriptor& entityDescriptor)
 	m_totalFrames = entityDescriptor.totalFrames;
 	m_deathAnimationTotalFrames = entityDescriptor.deathAnimationTotalFrames;
 	m_lifeCount = entityDescriptor.lifeCount;
+	m_offsetForAdjustedBoundsLeft = entityDescriptor.offsetForAdjustedBoundsLeft;
+	m_offsetForAdjustedBoundsTop = entityDescriptor.offsetForAdjustedBoundsTop;
+	m_offsetForAdjustedBoundsWidth = entityDescriptor.offsetForAdjustedBoundsWidth;
+	m_offsetForAdjustedBoundsHeight = entityDescriptor.offsetForAdjustedBoundsHeight;
 	return true;
 }
 
@@ -24,7 +28,6 @@ void Entity::update(float  deltaMilliseconds)
 
 void Entity::render(sf::RenderWindow& window)
 {
-	// Extend this mechanism to be able to support animations
 	m_sprite.setTextureRect(sf::IntRect(m_currentSpriteStartingX, m_currentSpriteStartingY, m_tileWidth, m_tileHeight));
 
 	window.draw(m_sprite);
@@ -36,6 +39,14 @@ void Entity::render(sf::RenderWindow& window)
 	boundsRect.setOutlineThickness(.5f);
 	boundsRect.setFillColor(sf::Color::Transparent);
 	window.draw(boundsRect);
+
+	const sf::FloatRect adjustedBounds = this->getAdjustedBounds();
+	sf::RectangleShape adjustedBoundsRect(sf::Vector2f(adjustedBounds.width, adjustedBounds.height));
+	adjustedBoundsRect.setPosition(adjustedBounds.left, adjustedBounds.top);
+	adjustedBoundsRect.setOutlineColor(sf::Color::Yellow);
+	adjustedBoundsRect.setOutlineThickness(.5f);
+	adjustedBoundsRect.setFillColor(sf::Color::Transparent);
+	window.draw(adjustedBoundsRect);
 }
 
 void Entity::updateAnimation(int totalAnimationFrames, float spriteSheetRow)

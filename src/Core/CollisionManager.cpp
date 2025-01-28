@@ -67,7 +67,7 @@ const sf::Shape* CollisionManager::checkTrapCollision(const ObjectLayer* trapsCo
 
 bool CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const
 {
-	if (player->getAdjustedBounds().intersects(enemy->getBounds()))
+	if (player->getAdjustedBounds().intersects(enemy->getAdjustedBounds()))
 	{
 		return true;
 	}
@@ -79,7 +79,7 @@ void CollisionManager::checkEnemyWallCollision(const ObjectLayer* wallsCollision
 	const auto& wallShapes = wallsCollisionLayer->getShapes();
 	for (const auto* shape : wallShapes)
 	{
-		if (shape->getGlobalBounds().intersects(enemy->getBounds()))
+		if (shape->getGlobalBounds().intersects(enemy->getAdjustedBounds()))
 		{
 			//printf("Enemy collided with wall \n");
 			enemy->setDirection({ -enemy->getDirection().x, enemy->getDirection().y });

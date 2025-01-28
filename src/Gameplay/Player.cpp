@@ -9,6 +9,7 @@ Player::PlayerDescriptor Player::load()
 {
 	json playerInfo = loadJsonFromFile(GAMEINFOJSON_PLAYER)["Player"];
 	json gameInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
+
 	sf::Texture* playerFirstTexture = AssetManager::getInstance()->loadTexture(playerInfo["firstTexture"].get<std::string>().c_str());
 	sf::Texture* oneLifeLeftTexture = AssetManager::getInstance()->loadTexture(playerInfo["oneLifeLeftTexture"].get<std::string>().c_str());
 	Player::PlayerDescriptor playerDescriptor;
@@ -21,6 +22,10 @@ Player::PlayerDescriptor Player::load()
 	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
 	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
 	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();
+	playerDescriptor.offsetForAdjustedBoundsLeft = playerInfo["offsetForAdjustedBoundsLeft"].get<float>();
+	playerDescriptor.offsetForAdjustedBoundsTop = playerInfo["offsetForAdjustedBoundsTop"].get<float>();
+	playerDescriptor.offsetForAdjustedBoundsWidth = playerInfo["offsetForAdjustedBoundsWidth"].get<float>();
+	playerDescriptor.offsetForAdjustedBoundsHeight = playerInfo["offsetForAdjustedBoundsHeight"].get<float>();
 	return playerDescriptor;
 }
 
@@ -79,16 +84,6 @@ void Player::update(float deltaMilliseconds)
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
 	
-
-	//Player's info
-	//printf("X: %f, Y: %f \n", m_position.x, m_position.y);
-	//printf("Sprite X: %f, Sprite Y: %f \n", m_sprite.getPosition().x, m_sprite.getPosition().y);
-	//("Speed X: %f, Speed Y: %f \n", m_speed.x, m_speed.y);
-	//printf("Sprite top: %f \n", m_sprite.getGlobalBounds().top);
-	//printf("Sprite left: %f \n", m_sprite.getGlobalBounds().left);
-	//printf("Live Count: %d \n", m_liveCount);
-	//printf("Is dead: %d \n", m_isDead);
-	//printf("Is jumping: %d \n", m_isJumping);
 	
 	if (m_liveAmountChanged)
 	{ 
@@ -113,7 +108,7 @@ void Player::update(float deltaMilliseconds)
 		{
 			m_currentFrame = 0;
 			m_damageAnimationStarted = true;
-			printf("Damage taken\n");
+			//printf("Damage taken\n");
 			m_lifeCount--;
 			m_liveAmountChanged = true;
 		}
@@ -179,18 +174,4 @@ void Player::update(float deltaMilliseconds)
 		}
 	}
 	Entity::update(deltaMilliseconds);
-}
-
-void Player::render(sf::RenderWindow& window)
-{
-	//Show adjusted bounds
-	const sf::FloatRect adjustedBounds = this->getAdjustedBounds();
-	sf::RectangleShape boundsRect(sf::Vector2f(adjustedBounds.width, adjustedBounds.height));
-	boundsRect.setPosition(adjustedBounds.left, adjustedBounds.top);
-	boundsRect.setOutlineColor(sf::Color::Blue);
-	boundsRect.setOutlineThickness(.5f);
-	boundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(boundsRect);
-
-	Entity::render(window);
 }

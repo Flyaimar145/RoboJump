@@ -4,7 +4,6 @@
 bool Frog::init(const EnemyDescriptor& enemyDescriptor)
 {
 	m_enemyType = Enemy::EnemyType::Frog;
-	m_hasToAttack = false;
 	m_canMakeDamage = false;
 	return Enemy::init(enemyDescriptor);
 }

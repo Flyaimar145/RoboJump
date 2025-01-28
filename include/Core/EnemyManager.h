@@ -27,14 +27,14 @@ class EnemyManager
 		void render(sf::RenderWindow& window);
 
 		std::vector<Enemy*>& getEnemiesVector() { return m_enemiesVector; }
-		std::vector<Enemy*>& getCactusTypeEnemiesVector() { return m_cactusTypeEnemiesVector; }
-		std::vector<Enemy*>& getFrogTypeEnemiesVector() { return m_frogTypeEnemiesVector; }
-		std::vector<Enemy*>& getStompTypeEnemiesVector() { return m_stompTypeEnemiesVector; }
+		std::vector<Cactus*>& getCactusTypeEnemiesVector() { return m_cactusTypeEnemiesVector; }
+		std::vector<Frog*>& getFrogTypeEnemiesVector() { return m_frogTypeEnemiesVector; }
+		std::vector<Stomp*>& getStompTypeEnemiesVector() { return m_stompTypeEnemiesVector; }
 
 	private:
 		std::vector<Enemy*> m_enemiesVector;
-		std::vector<Enemy*> m_cactusTypeEnemiesVector;
-		std::vector<Enemy*> m_frogTypeEnemiesVector;
-		std::vector<Enemy*> m_stompTypeEnemiesVector;
+		std::vector<Cactus*> m_cactusTypeEnemiesVector;
+		std::vector<Frog*> m_frogTypeEnemiesVector;
+		std::vector<Stomp*> m_stompTypeEnemiesVector;
 };
 

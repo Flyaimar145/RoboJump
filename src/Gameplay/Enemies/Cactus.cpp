@@ -1,4 +1,5 @@
 #include <Gameplay/Enemies/Cactus.h>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 bool Cactus::init(const EnemyDescriptor& enemyDescriptor)
 {

@@ -26,28 +26,6 @@ bool EnemyManager::loadEnemies()
 	{
 		for (auto& currentEnemyData : enemyList)
 		{
-			Enemy* currentEnemy = nullptr;
-			if (enemyType == "Cactus")
-			{
-				currentEnemy = new Cactus();
-				m_cactusTypeEnemiesVector.push_back(currentEnemy);
-			}
-			else if (enemyType == "Frog")
-			{
-				currentEnemy = new Frog();
-				m_frogTypeEnemiesVector.push_back(currentEnemy);
-			}
-			else if (enemyType == "Stomp")
-			{
-				currentEnemy = new Stomp();
-				//assert("Stomp enemy not implemented yet\n");
-				m_stompTypeEnemiesVector.push_back(currentEnemy);
-			}
-			else
-			{
-				assert(false && "Unknown enemy type");
-			}
-
 			Enemy::EnemyDescriptor enemyDescriptor;
 			enemyDescriptor.firstTexture = AssetManager::getInstance()->loadTexture(currentEnemyData["texture"].get<std::string>().c_str());
 			enemyDescriptor.position = { gameInfo["mapTileSize"] * currentEnemyData["positionX"].get<float>(), gameInfo["mapTileSize"] * currentEnemyData["positionY"].get<float>() };
@@ -58,13 +36,49 @@ bool EnemyManager::loadEnemies()
 			enemyDescriptor.deathAnimationTotalFrames = currentEnemyData["deathAnimationTotalFrames"].get<int>();
 			enemyDescriptor.initialDirection = { currentEnemyData["initialDirectionX"].get<float>(), currentEnemyData["initialDirectionY"].get<float>() };
 			enemyDescriptor.lifeCount = currentEnemyData["lifeCount"].get<int>();
+			enemyDescriptor.offsetForAdjustedBoundsLeft = currentEnemyData["offsetForAdjustedBoundsLeft"].get<float>();
+			enemyDescriptor.offsetForAdjustedBoundsTop = currentEnemyData["offsetForAdjustedBoundsTop"].get<float>();
+			enemyDescriptor.offsetForAdjustedBoundsWidth = currentEnemyData["offsetForAdjustedBoundsWidth"].get<float>();
+			enemyDescriptor.offsetForAdjustedBoundsHeight = currentEnemyData["offsetForAdjustedBoundsHeight"].get<float>();
 
-			const bool enemyLoaded = currentEnemy->init(enemyDescriptor);
-			if (!enemyLoaded)
+			if (enemyType == "Cactus")
+			{
+				Cactus* currentEnemy = new Cactus();
+				m_cactusTypeEnemiesVector.push_back(currentEnemy);
+				m_enemiesVector.push_back(currentEnemy);
+				const bool enemyLoaded = currentEnemy->init(enemyDescriptor);
+				if (!enemyLoaded)
+				{
+					return false;
+				}
+				
+			}
+			else if (enemyType == "Frog")
+			{
+				Frog* currentEnemy = new Frog();
+				m_frogTypeEnemiesVector.push_back(currentEnemy);
+				m_enemiesVector.push_back(currentEnemy);
+				const bool enemyLoaded = currentEnemy->init(enemyDescriptor);
+				if (!enemyLoaded)
+				{
+					return false;
+				}
+			}
+			else if (enemyType == "Stomp")
+			{
+				Stomp* currentEnemy = new Stomp();
+				m_stompTypeEnemiesVector.push_back(currentEnemy);
+				m_enemiesVector.push_back(currentEnemy);
+				const bool enemyLoaded = currentEnemy->init(enemyDescriptor);
+				if (!enemyLoaded)
+				{
+					return false;
+				}
+			}
+			else
 			{
 				return false;
 			}
-			m_enemiesVector.push_back(currentEnemy);
 		}
 	}
 	return true;

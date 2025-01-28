@@ -24,12 +24,7 @@ public:
 	PlayerDescriptor load();
 	bool init(const PlayerDescriptor& playerDescriptor);
 
-	sf::FloatRect getAdjustedBounds() const { return sf::FloatRect(m_sprite.getGlobalBounds().left+6.f, m_sprite.getGlobalBounds().top+8.f, m_sprite.getGlobalBounds().width-12.f, m_sprite.getGlobalBounds().height-8.f); }
-	sf::Vector2f getAdjustedPosition() const { return sf::Vector2f(m_sprite.getPosition().x + 6.f, m_sprite.getPosition().y + 8.f); }
-	void setAdjustedPosition(sf::Vector2f position) { setPosition({ position.x - 6.f, position.y - 8.f }); }
-
 	void update(float deltaMilliseconds) override;
-	void render(sf::RenderWindow& window) override;
 
 	bool getIsJumping() const { return m_isJumping; }
 	float getJumpSpeed() const { return m_jumpSpeed; }

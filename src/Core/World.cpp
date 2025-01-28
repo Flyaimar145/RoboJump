@@ -17,8 +17,7 @@
 World::~World()
 {
 	delete m_player;
-	//delete m_enemy;
-	//delete m_enemyFrog;
+	delete m_enemyManager;
 
 	delete m_view;
 	delete m_level;
@@ -26,103 +25,57 @@ World::~World()
 
 bool World::load()
 {
-	//constexpr float millisecondsToSeconds = 1 / 1000.f;
-
-	// Load level
 	m_level = new Level();
 	const bool levelLoaded = m_level->load();
 
 	m_view = new sf::View(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
-	// Define the dead zone
 	float deadZoneWidth = m_view->getSize().x * 0.15f;
 	float deadZoneHeight = m_view->getSize().y * 0.25f;
 	float deadZoneX = (m_view->getSize().x - deadZoneWidth) / 2.f;
 	float deadZoneY = (m_view->getSize().y - deadZoneHeight) / 2.f;
-
-	// Dead zone is defined relative to the center of the view
 	m_deadZone = sf::FloatRect(deadZoneX, deadZoneY, deadZoneWidth, deadZoneHeight);
 
-
-	// To-Do, read ALL from file, this is just a quick example to understand that here is where entities are created but consider grouping/managing actors in a smarter way
-	
-	json playerInfo = loadJsonFromFile(GAMEINFOJSON_PLAYER)["Player"];
-	json gameInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
-	
-	// Player
 	Player* player = new Player();
 	Player::PlayerDescriptor playerDescriptor2 = player->load();
 	const bool playerLoaded = player->init(playerDescriptor2);
 	m_player = player;
 
-
 	m_enemyManager = new EnemyManager();
 	const bool enemiesLoaded = m_enemyManager->loadEnemies();
-	
-	// Enemy (Cactus)
-	/*Enemy::EnemyDescriptor cactusDescriptor;
-	cactusDescriptor.firstTexture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png");
-	cactusDescriptor.position = { gameInfo["mapTileSize"] * 51.f, gameInfo["mapTileSize"] * 37.f };
-	cactusDescriptor.speed = { 100.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
-	cactusDescriptor.tileWidth = 32.f;
-	cactusDescriptor.tileHeight = 32.f;
-	cactusDescriptor.totalFrames = 12;
-	cactusDescriptor.deathAnimationTotalFrames = 7;
-	cactusDescriptor.initialDirection = { -1.f, 0.f };
-	cactusDescriptor.lifeCount = 1;
-	Cactus* enemy = new Cactus();
-	const bool enemyLoaded = enemy->init(cactusDescriptor);
-	m_enemy = enemy;*/
 
-
-	// Enemy (Frog)
-	/*Enemy::EnemyDescriptor enemyFrogDescriptor;
-	enemyFrogDescriptor.firstTexture = AssetManager::getInstance()->loadTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png");
-	enemyFrogDescriptor.position = { gameInfo["mapTileSize"] * 136.f, gameInfo["mapTileSize"] * 34.f };
-	enemyFrogDescriptor.speed = { 0.f * millisecondsToSeconds, 0.f * millisecondsToSeconds };
-	enemyFrogDescriptor.tileWidth = 64.f;
-	enemyFrogDescriptor.tileHeight = 32.f;
-	enemyFrogDescriptor.totalFrames = 11;
-	enemyFrogDescriptor.deathAnimationTotalFrames = 7;
-	enemyFrogDescriptor.initialDirection = { 1.f, 0.f };
-	enemyFrogDescriptor.lifeCount = 1;
-	Enemy* enemyFrog = new Frog();
-	const bool enemyFrogLoaded = enemyFrog->init(enemyFrogDescriptor);
-	m_enemyFrog = enemyFrog;*/
-
-	return playerLoaded && enemiesLoaded;//enemyLoaded&& enemyFrogLoaded;
+	return playerLoaded && enemiesLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
 {
-	// Update level
 	m_level->update(deltaMilliseconds);
 
-	// Update player (collision detection and player->update)
-	updatePlayer(deltaMilliseconds);
+	m_player->update(deltaMilliseconds);
+	checkPlayerEnvironmentCollisions();
+	checkPlayerEnemiesCollisions();
 
+	m_enemyManager->update(deltaMilliseconds);
 
-	//CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemy);
-	for (Enemy* cactus : m_enemyManager->getCactusTypeEnemiesVector())
+	for (Cactus* cactus : m_enemyManager->getCactusTypeEnemiesVector())
 	{
 		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), cactus);
 	}
 
-	for (Enemy* stomp : m_enemyManager->getStompTypeEnemiesVector())
+	for (Stomp* stomp : m_enemyManager->getStompTypeEnemiesVector())
 	{
 		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), stomp);
+
+		if (stomp->getDetectionZone().intersects(m_player->getAdjustedBounds()))
+		{
+			stomp->onPlayerCollision();
+		}
 	}
-	//CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getWallsLayer(), m_enemyManager->getEnemiesVector()[0]);
 
-
-	// Update enemy
-	//m_enemy->update(deltaMilliseconds);
-	//m_enemyFrog->update(deltaMilliseconds);
-	m_enemyManager->update(deltaMilliseconds);
+	
 
 	// Adjust the view's center based on the dead zone
 	sf::Vector2f playerPos = m_player->getPosition();
 	sf::Vector2f viewCenter = m_view->getCenter();
-
 	if (!m_player->getIsDead())
 	{
 		// Dead zone boundaries relative to the view's center
@@ -159,8 +112,7 @@ void World::render(sf::RenderWindow& window)
 	m_level->render(window);
 
 	m_player->render(window);
-	//m_enemy->render(window);
-	//m_enemyFrog->render(window);
+
 	m_enemyManager->render(window);
 
 	//drawDeadZone(window);
@@ -188,7 +140,7 @@ void World::drawDeadZone(sf::RenderWindow& window)
 	window.draw(deadZoneRect);
 }
 
-void World::updatePlayer(uint32_t deltaMilliseconds)
+void World::checkPlayerEnvironmentCollisions()
 {
 	// Check for ground collisions
 	bool isGrounded = false;
@@ -271,8 +223,13 @@ void World::updatePlayer(uint32_t deltaMilliseconds)
 	{
 		m_player->setHasTakenDamage(true);
 	}
+	
+	
+		
+}
 
-	// Check for enemy collisions
+void World::checkPlayerEnemiesCollisions()
+{
 	for (Enemy* enemy : m_enemyManager->getEnemiesVector())
 	{
 		bool isCollidingWithEnemy = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndEnemy(m_player, enemy);
@@ -280,46 +237,42 @@ void World::updatePlayer(uint32_t deltaMilliseconds)
 		{
 			switch (enemy->getEnemyType())
 			{
-				case Enemy::EnemyType::Cactus:
-					if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < enemy->getBounds().top && m_player->getSpeed().y > 0.f)
-					{
-						//printf("Player jumped on enemy \n");
-						m_player->setMakeJump(true);
-						enemy->setHasTakenDamage(true);
-						enemy->setCanMakeDamage(false);
-					}
-					else
-					{
-						//printf("Player damaged by enemy \n");
-						if (enemy->getCanMakeDamage())
-						{
-							m_player->setHasTakenDamage(true);
-						}
-					}
-					break;
-
-				case Enemy::EnemyType::Frog:
-					//printf("Player touched a Frog \n");
-					enemy->onPlayerCollision();
+			case Enemy::EnemyType::Cactus:
+				//printf("Player touched a Cactus \n");
+				if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < enemy->getAdjustedBounds().top && m_player->getSpeed().y > 0.f)
+				{
+					m_player->setMakeJump(true);
+					enemy->setHasTakenDamage(true);
+					enemy->setCanMakeDamage(false);
+				}
+				else
+				{
 					if (enemy->getCanMakeDamage())
 					{
 						m_player->setHasTakenDamage(true);
 					}
-					break;
-				
-				case Enemy::EnemyType::Stomp:
+				}
+				break;
 
-					break;
+			case Enemy::EnemyType::Frog:
+				//printf("Player touched a Frog \n");
+				enemy->onPlayerCollision();
+				if (enemy->getCanMakeDamage())
+				{
+					m_player->setHasTakenDamage(true);
+				}
+				break;
 
-				default:
+			case Enemy::EnemyType::Stomp:
+				//printf("Player touched a Stomp \n");
+				m_player->setHasTakenDamage(true);
+				break;
 
-					break;
+			default:
+
+				break;
 
 			}
-			
 		}
 	}
-	
-
-	m_player->update(deltaMilliseconds);
 }
