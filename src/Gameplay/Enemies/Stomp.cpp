@@ -7,6 +7,7 @@ bool Stomp::init(const EnemyDescriptor& enemyDescriptor)
 	m_enemyType = Enemy::EnemyType::Stomp;
 	m_frameDuration = 100.f;
 	m_initialPositionY = enemyDescriptor.position.y;
+	m_originalSpeedX = enemyDescriptor.speed.x;
 	m_detectionZone = sf::FloatRect(enemyDescriptor.position.x + enemyDescriptor.tileWidth/2.f - 2.f, enemyDescriptor.position.y + enemyDescriptor.tileHeight*2 -2.f , 2.f, 2.f);
 	return Enemy::init(enemyDescriptor);
 }
@@ -43,8 +44,7 @@ void Stomp::update(float deltaMilliseconds)
 		
 		if (!m_attackAnimationStarted)
 		{
-			m_beforeFallingDirectionX = m_direction.x;
-			m_direction.x = 0.f;
+			m_speed.x = 0.f;
 			m_currentFrame = 0;
 			m_attackAnimationStarted = true;
 		}
@@ -77,7 +77,7 @@ void Stomp::update(float deltaMilliseconds)
 			}
 			else
 			{
-				m_direction.x = m_beforeFallingDirectionX;
+				m_speed.x = m_originalSpeedX;
 				m_speed.y = 0.f;
 				m_hasToRise = false;
 			}

@@ -27,7 +27,7 @@ private:
 	float m_fallingSpeed{ 100.0f };
 	float m_heightToFall{ 48.0f };
 	float m_initialPositionY{ .0f };
-	float m_beforeFallingDirectionX{ .0f };
+	float m_originalSpeedX{ .0f };
 
 	sf::FloatRect m_detectionZone;
 };

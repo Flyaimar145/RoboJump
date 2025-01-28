@@ -5,9 +5,9 @@
     },
     "activeFile": "RoboJumpMap_Level1.tmx",
     "expandedProjectPaths": [
+        "images/tilemap",
         "images",
-        ".",
-        "images/tilemap"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -15,16 +15,16 @@
             "scale": 1.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 966.9999999999999,
-                "y": 620.3333333333333
+                "x": 1440.3333333333333,
+                "y": 879.6666666666666
             }
         },
         "demo.tmx": {
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 480,
-                "y": 255.3333333333333
+                "x": 479.33333333333326,
+                "y": 255.33333333333326
             }
         },
         "demo.tmx#tileset": {
