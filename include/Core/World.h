@@ -11,6 +11,7 @@ class Level;
 class EnemyManager;
 class Gem;
 class GemManager;
+class PowerUpManager;
 
 using json = nlohmann::json;
 
@@ -48,6 +49,7 @@ class World
 		Level* m_level{ nullptr };
 		EnemyManager* m_enemyManager{ nullptr };
 		GemManager* m_gemManager{ nullptr };
+		PowerUpManager* m_powerUpManager{ nullptr };
 
 
 		sf::View* m_view{ nullptr };

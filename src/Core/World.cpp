@@ -3,6 +3,7 @@
 #include <Core/Level.h>
 #include <Core/World.h>
 #include <Core/EnemyManager.h>
+#include <Core/PowerUpManager.h>
 #include <Core/GemManager.h>
 #include <Gameplay/Player.h>
 #include <Gameplay/Entity.h>
@@ -40,6 +41,9 @@ bool World::load()
 	m_gemManager = new GemManager();
 	const bool gemsLoaded = m_gemManager->loadGems();
 
+	m_powerUpManager = new PowerUpManager();
+	const bool powerUpsLoaded = m_powerUpManager->loadPowerUps();
+
 	Player* player = new Player();
 	Player::PlayerDescriptor playerDescriptor2 = player->load();
 	const bool playerLoaded = player->init(playerDescriptor2);
@@ -48,7 +52,7 @@ bool World::load()
 	m_enemyManager = new EnemyManager();
 	const bool enemiesLoaded = m_enemyManager->loadEnemies();
 
-	return playerLoaded && enemiesLoaded && gemsLoaded;
+	return playerLoaded && enemiesLoaded && gemsLoaded && powerUpsLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
@@ -56,6 +60,8 @@ void World::update(uint32_t deltaMilliseconds)
 	m_level->update(deltaMilliseconds);
 
 	m_gemManager->update(deltaMilliseconds);
+
+	m_powerUpManager->update(deltaMilliseconds);
 
 	m_player->update(deltaMilliseconds);
 	checkPlayerEnvironmentCollisions();
@@ -91,6 +97,8 @@ void World::render(sf::RenderWindow& window)
 	m_player->render(window);
 
 	m_gemManager->render(window);
+
+	m_powerUpManager->render(window);
 
 	m_enemyManager->render(window);
 

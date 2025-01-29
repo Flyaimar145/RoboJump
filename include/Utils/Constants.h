@@ -12,6 +12,8 @@ constexpr char* GAMEINFOJSON_CONFIG = "../Data/Config/GameInfo_Config.json";
 constexpr char* GAMEINFOJSON_ENEMIES = "../Data/Config/GameInfo_Enemies.json";
 constexpr char* GAMEINFOJSON_PLAYER = "../Data/Config/GameInfo_Player.json";
 constexpr char* GAMEINFOJSON_GEMS = "../Data/Config/GameInfo_Gems.json";
+constexpr char* GAMEINFOJSON_POWERUPS = "../Data/Config/GameInfo_PowerUps.json";
+constexpr char* GAMEINFOJSON_PICKUPS = "../Data/Config/GameInfo_PickUps.json";
 
 inline json loadJsonFromFile(const std::string& filePath)
 {

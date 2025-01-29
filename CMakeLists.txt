@@ -29,6 +29,7 @@ set(PROJECT_HEADERS
     include/Core/EnemyManager.h
     include/Core/GemManager.h
     include/Core/PowerUpManager.h
+    include/Core/PickUpManager.h
     include/Core/Game.h
     include/Core/World.h
     include/Core/Level.h
@@ -42,6 +43,8 @@ set(PROJECT_HEADERS
     include/Gameplay/Player.h
     include/Gameplay/Entity.h
     include/Gameplay/Gem.h
+    include/Gameplay/PowerUp.h
+    include/Gameplay/PickUp.h
 
     include/Render/SFMLOrthogonalLayer.h
 
@@ -57,6 +60,7 @@ set(PROJECT_SOURCES
     src/Core/EnemyManager.cpp
     src/Core/GemManager.cpp
     src/Core/PowerUpManager.cpp
+    src/Core/PickUpManager.cpp
     src/Core/Game.cpp
     src/Core/World.cpp
     src/Core/Level.cpp
@@ -69,6 +73,8 @@ set(PROJECT_SOURCES
     src/Gameplay/Player.cpp
     src/Gameplay/Entity.cpp
     src/Gameplay/Gem.cpp
+    src/Gameplay/PowerUp.cpp
+    src/Gameplay/PickUp.cpp
 
 
     src/Render/SFMLOrthogonalLayer.cpp
