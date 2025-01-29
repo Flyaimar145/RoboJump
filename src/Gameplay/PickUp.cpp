@@ -9,6 +9,8 @@ bool PickUp::init(const PickUpDescriptor& pickUpDescriptor)
 	this->setPosition(pickUpDescriptor.position);
 	m_tileWidth = pickUpDescriptor.tileWidth;
 	m_tileHeight = pickUpDescriptor.tileHeight;
+	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tileWidth, m_tileHeight));
+
 	return true;
 }
 
@@ -17,7 +19,7 @@ void PickUp::update(float deltaMilliseconds)
 	m_animationTime += deltaMilliseconds;
 	if (m_animationTime >= m_frameDuration)
 	{
-		this->updateAnimation(totalFrames, 0.f);
+		this->updateAnimation(m_totalFrames, 0.f);
 	}
 }
 
@@ -25,13 +27,15 @@ void PickUp::render(sf::RenderWindow& window)
 {
 	m_sprite.setTextureRect(sf::IntRect(m_currentSpriteStartingX, m_currentSpriteStartingY, m_tileWidth, m_tileHeight));
 	window.draw(m_sprite);
-	const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
+
+	// Uncomment to draw the bounds of the sprite
+	/*const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
 	sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
 	boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
 	boundsRect.setOutlineColor(sf::Color::Blue);
 	boundsRect.setOutlineThickness(.5f);
 	boundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(boundsRect);
+	window.draw(boundsRect);*/
 }
 
 void PickUp::updateAnimation(int totalAnimationFrames, float spriteSheetRow)

@@ -1,10 +1,8 @@
 #pragma once
 
-
 #include <Gameplay/GameObject.h>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-
 
 class Entity : public GameObject
 {
@@ -39,7 +37,6 @@ public:
 	void render(sf::RenderWindow& window) override;
 	void updateAnimation(int totalAnimationFrames, float spriteSheetRow);
 
-
 	sf::Vector2f getSpeed() const { return m_speed; }
 	sf::Vector2f getDirection() const { return m_direction; }
 	int getLifeCount() const { return m_lifeCount; }
@@ -55,20 +52,17 @@ public:
 protected:
 	
 	sf::Sprite m_sprite;
-	sf::Vector2f m_direction{ .0f, .0f };
-	sf::Vector2f m_speed{ .0f, .0f };
-
 	float m_offsetForAdjustedBoundsLeft{ 0.f };
 	float m_offsetForAdjustedBoundsTop{ 0.f };
 	float m_offsetForAdjustedBoundsWidth{ 0.f };
 	float m_offsetForAdjustedBoundsHeight{ 0.f };
+	sf::Vector2f m_direction{ .0f, .0f };
+	sf::Vector2f m_speed{ .0f, .0f };
 
-	// Animation
 	float m_tileWidth{ .0f };
 	float m_tileHeight{ .0f };
 	float m_currentSpriteStartingX{ .0f };
 	float m_currentSpriteStartingY{ .0f };
-
 	float m_animationTime{ .0f };
 	float m_frameDuration{ 50.f };
 	int m_currentFrame{ 0 };

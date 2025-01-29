@@ -1,14 +1,6 @@
 #pragma once
 
-#include <Gameplay/GameObject.h>
 #include <Gameplay/Entity.h>
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <External/json.hpp>
-#include <Utils/Constants.h>
-
-using json = nlohmann::json;
-
 
 class Player : public Entity
 {
@@ -39,9 +31,11 @@ public:
 	void addPoints(int points) { m_points += points; }
 
 protected:
-	int m_points{ 0 };
-	bool m_makeJump{ false };
+
 	bool m_isJumping{ false };
+	bool m_makeJump{ false };
 	float m_jumpSpeed{ 0.0f };
 	float m_currentGravity{ 980.f };
+
+	int m_points{ 0 };
 };

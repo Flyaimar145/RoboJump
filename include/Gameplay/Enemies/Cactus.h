@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <Gameplay/Enemies/Enemy.h>
 
 class Cactus : public Enemy

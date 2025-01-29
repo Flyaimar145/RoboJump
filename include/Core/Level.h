@@ -1,8 +1,6 @@
 #pragma once
 
 #include <cstdint>
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <External/json.hpp>
 
 namespace tmx
 {
@@ -14,8 +12,6 @@ namespace sf
 	class View;
 }
 
-using json = nlohmann::json;
-
 class MapLayer;
 class ObjectLayer;
 
@@ -24,7 +20,7 @@ class Level
 public:
 
 	~Level();
-	// TO-DO: Ideally the scene should be read from file.
+
 	bool load();
 	// To-Do: Implement a unload()
 	void update(uint32_t deltaMilliseconds);

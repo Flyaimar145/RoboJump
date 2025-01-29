@@ -1,10 +1,6 @@
 #pragma once
 
-#include <Gameplay/GameObject.h>
 #include <Gameplay/Entity.h>
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-
 
 class Enemy : public Entity
 {

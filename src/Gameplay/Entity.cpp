@@ -6,7 +6,6 @@
 bool Entity::init(const EntityDescriptor& entityDescriptor)
 {
 	m_sprite.setTexture(*entityDescriptor.firstTexture);
-	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tileWidth, m_tileHeight));
 	this->setPosition(entityDescriptor.position);
 	m_tileWidth = entityDescriptor.tileWidth;
 	m_tileHeight = entityDescriptor.tileHeight;
@@ -18,6 +17,9 @@ bool Entity::init(const EntityDescriptor& entityDescriptor)
 	m_offsetForAdjustedBoundsTop = entityDescriptor.offsetForAdjustedBoundsTop;
 	m_offsetForAdjustedBoundsWidth = entityDescriptor.offsetForAdjustedBoundsWidth;
 	m_offsetForAdjustedBoundsHeight = entityDescriptor.offsetForAdjustedBoundsHeight;
+
+	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tileWidth, m_tileHeight));
+
 	return true;
 }
 
@@ -32,21 +34,23 @@ void Entity::render(sf::RenderWindow& window)
 
 	window.draw(m_sprite);
 
-	const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
+	// Uncomment to draw the sprite bounds
+	/*const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
 	sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
 	boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
 	boundsRect.setOutlineColor(sf::Color::Blue);
 	boundsRect.setOutlineThickness(.5f);
 	boundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(boundsRect);
+	window.draw(boundsRect);*/
 
-	const sf::FloatRect adjustedBounds = this->getAdjustedBounds();
+	// Uncomment to draw the adjusted bounds (what is used for collision detection)
+	/*const sf::FloatRect adjustedBounds = this->getAdjustedBounds();
 	sf::RectangleShape adjustedBoundsRect(sf::Vector2f(adjustedBounds.width, adjustedBounds.height));
 	adjustedBoundsRect.setPosition(adjustedBounds.left, adjustedBounds.top);
 	adjustedBoundsRect.setOutlineColor(sf::Color::Yellow);
 	adjustedBoundsRect.setOutlineThickness(.5f);
 	adjustedBoundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(adjustedBoundsRect);
+	window.draw(adjustedBoundsRect);*/
 }
 
 void Entity::updateAnimation(int totalAnimationFrames, float spriteSheetRow)

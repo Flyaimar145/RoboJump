@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <Gameplay/Enemies/Enemy.h>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 class Stomp : public Enemy
 {

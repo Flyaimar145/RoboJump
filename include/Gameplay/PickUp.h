@@ -4,6 +4,8 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
+class Player;
+
 class PickUp : public GameObject
 {
 	public:
@@ -28,6 +30,8 @@ class PickUp : public GameObject
 
 		sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
 
+		virtual void affectPlayer(Player* player) = 0;
+
 		void update(float deltaMilliseconds) override;
 		void render(sf::RenderWindow& window) override;
 		void updateAnimation(int totalAnimationFrames, float spriteSheetRow);
@@ -37,7 +41,7 @@ class PickUp : public GameObject
 		void setPickUpType(PickUpType pickUpType) { m_pickUpType = pickUpType; }
 
 	private:
-		PickUpType m_pickUpType{ };
+		PickUpType m_pickUpType;
 		sf::Sprite m_sprite;
 		float m_tileWidth{ .0f };
 		float m_tileHeight{ .0f };
@@ -46,8 +50,7 @@ class PickUp : public GameObject
 		int m_currentFrame{ 0 };
 		float m_animationTime{ .0f };
 		float m_frameDuration{ 100.f };
-		int totalFrames{ 7 };
-		float tileWidth{ .0f };
-		float tileHeight{ .0f };
+		int m_totalFrames{ 7 };
+
 
 };

@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #include <Gameplay/Enemies/Enemy.h>
 
 class Frog : public Enemy

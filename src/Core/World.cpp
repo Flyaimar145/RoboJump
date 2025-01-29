@@ -1,27 +1,20 @@
-#include <Core/AssetManager.h>
 #include <Core/CollisionManager.h>
 #include <Core/Level.h>
 #include <Core/World.h>
 #include <Core/EnemyManager.h>
-#include <Core/PowerUpManager.h>
-#include <Core/GemManager.h>
+#include <Core/PickUpManager.h>
 #include <Gameplay/Player.h>
-#include <Gameplay/Entity.h>
-#include <Gameplay/Gem.h>
 #include <Gameplay/Enemies/Enemy.h>
 #include <Gameplay/Enemies/Cactus.h>
-#include <Render/SFMLOrthogonalLayer.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <tmxlite/Map.hpp>
-#include <Utils/Constants.h>
 
 
 World::~World()
 {
 	delete m_player;
 	delete m_enemyManager;
-
+	delete m_pickUpManager;
 	delete m_view;
 	delete m_level;
 }
@@ -38,11 +31,8 @@ bool World::load()
 	float deadZoneY = (m_view->getSize().y - deadZoneHeight) / 2.f;
 	m_deadZone = sf::FloatRect(deadZoneX, deadZoneY, deadZoneWidth, deadZoneHeight);
 
-	m_gemManager = new GemManager();
-	const bool gemsLoaded = m_gemManager->loadGems();
-
-	m_powerUpManager = new PowerUpManager();
-	const bool powerUpsLoaded = m_powerUpManager->loadPowerUps();
+	m_pickUpManager = new PickUpManager();
+	const bool pickUpsLoaded = m_pickUpManager->loadPickUps();
 
 	Player* player = new Player();
 	Player::PlayerDescriptor playerDescriptor2 = player->load();
@@ -52,21 +42,19 @@ bool World::load()
 	m_enemyManager = new EnemyManager();
 	const bool enemiesLoaded = m_enemyManager->loadEnemies();
 
-	return playerLoaded && enemiesLoaded && gemsLoaded && powerUpsLoaded;
+	return playerLoaded && enemiesLoaded && pickUpsLoaded;//gemsLoaded&& powerUpsLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
 {
 	m_level->update(deltaMilliseconds);
 
-	m_gemManager->update(deltaMilliseconds);
-
-	m_powerUpManager->update(deltaMilliseconds);
+	m_pickUpManager->update(deltaMilliseconds);
 
 	m_player->update(deltaMilliseconds);
 	checkPlayerEnvironmentCollisions();
 	checkPlayerEnemiesCollisions();
-	checkPlayerGemsCollisions();
+	checkPlayerPickUpsCollisions();
 
 	updateDeadZone();
 
@@ -96,9 +84,7 @@ void World::render(sf::RenderWindow& window)
 
 	m_player->render(window);
 
-	m_gemManager->render(window);
-
-	m_powerUpManager->render(window);
+	m_pickUpManager->render(window);
 
 	m_enemyManager->render(window);
 
@@ -301,12 +287,26 @@ void World::checkPlayerEnemiesCollisions()
 	}
 }
 
-void World::checkPlayerGemsCollisions()
+void World::checkPlayerPickUpsCollisions()
 {
-	Gem* collidedGem = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndGem(m_player, m_gemManager->getGemsVector());
-	if (collidedGem != nullptr)
+	PickUp* collidedPickUp = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndPickUp(m_player, m_pickUpManager->getPickUpsVector());
+	if (collidedPickUp != nullptr)
 	{
-		m_player->addPoints(collidedGem->getPoints());
-		m_gemManager->destroyGem(collidedGem);
+		switch (collidedPickUp->getPickUpType())
+		{
+		case PickUp::PickUpType::Gem:
+			collidedPickUp->affectPlayer(m_player);
+			break;
+
+		case PickUp::PickUpType::PowerUp:
+			collidedPickUp->affectPlayer(m_player);
+			break;
+		
+		default:
+			printf("Player touched an unknown pickup \n");
+			break;
+		}
+		m_pickUpManager->destroyPickUp(collidedPickUp);
 	}
+	
 }

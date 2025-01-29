@@ -74,13 +74,13 @@ bool CollisionManager::checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy
 	return false;
 }
 
-Gem* CollisionManager::checkCollisionBetweenPlayerAndGem(Player* player, std::vector<Gem*> gems) const
+PickUp* CollisionManager::checkCollisionBetweenPlayerAndPickUp(Player* player, std::vector<PickUp*> pickUps) const
 {
-	for (Gem* gem : gems)
+	for (PickUp* pickUp : pickUps)
 	{
-		if (player->getAdjustedBounds().intersects(gem->getBounds()))
+		if (player->getAdjustedBounds().intersects(pickUp->getBounds()))
 		{
-			return gem;
+			return pickUp;
 		}
 	}
 	return nullptr;

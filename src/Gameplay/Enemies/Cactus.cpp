@@ -25,14 +25,11 @@ void Cactus::update(float deltaMilliseconds)
 	m_animationTime += deltaMilliseconds;
 	if (m_hasTakenDamage)
 	{
-		// First moment of taking damage: Reset the current frame to 0 to start the animation from the beginning, and reduce the live count
 		if (!m_damageAnimationStarted)
 		{
 			m_currentFrame = 0;
 			m_damageAnimationStarted = true;
-			printf("Damage taken\n");
 			m_lifeCount--;
-			//m_liveAmountChanged = true;
 		}
 
 		if (m_animationTime >= m_frameDuration)
@@ -51,7 +48,6 @@ void Cactus::update(float deltaMilliseconds)
 	}
 	else if (m_isDead)
 	{
-		// Reset the current frame to 0 when damage is taken
 		if (!m_deathAnimationStarted)
 		{
 			m_currentFrame = 0;

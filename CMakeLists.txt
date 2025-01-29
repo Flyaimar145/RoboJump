@@ -27,8 +27,6 @@ set(PROJECT_HEADERS
     include/Core/AssetManager.h
     include/Core/CollisionManager.h
     include/Core/EnemyManager.h
-    include/Core/GemManager.h
-    include/Core/PowerUpManager.h
     include/Core/PickUpManager.h
     include/Core/Game.h
     include/Core/World.h
@@ -36,7 +34,6 @@ set(PROJECT_HEADERS
 
     include/Gameplay/Enemies/Enemy.h
     include/Gameplay/GameObject.h
-    include/Gameplay/Enemies/Zombie.h
     include/Gameplay/Enemies/Stomp.h
     include/Gameplay/Enemies/Frog.h
     include/Gameplay/Enemies/Cactus.h
@@ -58,8 +55,6 @@ set(PROJECT_SOURCES
     src/Core/AssetManager.cpp
     src/Core/CollisionManager.cpp
     src/Core/EnemyManager.cpp
-    src/Core/GemManager.cpp
-    src/Core/PowerUpManager.cpp
     src/Core/PickUpManager.cpp
     src/Core/Game.cpp
     src/Core/World.cpp
@@ -69,7 +64,6 @@ set(PROJECT_SOURCES
     src/Gameplay/Enemies/Stomp.cpp
     src/Gameplay/Enemies/Cactus.cpp
     src/Gameplay/Enemies/Frog.cpp
-    src/Gameplay/Enemies/Zombie.cpp
     src/Gameplay/Player.cpp
     src/Gameplay/Entity.cpp
     src/Gameplay/Gem.cpp

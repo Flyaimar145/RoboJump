@@ -1,12 +1,9 @@
-#include <cassert>
 #include <Core/AssetManager.h>
-#include <Core/Game.h>
-#include <Core/World.h>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Window/Event.hpp>
-#include <Utils/Constants.h>
-#include <External/json.hpp>
 #include <Core/EnemyManager.h>
+#include <External/json.hpp>
+#include <Utils/Constants.h>
+
+using json = nlohmann::json;
 
 EnemyManager::~EnemyManager()
 {

@@ -1,5 +1,4 @@
 #include <Gameplay/Enemies/Stomp.h>
-#include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 bool Stomp::init(const EnemyDescriptor& enemyDescriptor)
@@ -33,7 +32,6 @@ void Stomp::update(float deltaMilliseconds)
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
 	
-	//Move the m_detectionZone rectangle with the Stomp
 	m_detectionZone.left = m_position.x + m_tileWidth / 2.f - 2.f;
 	m_detectionZone.top = m_position.y + m_tileHeight * 2 - 2.f;
 

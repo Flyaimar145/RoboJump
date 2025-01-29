@@ -4,6 +4,7 @@
 #include <Gameplay/Entity.h>
 #include <Gameplay/Player.h>
 #include <Gameplay/Gem.h>
+#include <Gameplay/PickUp.h>
 #include <Gameplay/Enemies/Enemy.h>
 #include <Gameplay/Enemies/Cactus.h>
 #include <Gameplay/Enemies/Frog.h>
@@ -18,7 +19,7 @@ public:
 	const sf::Shape* checkCeilingCollision(const ObjectLayer* ceilingsCollisionLayer, Player* objectToCheckCollision) const;
 	const sf::Shape* checkTrapCollision(const ObjectLayer* trapsCollisionLayer, Player* objectToCheckCollision) const;
 	bool checkCollisionBetweenPlayerAndEnemy(Player* player, Enemy* enemy) const;
-	Gem* checkCollisionBetweenPlayerAndGem(Player* player, std::vector<Gem*>) const;
+	PickUp* checkCollisionBetweenPlayerAndPickUp(Player* player, std::vector<PickUp*>) const;
 	void checkEnemyWallCollision(const ObjectLayer* wallsCollisionLayer, Enemy* objectToCheckCollision) const;
 private:
 	static CollisionManager* s_instance;

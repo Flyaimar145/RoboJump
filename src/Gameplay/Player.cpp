@@ -1,9 +1,10 @@
 #include <Core/AssetManager.h>
+#include <External/json.hpp>
 #include <Gameplay/Player.h>
-#include <iostream>
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Keyboard.hpp>
+#include <Utils/Constants.h>
+
+using json = nlohmann::json;
 
 Player::PlayerDescriptor Player::load()
 {
@@ -69,18 +70,15 @@ void Player::update(float deltaMilliseconds)
 		m_isJumping = true;
 		m_speed.y = -m_jumpSpeed;
 	}
-	// Apply gravity
 	if (m_currentGravity > 0.0f)
 	{
 		m_speed.y += m_currentGravity * (deltaMilliseconds / 1000.f);
 	}
-	// Check if player is on the ground
 	if (!m_isJumping && m_currentGravity == 0.0f)
 	{
 		m_speed.y = 0.0f;
 	}
 
-	// Update final position
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
 	
@@ -88,7 +86,6 @@ void Player::update(float deltaMilliseconds)
 	if (m_liveAmountChanged)
 	{ 
 		m_liveAmountChanged = false;
-		//Update texture for when 1 live left
 		if (m_lifeCount <= 1)
 		{
 			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png"));
@@ -99,16 +96,13 @@ void Player::update(float deltaMilliseconds)
 		}
 	}
 
-	// Update animation
 	m_animationTime += deltaMilliseconds;
 	if (m_hasTakenDamage)
 	{
-		// First moment of taking damage: Reset the current frame to 0 to start the animation from the beginning, and reduce the live count
 		if (!m_damageAnimationStarted)
 		{
 			m_currentFrame = 0;
 			m_damageAnimationStarted = true;
-			//printf("Damage taken\n");
 			m_lifeCount--;
 			m_liveAmountChanged = true;
 		}
@@ -129,7 +123,6 @@ void Player::update(float deltaMilliseconds)
 	}
 	else if (m_isDead)
 	{
-		// Reset the current frame to 0 when damage is taken, so the animation starts from the beginning
 		if (!m_deathAnimationStarted)
 		{
 			m_currentFrame = 0;

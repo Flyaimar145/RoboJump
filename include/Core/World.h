@@ -2,18 +2,13 @@
 
 #include <cstdint>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <External/json.hpp>
 
-class Player;
-class Enemy;
-class Cactus;
-class Level;
+
 class EnemyManager;
-class Gem;
-class GemManager;
-class PowerUpManager;
+class Level;
+class PickUpManager;
+class Player;
 
-using json = nlohmann::json;
 
 namespace sf
 {
@@ -25,7 +20,6 @@ namespace tmx
 {
 	class Map;
 }
-
 class MapLayer;
 class ObjectLayer;
 
@@ -47,16 +41,16 @@ class World
 		Player* m_player{ nullptr };
 
 		Level* m_level{ nullptr };
-		EnemyManager* m_enemyManager{ nullptr };
-		GemManager* m_gemManager{ nullptr };
-		PowerUpManager* m_powerUpManager{ nullptr };
 
+		EnemyManager* m_enemyManager{ nullptr };
+		PickUpManager* m_pickUpManager{ nullptr };
 
 		sf::View* m_view{ nullptr };
 		sf::FloatRect m_deadZone;
+
 		void drawDeadZone(sf::RenderWindow& window);
 		void updateDeadZone();
 		void checkPlayerEnvironmentCollisions();
-		void checkPlayerGemsCollisions();
+		void checkPlayerPickUpsCollisions();
 		void checkPlayerEnemiesCollisions();
 };
