@@ -21,6 +21,7 @@ class EnemyManager
 		
 		void update(uint32_t deltaMilliseconds);
 		void render(sf::RenderWindow& window);
+		void destroyCactus(Cactus*);
 
 		std::vector<Enemy*>& getEnemiesVector() { return m_enemiesVector; }
 		std::vector<Cactus*>& getCactusTypeEnemiesVector() { return m_cactusTypeEnemiesVector; }

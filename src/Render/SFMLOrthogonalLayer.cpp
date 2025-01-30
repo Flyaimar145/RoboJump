@@ -567,7 +567,7 @@ sf::Shape* ObjectLayer::createShape(const tmx::Object& object)
     {
         shape->setFillColor(sf::Color::Transparent);
         shape->setOutlineColor(sf::Color::Red);
-        shape->setOutlineThickness(0.5f);
+        shape->setOutlineThickness(0.0f);
     }
 
     return shape;

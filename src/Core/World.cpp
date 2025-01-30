@@ -42,7 +42,7 @@ bool World::load()
 	m_enemyManager = new EnemyManager();
 	const bool enemiesLoaded = m_enemyManager->loadEnemies();
 
-	return playerLoaded && enemiesLoaded && pickUpsLoaded;//gemsLoaded&& powerUpsLoaded;
+	return playerLoaded && enemiesLoaded && pickUpsLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
@@ -55,6 +55,8 @@ void World::update(uint32_t deltaMilliseconds)
 	checkPlayerEnvironmentCollisions();
 	checkPlayerEnemiesCollisions();
 	checkPlayerPickUpsCollisions();
+	checkPlayerDeath();
+	
 
 	updateDeadZone();
 
@@ -63,6 +65,11 @@ void World::update(uint32_t deltaMilliseconds)
 	for (Cactus* cactus : m_enemyManager->getCactusTypeEnemiesVector())
 	{
 		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), cactus);
+
+		if (cactus->getHasFinishedDying())
+		{
+			m_enemyManager->destroyCactus(cactus);
+		}
 	}
 
 	for (Stomp* stomp : m_enemyManager->getStompTypeEnemiesVector())
@@ -317,10 +324,19 @@ void World::checkPlayerPickUpsCollisions()
 				break;
 			}
 			default:
-			printf("Player touched an unknown pickup \n");
+				printf("Player touched an unknown pickup \n");
 			break;
 		}
 		m_pickUpManager->destroyPickUp(collidedPickUp);
 	}
 	
+}
+
+void World::checkPlayerDeath()
+{
+	if (m_player->getHasFinishedDying())
+	{
+		//delete m_player;
+		m_player->setPosition({ 10000.f , 10000.f });
+	}
 }

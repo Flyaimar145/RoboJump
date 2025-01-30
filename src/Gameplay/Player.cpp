@@ -144,7 +144,7 @@ void Player::update(float deltaMilliseconds)
 			updateAnimation(m_deathAnimationTotalFrames, 4.f);
 			if (m_currentFrame == m_deathAnimationTotalFrames - 1)
 			{
-				m_position = { 1000.f, 1000.f };
+				m_hasFinishedDying = true;
 			}
 		}
 	}
@@ -176,7 +176,6 @@ void Player::update(float deltaMilliseconds)
 			updateAnimation(m_totalFrames, 0.f);
 		}
 	}
-	printf("Score: %d\n", m_score);
 	Entity::update(deltaMilliseconds);
 }
 

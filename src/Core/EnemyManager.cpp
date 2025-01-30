@@ -98,4 +98,17 @@ void EnemyManager::render(sf::RenderWindow& window)
 	}
 }
 
-
+void EnemyManager::destroyCactus(Cactus* cactus)
+{
+	auto cactusIterator = std::find(m_cactusTypeEnemiesVector.begin(), m_cactusTypeEnemiesVector.end(), cactus);
+	if (cactusIterator != m_cactusTypeEnemiesVector.end())
+	{
+		m_cactusTypeEnemiesVector.erase(cactusIterator);
+	}
+	auto enemyIterator = std::find(m_enemiesVector.begin(), m_enemiesVector.end(), cactus);
+	if (enemyIterator != m_enemiesVector.end())
+	{
+		m_enemiesVector.erase(enemyIterator);
+	}
+	delete cactus;
+}

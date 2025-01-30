@@ -53,4 +53,5 @@ class World
 		void checkPlayerEnvironmentCollisions();
 		void checkPlayerPickUpsCollisions();
 		void checkPlayerEnemiesCollisions();
+		void checkPlayerDeath();
 };

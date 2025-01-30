@@ -42,6 +42,7 @@ public:
 	int getLifeCount() const { return m_lifeCount; }
 	bool getHasTakenDamage() const { return m_hasTakenDamage; }
 	bool getIsDead() const { return m_isDead; }
+	bool getHasFinishedDying() const { return m_hasFinishedDying; }
 
 	void setSpeed(sf::Vector2f speed) { m_speed = speed; }
 	void setDirection(sf::Vector2f direction) { m_direction = direction; }
@@ -71,6 +72,7 @@ protected:
 
 	int m_lifeCount{ 0 };
 	bool m_hasTakenDamage{ false };
+	bool m_hasFinishedDying{ false };
 	bool m_isDead{ false };
 	bool m_liveAmountChanged{ false };
 	bool m_damageAnimationStarted{ false };
