@@ -30,7 +30,7 @@ class PickUp : public GameObject
 
 		sf::FloatRect getBounds() const { return m_sprite.getGlobalBounds(); }
 
-		virtual void affectPlayer(Player* player) = 0;
+		virtual int returnInfoOnPlayerCollision() = 0;
 
 		void update(float deltaMilliseconds) override;
 		void render(sf::RenderWindow& window) override;

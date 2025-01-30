@@ -21,14 +21,16 @@ public:
 	bool getIsJumping() const { return m_isJumping; }
 	float getJumpSpeed() const { return m_jumpSpeed; }
 	float getGravity() const { return m_currentGravity; }
-	int getPoints() const { return m_points; }
+	int getScore() const { return m_score; }
 
 	void setIsJumping(bool isJumping) { m_isJumping = isJumping; }
 	void setJumpSpeed(float jumpSpeed) { m_jumpSpeed = jumpSpeed; }
 	void setGravity(float gravity) { m_currentGravity = gravity; }
 	void setMakeJump(bool makeJump) { m_makeJump = makeJump; }
 	
-	void addPoints(int points) { m_points += points; }
+	void addScore(int points) { m_score += points; }
+	void addLife();
+	void applySpeedBoost();
 
 protected:
 
@@ -37,5 +39,9 @@ protected:
 	float m_jumpSpeed{ 0.0f };
 	float m_currentGravity{ 980.f };
 
-	int m_points{ 0 };
+	int m_score{ 0 };
+
+	bool m_isSpeedBoostActive{ false };
+	float m_speedBoostDuration{ 0.0f };
+	float m_speedBoostTimer{ 0.0f };
 };

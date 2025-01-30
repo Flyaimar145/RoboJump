@@ -294,15 +294,29 @@ void World::checkPlayerPickUpsCollisions()
 	{
 		switch (collidedPickUp->getPickUpType())
 		{
-		case PickUp::PickUpType::Gem:
-			collidedPickUp->affectPlayer(m_player);
-			break;
-
-		case PickUp::PickUpType::PowerUp:
-			collidedPickUp->affectPlayer(m_player);
-			break;
-		
-		default:
+			case PickUp::PickUpType::Gem:
+			{
+				int gemValue = collidedPickUp->returnInfoOnPlayerCollision();
+				m_player->addScore(gemValue);
+				break;
+			}
+			case PickUp::PickUpType::PowerUp:
+			{
+				int powerUpType = collidedPickUp->returnInfoOnPlayerCollision();
+				switch (powerUpType)
+				{
+					case 0:
+						m_player->addLife();
+						break;
+					case 1:
+						m_player->applySpeedBoost();
+						break;
+					default:
+						break;
+				}
+				break;
+			}
+			default:
 			printf("Player touched an unknown pickup \n");
 			break;
 		}

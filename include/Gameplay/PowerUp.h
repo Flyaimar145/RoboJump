@@ -14,7 +14,7 @@ class PowerUp : public PickUp
 
 		~PowerUp() override = default;
 
-		void affectPlayer(Player* player) override;
+		int returnInfoOnPlayerCollision() override;
 
 		PowerUpType getPowerUpType() const { return m_powerUpType; }
 

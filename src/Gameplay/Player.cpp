@@ -96,6 +96,16 @@ void Player::update(float deltaMilliseconds)
 		}
 	}
 
+	if (m_isSpeedBoostActive)
+	{
+		m_speedBoostTimer += deltaMilliseconds;
+		if (m_speedBoostTimer >= m_speedBoostDuration)
+		{
+			m_isSpeedBoostActive = false;
+			m_speed.x /= 2.f; // Revert the speed boost
+		}
+	}
+
 	m_animationTime += deltaMilliseconds;
 	if (m_hasTakenDamage)
 	{
@@ -166,5 +176,30 @@ void Player::update(float deltaMilliseconds)
 			updateAnimation(m_totalFrames, 0.f);
 		}
 	}
+	printf("Score: %d\n", m_score);
 	Entity::update(deltaMilliseconds);
+}
+
+void Player::addLife()
+{
+	if (m_lifeCount < 2)
+	{
+		m_lifeCount++;
+		m_liveAmountChanged = true;
+	}
+	else 
+	{
+		addScore(10);
+	}
+}
+
+void Player::applySpeedBoost()
+{
+	if (!m_isSpeedBoostActive)
+	{
+		m_speed.x *= 2.f;
+		m_isSpeedBoostActive = true;
+		m_speedBoostDuration = 10000.f;
+		m_speedBoostTimer = 0.0f;
+	}
 }

@@ -15,7 +15,7 @@ class Gem : public PickUp
 
 		bool init(const GemDescriptor& gemDescriptor);
 
-		void affectPlayer(Player* player) override;
+		int returnInfoOnPlayerCollision() override;
 
 		int getPoints() const { return m_points; }
 

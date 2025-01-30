@@ -8,7 +8,7 @@ bool Gem::init(const GemDescriptor& gemDescriptor)
 	return true;
 }
 
-void Gem::affectPlayer(Player* player)
+int Gem::returnInfoOnPlayerCollision()
 {
-	player->addPoints(m_points);
+	return m_points;
 }

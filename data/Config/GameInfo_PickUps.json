@@ -223,14 +223,46 @@
             {
                 "powerUpType": "ExtraLife",
                 "texture": "../data/Levels/images/png/PowerUps/ExtraLife_2.png",
-                "positionX": 48,
-                "positionY": 47,
+                "positionX": 78,
+                "positionY": 37,
+                "tileWidth": 16,
+                "tileHeight": 16
+            },
+            {
+                "powerUpType": "ExtraLife",
+                "texture": "../data/Levels/images/png/PowerUps/ExtraLife_2.png",
+                "positionX": 115,
+                "positionY": 38,
+                "tileWidth": 16,
+                "tileHeight": 16
+            },
+            {
+                "powerUpType": "ExtraLife",
+                "texture": "../data/Levels/images/png/PowerUps/ExtraLife_2.png",
+                "positionX": 102,
+                "positionY": 65,
+                "tileWidth": 16,
+                "tileHeight": 16
+            },
+            {
+                "powerUpType": "ExtraLife",
+                "texture": "../data/Levels/images/png/PowerUps/ExtraLife_2.png",
+                "positionX": 100,
+                "positionY": 76,
+                "tileWidth": 16,
+                "tileHeight": 16
+            },
+            {
+                "powerUpType": "ExtraLife",
+                "texture": "../data/Levels/images/png/PowerUps/ExtraLife_2.png",
+                "positionX": 146,
+                "positionY": 102,
                 "tileWidth": 16,
                 "tileHeight": 16
             },
             {
                 "powerUpType": "SpeedBoost",
-                "texture": "../data/Levels/images/png/PowerUps/SpeedBoost.png",
+                "texture": "../data/Levels/images/png/PowerUps/SpeedBoost_2.png",
                 "positionX": 109,
                 "positionY": 105,
                 "tileWidth": 16,
