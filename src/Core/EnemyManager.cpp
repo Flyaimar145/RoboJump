@@ -11,6 +11,9 @@ EnemyManager::~EnemyManager()
 	{
 		delete enemy;
 	}
+	m_cactusTypeEnemiesVector.clear();
+	m_frogTypeEnemiesVector.clear();
+	m_stompTypeEnemiesVector.clear();
 	m_enemiesVector.clear();
 }
 

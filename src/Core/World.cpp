@@ -13,10 +13,19 @@
 World::~World()
 {
 	delete m_player;
+	m_player = nullptr;
+
 	delete m_enemyManager;
+	m_enemyManager = nullptr;
+
 	delete m_pickUpManager;
+	m_pickUpManager = nullptr;
+	
 	delete m_view;
+	m_view = nullptr;
+
 	delete m_level;
+	m_level = nullptr;
 }
 
 bool World::load()
@@ -57,30 +66,11 @@ void World::update(uint32_t deltaMilliseconds)
 	checkPlayerPickUpsCollisions();
 	checkPlayerDeath();
 	
-
 	updateDeadZone();
 
 	m_enemyManager->update(deltaMilliseconds);
-
-	for (Cactus* cactus : m_enemyManager->getCactusTypeEnemiesVector())
-	{
-		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), cactus);
-
-		if (cactus->getHasFinishedDying())
-		{
-			m_enemyManager->destroyCactus(cactus);
-		}
-	}
-
-	for (Stomp* stomp : m_enemyManager->getStompTypeEnemiesVector())
-	{
-		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), stomp);
-
-		if (stomp->getDetectionZone().intersects(m_player->getAdjustedBounds()))
-		{
-			stomp->onPlayerCollision();
-		}
-	}
+	checkSpecialsForCactusEnemies();
+	checkSpecialsForStompEnemies();
 }
 
 void World::render(sf::RenderWindow& window)
@@ -156,12 +146,10 @@ void World::updateDeadZone()
 
 void World::checkPlayerEnvironmentCollisions()
 {
-	// Check for ground collisions
 	bool isGrounded = false;
 	const sf::Shape* collidedGroundShape = CollisionManager::getInstance()->checkGroundCollision(m_level->getGroundsLayer(), m_player);
 	if (collidedGroundShape != nullptr)
 	{
-		// Falling from a certain height will kill the player
 		if (m_player->getSpeed().y > 800.f)
 		{
 			m_player->setHasTakenDamage(true);
@@ -178,8 +166,6 @@ void World::checkPlayerEnvironmentCollisions()
 	}
 
 
-
-	// Check for wall collisions
 	bool isCollidingWithWall = false;
 	bool collidedLeft = false;
 	bool collidedRight = false;
@@ -189,14 +175,12 @@ void World::checkPlayerEnvironmentCollisions()
 		sf::FloatRect playerBounds = m_player->getAdjustedBounds();
 		sf::FloatRect wallBounds = collidedWallShape->getGlobalBounds();
 
-		// Check if the player is moving right and collides with the left side of the wall
 		if (m_player->getDirection().x > 0 && playerBounds.left + playerBounds.width > wallBounds.left && playerBounds.left < wallBounds.left)
 		{
 			m_player->setAdjustedPosition({ wallBounds.left - playerBounds.width - 1.f, m_player->getAdjustedPosition().y });
 			isCollidingWithWall = true;
 			collidedLeft = true;
 		}
-		// Check if the player is moving left and collides with the right side of the wall
 		else if (m_player->getDirection().x < 0 && playerBounds.left < wallBounds.left + wallBounds.width && playerBounds.left + playerBounds.width > wallBounds.left + wallBounds.width)
 		{
 			m_player->setAdjustedPosition({ wallBounds.left + wallBounds.width + 1.f, m_player->getAdjustedPosition().y });
@@ -205,14 +189,11 @@ void World::checkPlayerEnvironmentCollisions()
 
 		}
 	}
-	// Allow movement away from the wall
 	sf::Vector2f newDirection = m_player->getDirection();
-	// If collidedLeft, disallow left movement (negative x-direction)
 	if (collidedLeft && newDirection.x < 0)
 	{
 		newDirection.x = 0.f;
 	}
-	// If collidedRight, disallow right movement (positive x-direction)
 	if (collidedRight && newDirection.x > 0)
 	{
 		newDirection.x = 0.f;
@@ -220,9 +201,6 @@ void World::checkPlayerEnvironmentCollisions()
 	m_player->setDirection(newDirection);
 
 
-
-
-	// Check for ceiling collisions
 	const sf::Shape* collidedCeilingShape = CollisionManager::getInstance()->checkCeilingCollision(m_level->getCeilingsLayer(), m_player);
 	if (collidedCeilingShape != nullptr)
 	{
@@ -231,7 +209,6 @@ void World::checkPlayerEnvironmentCollisions()
 	}
 
 
-	// Check for trap collisions
 	const sf::Shape* collidedTrapShape = CollisionManager::getInstance()->checkTrapCollision(m_level->getTrapsLayer(), m_player);
 	if (collidedTrapShape != nullptr)
 	{
@@ -336,7 +313,32 @@ void World::checkPlayerDeath()
 {
 	if (m_player->getHasFinishedDying())
 	{
-		//delete m_player;
-		m_player->setPosition({ 10000.f , 10000.f });
+		m_isPlayerDead = true;
+	}
+}
+
+void World::checkSpecialsForCactusEnemies() 
+{
+	for (Cactus* cactus : m_enemyManager->getCactusTypeEnemiesVector())
+	{
+		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), cactus);
+
+		if (cactus->getHasFinishedDying())
+		{
+			m_enemyManager->destroyCactus(cactus);
+		}
+	}
+}
+
+void World::checkSpecialsForStompEnemies()
+{
+	for (Stomp* stomp : m_enemyManager->getStompTypeEnemiesVector())
+	{
+		CollisionManager::getInstance()->checkEnemyWallCollision(m_level->getEnemyWallsLayer(), stomp);
+
+		if (stomp->getDetectionZone().intersects(m_player->getAdjustedBounds()))
+		{
+			stomp->onPlayerCollision();
+		}
 	}
 }

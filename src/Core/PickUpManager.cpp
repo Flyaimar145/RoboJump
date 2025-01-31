@@ -10,6 +10,8 @@ PickUpManager::~PickUpManager()
 	{
 		delete pickUp;
 	}
+	m_gemsVector.clear();
+	m_powerUpsVector.clear();
 	m_pickUpsVector.clear();
 }
 

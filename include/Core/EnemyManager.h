@@ -14,7 +14,6 @@ namespace sf
 class EnemyManager 
 {
 	public:
-		EnemyManager() = default;
 		~EnemyManager();
 		
 		bool loadEnemies();

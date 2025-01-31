@@ -73,6 +73,8 @@ set(PROJECT_SOURCES
 
     src/Render/SFMLOrthogonalLayer.cpp
 
+    src/UI/UIScreenMainMenu.cpp
+
     src/main.cpp
 )
 

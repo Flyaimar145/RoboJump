@@ -36,6 +36,8 @@ class World
 		void update(uint32_t deltaMilliseconds);
 		void render(sf::RenderWindow& window);
 
+		bool getIsPlayerDead() const { return m_isPlayerDead; }
+
 	private:
 
 		Player* m_player{ nullptr };
@@ -48,10 +50,15 @@ class World
 		sf::View* m_view{ nullptr };
 		sf::FloatRect m_deadZone;
 
+		bool m_isPlayerDead{ false };
+
 		void drawDeadZone(sf::RenderWindow& window);
 		void updateDeadZone();
 		void checkPlayerEnvironmentCollisions();
 		void checkPlayerPickUpsCollisions();
 		void checkPlayerEnemiesCollisions();
 		void checkPlayerDeath();
+
+		void checkSpecialsForCactusEnemies();
+		void checkSpecialsForStompEnemies();
 };

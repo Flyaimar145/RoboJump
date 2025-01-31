@@ -6,15 +6,25 @@
 Level::~Level()
 {
 	delete m_layerZero;
+	m_layerZero = nullptr;
 	delete m_layerOne;
+	m_layerOne = nullptr;
 	delete m_layerTwo;
+	m_layerTwo = nullptr;
+
 	delete m_groundsLayer;
+	m_groundsLayer = nullptr;
 	delete m_wallsLayer;
+	m_wallsLayer = nullptr;
 	delete m_ceilingsLayer;
+	m_ceilingsLayer = nullptr;
 	delete m_trapsLayer;
+	m_trapsLayer = nullptr;
 	delete m_enemyWallsLayer;
+	m_enemyWallsLayer = nullptr;
 
 	delete m_map;
+	m_map = nullptr;
 }
 bool Level::load()
 {
