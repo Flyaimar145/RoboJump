@@ -5,29 +5,30 @@
 
 class Stomp : public Enemy
 {
-public:
-	~Stomp() override = default;
+	public:
 
-	bool init(const EnemyDescriptor& enemyDescriptor) override;
-	void onPlayerCollision() override;
+		~Stomp() override = default;
 
-	void update(float deltaMilliseconds) override;
-	void render(sf::RenderWindow& window) override;
+		bool init(const EnemyDescriptor& enemyDescriptor) override;
+		void onPlayerCollision() override;
 
-	bool getHasToAttack() const { return m_hasToAttack; }
-	sf::FloatRect getDetectionZone() const { return m_detectionZone; }
+		void update(float deltaMilliseconds) override;
 
-	void setHasToAttack(bool hasToAttack) { m_hasToAttack = hasToAttack; }
+		bool getHasToAttack() const { return m_hasToAttack; }
+		sf::FloatRect getDetectionZone() const { return m_detectionZone; }
 
-private:
-	bool m_hasToAttack{ false };
-	bool m_hasToRise{ false };
-	bool m_attackAnimationStarted{ false };
+		void setHasToAttack(bool hasToAttack) { m_hasToAttack = hasToAttack; }
 
-	float m_fallingSpeed{ 100.0f };
-	float m_heightToFall{ 48.0f };
-	float m_initialPositionY{ .0f };
-	float m_originalSpeedX{ .0f };
+	private:
 
-	sf::FloatRect m_detectionZone;
+		float m_fallingSpeed{ 100.0f };
+		float m_heightToFall{ 48.0f };
+		float m_initialPositionY{ .0f };
+		float m_originalSpeedX{ .0f };
+
+		bool m_hasToAttack{ false };
+		bool m_hasToRise{ false };
+		bool m_attackAnimationStarted{ false };
+
+		sf::FloatRect m_detectionZone;
 };

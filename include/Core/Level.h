@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cstdint>
+#include <SFML/Graphics/RectangleShape.hpp>
+
 
 namespace tmx
 {
@@ -22,7 +24,7 @@ public:
 	~Level();
 
 	bool load();
-	// To-Do: Implement a unload()
+
 	void update(uint32_t deltaMilliseconds);
 	void render(sf::RenderWindow& window);
 
@@ -34,6 +36,8 @@ public:
 	ObjectLayer* getCeilingsLayer() const { return m_ceilingsLayer; }
 	ObjectLayer* getTrapsLayer() const { return m_trapsLayer; }
 	ObjectLayer* getEnemyWallsLayer() const { return m_enemyWallsLayer; }
+
+	sf::FloatRect getVictoryZone() const { return m_victoryZone; }
 	
 
 private:
@@ -48,4 +52,5 @@ private:
 	ObjectLayer* m_trapsLayer{ nullptr };
 	ObjectLayer* m_enemyWallsLayer{ nullptr };
 
+	sf::FloatRect m_victoryZone;
 };

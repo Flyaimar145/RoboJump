@@ -1,31 +1,36 @@
 #include <Core/AssetManager.h>
+#include <External/json.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <UI/UIManager.h>
 #include <UI/UIScreen.h>
 #include <UI/UIScreenGameOver.h>
 #include <UI/UIScreenMainMenu.h>
 #include <UI/UIScreenVictory.h>
+#include <Utils/Constants.h>
 
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Window/Keyboard.hpp>
+using json = nlohmann::json;
 
 UIManager::~UIManager()
 {
-	for (UIScreen* screen : m_screens)
-	{
-		delete screen;
-	}
-	//m_currentScreen = nullptr;
-	//m_nextScreen = nullptr;
-	m_screens.clear();
+	delete m_mainMenuScreen;
+	m_mainMenuScreen = nullptr;
+
+	delete m_gameOverScreen;
+	m_gameOverScreen = nullptr;
+
+	delete m_victoryScreen;
+	m_victoryScreen = nullptr;
 }
 
 bool UIManager::load()
 {
-	sf::Texture* mainMenuTexture = AssetManager::getInstance()->loadTexture("../data/Images/GameScreens/RoboJumpMainScreen_2.png");
-	sf::Texture* gameOverTexture = AssetManager::getInstance()->loadTexture("../data/Images/GameScreens/GameOverScreen_2.png");
-	sf::Texture* victoryTexture = AssetManager::getInstance()->loadTexture("../data/Images/GameScreens/VictoryScreen_2.png");
+	json uiInfo = loadJsonFromFile(GAMEINFOJSON_UI)["UIScreens"];
+	sf::Texture* mainMenuTexture = AssetManager::getInstance()->loadTexture(uiInfo["mainMenuScreenTexturePath"].get<std::string>().c_str());
+	sf::Texture* gameOverTexture = AssetManager::getInstance()->loadTexture(uiInfo["gameOverScreenTexturePath"].get<std::string>().c_str());
+	sf::Texture* victoryTexture = AssetManager::getInstance()->loadTexture(uiInfo["victoryScreenTexturePath"].get<std::string>().c_str());
 	if (mainMenuTexture == nullptr || gameOverTexture == nullptr || victoryTexture == nullptr)
 	{
 		return false;
@@ -38,26 +43,6 @@ bool UIManager::load()
 	{
 		return false;
 	}
-
-	m_screens.push_back(m_mainMenuScreen);
-	m_screens.push_back(m_gameOverScreen);
-	m_screens.push_back(m_victoryScreen);
-	//m_currentScreen = mainMenuScreen;
 	return true;
 }
 
-void UIManager::update(float milliseconds)
-{
-	//m_currentScreen->update(milliseconds);
-}
-
-void UIManager::render(sf::RenderWindow& window)
-{
-	//m_currentScreen->render(window);
-}
-
-//void UIManager::setNextScreen()
-//{
-	//m_currentScreenIndex = (m_currentScreenIndex + 1) % m_screens.size();
-	//m_currentScreen = m_screens[m_currentScreenIndex];
-//}

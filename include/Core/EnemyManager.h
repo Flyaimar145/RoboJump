@@ -1,15 +1,17 @@
 #pragma once
 
 #include <cstdint>
-#include <Gameplay/Enemies/Cactus.h>
-#include <Gameplay/Enemies/Enemy.h>
-#include <Gameplay/Enemies/Frog.h>
-#include <Gameplay/Enemies/Stomp.h>
+#include <vector>
 
 namespace sf
 {
 	class RenderWindow;
 }
+
+class Cactus;
+class Enemy;
+class Frog;
+class Stomp;
 
 class EnemyManager 
 {
@@ -20,6 +22,7 @@ class EnemyManager
 		
 		void update(uint32_t deltaMilliseconds);
 		void render(sf::RenderWindow& window);
+
 		void destroyCactus(Cactus*);
 
 		std::vector<Enemy*>& getEnemiesVector() { return m_enemiesVector; }

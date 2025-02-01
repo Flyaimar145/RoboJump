@@ -1,7 +1,6 @@
 #include <Core/AssetManager.h>
 #include <SFML/Graphics/Texture.hpp>
 
-
 AssetManager* AssetManager::s_instance{ nullptr };
 
 AssetManager* AssetManager::getInstance()

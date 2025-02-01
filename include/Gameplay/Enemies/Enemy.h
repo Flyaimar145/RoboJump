@@ -21,6 +21,7 @@ class Enemy : public Entity
 		virtual ~Enemy() override = default;
 
 		virtual bool init(const EnemyDescriptor& enemyDescriptor);
+
 		virtual void onPlayerCollision() {};
 
 		virtual void update(float deltaMilliseconds) override;
@@ -34,6 +35,7 @@ class Enemy : public Entity
 
 	protected:
 
-		EnemyType m_enemyType;
 		bool m_canMakeDamage{ true };
+		EnemyType m_enemyType;
+		
 };

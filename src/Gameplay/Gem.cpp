@@ -1,5 +1,4 @@
 #include <Gameplay/Gem.h>
-#include <Gameplay/Player.h>
 
 bool Gem::init(const GemDescriptor& gemDescriptor)
 {

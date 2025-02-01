@@ -1,12 +1,5 @@
-
-#include <UI/UIScreenGameOver.h>
 #include <SFML/Window/Keyboard.hpp>
-
-bool UIScreenGameOver::init(sf::Texture* image)
-{
-	m_screenType = ScreenType::GameOver;
-	return UIScreen::init(image);
-}
+#include <UI/UIScreenGameOver.h>
 
 void UIScreenGameOver::update(float milliseconds)
 {

@@ -11,6 +11,9 @@ bool PickUp::init(const PickUpDescriptor& pickUpDescriptor)
 	m_tileHeight = pickUpDescriptor.tileHeight;
 	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tileWidth, m_tileHeight));
 
+	m_frameDuration = pickUpDescriptor.frameDuration;
+	m_totalFrames = pickUpDescriptor.totalFrames;
+
 	return true;
 }
 

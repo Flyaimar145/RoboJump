@@ -3,13 +3,11 @@
 #include <cstdint>
 #include <SFML/Graphics/RectangleShape.hpp>
 
-
-
 class EnemyManager;
+class HUD;
 class Level;
 class PickUpManager;
 class Player;
-class HUD;
 
 namespace sf
 {
@@ -32,8 +30,6 @@ class World
 
 		bool load();
 
-		// To-Do: Implement a unload()
-
 		void update(uint32_t deltaMilliseconds);
 		void render(sf::RenderWindow& window);
 
@@ -51,15 +47,15 @@ class World
 
 		sf::View* m_view{ nullptr };
 		HUD* m_hud{ nullptr };
-		sf::View* m_hudView;
+		sf::View* m_hudView{ nullptr };
 		sf::FloatRect m_deadZone;
-		sf::FloatRect m_victoryZone;
 
 		bool m_isPlayerDead{ false };
 		bool m_playerHasReachedVictory{ false };
 
 		void drawDeadZone(sf::RenderWindow& window);
 		void updateDeadZone();
+
 		void checkPlayerEnvironmentCollisions();
 		void checkPlayerPickUpsCollisions();
 		void checkPlayerEnemiesCollisions();

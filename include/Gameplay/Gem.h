@@ -22,7 +22,6 @@ class Gem : public PickUp
 		void setPoints(int points) { m_points = points; }
 
 	private:
+
 		int m_points{ 0 };
-
-
 };

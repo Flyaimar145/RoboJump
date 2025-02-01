@@ -1,5 +1,10 @@
 #include <Core/CollisionManager.h>
 
+#include <Gameplay/Enemies/Enemy.h>
+#include <Gameplay/PickUp.h>
+#include <Gameplay/Player.h>
+#include <Render/SFMLOrthogonalLayer.h>
+
 
 CollisionManager* CollisionManager::s_instance{ nullptr };
 
@@ -23,7 +28,6 @@ const sf::Shape* CollisionManager::checkGroundCollision(const ObjectLayer* groun
 		}
 	}
 	return nullptr;
-
 }
 
 const sf::Shape* CollisionManager::checkWallCollision(const ObjectLayer* wallsCollisionLayer, Player* objectToCheckCollision) const
@@ -93,7 +97,6 @@ void CollisionManager::checkEnemyWallCollision(const ObjectLayer* wallsCollision
 	{
 		if (shape->getGlobalBounds().intersects(enemy->getAdjustedBounds()))
 		{
-			//printf("Enemy collided with wall \n");
 			enemy->setDirection({ -enemy->getDirection().x, enemy->getDirection().y });
 		}
 	}

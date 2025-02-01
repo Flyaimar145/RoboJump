@@ -1,14 +1,12 @@
-// To-Do. Ideally a UIScreen transition should be managed through a UIManager class
 #pragma once
 
 #include <UI/UIScreen.h>
 
 class UIScreenVictory : public UIScreen
 {
-public:
-	~UIScreenVictory() = default;
+	public:
 
-	bool init(sf::Texture* image) override;
+		~UIScreenVictory() = default;
 
-	void update(float milliseconds) override;
+		void update(float milliseconds) override;
 };

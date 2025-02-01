@@ -4,9 +4,6 @@
 #include <string>
 #include <External/json.hpp>
 
-
-
-
 namespace sf
 {
 	class RenderWindow;
@@ -16,7 +13,6 @@ using json = nlohmann::json;
 
 class World;
 class UIManager;
-
 
 class Game
 {

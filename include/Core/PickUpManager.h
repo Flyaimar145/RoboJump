@@ -1,9 +1,16 @@
 #pragma once
 
-#include <Gameplay/PickUp.h>
-#include <Gameplay/Gem.h>
-#include <Gameplay/PowerUp.h>
 #include <External/json.hpp>
+#include <vector>
+
+namespace sf
+{
+	class RenderWindow;
+}
+
+class Gem;
+class PickUp;
+class PowerUp;
 
 class PickUpManager
 {

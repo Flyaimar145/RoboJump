@@ -8,7 +8,9 @@
                 "positionY": 45,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -16,7 +18,9 @@
                 "positionY": 43,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -24,7 +28,9 @@
                 "positionY": 35,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -32,7 +38,9 @@
                 "positionY": 26,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -40,7 +48,9 @@
                 "positionY": 23,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -48,7 +58,9 @@
                 "positionY": 26,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -56,7 +68,9 @@
                 "positionY": 23,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -64,7 +78,9 @@
                 "positionY": 23,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -72,7 +88,9 @@
                 "positionY": 23,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -80,7 +98,9 @@
                 "positionY": 30,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/4.png",
@@ -88,7 +108,9 @@
                 "positionY": 37,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 10
+                "points": 10,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/6.png",
@@ -96,7 +118,9 @@
                 "positionY": 26,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 5
+                "points": 5,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -104,7 +128,9 @@
                 "positionY": 28,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -112,7 +138,9 @@
                 "positionY": 28,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -120,7 +148,9 @@
                 "positionY": 46,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/4.png",
@@ -128,7 +158,9 @@
                 "positionY": 47,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 10
+                "points": 10,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/4.png",
@@ -136,7 +168,9 @@
                 "positionY": 39,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 10
+                "points": 10,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -144,7 +178,9 @@
                 "positionY": 56,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -152,7 +188,9 @@
                 "positionY": 66,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -160,7 +198,9 @@
                 "positionY": 81,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -168,7 +208,9 @@
                 "positionY": 85,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -176,7 +218,9 @@
                 "positionY": 89,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -184,7 +228,9 @@
                 "positionY": 93,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -192,7 +238,9 @@
                 "positionY": 99,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -200,7 +248,9 @@
                 "positionY": 102,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/3.png",
@@ -208,7 +258,9 @@
                 "positionY": 102,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 1
+                "points": 1,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/3 Objects/Gems/5.png",
@@ -216,7 +268,9 @@
                 "positionY": 101,
                 "tileWidth": 16,
                 "tileHeight": 16,
-                "points": 20
+                "points": 20,
+                "totalFrames": 7,
+                "frameDuration": 100
             }
         ],
         "PowerUps": [
@@ -226,7 +280,9 @@
                 "positionX": 78,
                 "positionY": 37,
                 "tileWidth": 16,
-                "tileHeight": 16
+                "tileHeight": 16,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "powerUpType": "ExtraLife",
@@ -234,7 +290,9 @@
                 "positionX": 115,
                 "positionY": 38,
                 "tileWidth": 16,
-                "tileHeight": 16
+                "tileHeight": 16,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "powerUpType": "ExtraLife",
@@ -242,7 +300,9 @@
                 "positionX": 102,
                 "positionY": 65,
                 "tileWidth": 16,
-                "tileHeight": 16
+                "tileHeight": 16,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "powerUpType": "ExtraLife",
@@ -250,7 +310,9 @@
                 "positionX": 100,
                 "positionY": 76,
                 "tileWidth": 16,
-                "tileHeight": 16
+                "tileHeight": 16,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "powerUpType": "ExtraLife",
@@ -258,7 +320,9 @@
                 "positionX": 146,
                 "positionY": 102,
                 "tileWidth": 16,
-                "tileHeight": 16
+                "tileHeight": 16,
+                "totalFrames": 7,
+                "frameDuration": 100
             },
             {
                 "powerUpType": "SpeedBoost",
@@ -266,7 +330,9 @@
                 "positionX": 109,
                 "positionY": 105,
                 "tileWidth": 16,
-                "tileHeight": 16
+                "tileHeight": 16,
+                "totalFrames": 7,
+                "frameDuration": 100
             }
         ]
     }

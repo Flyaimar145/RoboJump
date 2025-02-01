@@ -1,0 +1,10 @@
+{
+    "Level":
+    {
+        "mapPath":"../Data/Levels/RoboJumpMap_Level1.tmx",
+        "victoryZoneLeft": 159,
+        "victoryZoneTop": 94,
+        "victoryZoneWidth": 12,
+        "victoryZoneHeight": 13
+    }
+}

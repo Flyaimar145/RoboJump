@@ -13,20 +13,27 @@ Player::PlayerDescriptor Player::load()
 
 	sf::Texture* playerFirstTexture = AssetManager::getInstance()->loadTexture(playerInfo["firstTexture"].get<std::string>().c_str());
 	sf::Texture* oneLifeLeftTexture = AssetManager::getInstance()->loadTexture(playerInfo["oneLifeLeftTexture"].get<std::string>().c_str());
+	
 	Player::PlayerDescriptor playerDescriptor;
-	playerDescriptor.firstTexture = playerFirstTexture;
+	
 	playerDescriptor.position = { gameInfo["mapTileSize"] * playerInfo["positionX"].get<float>(), gameInfo["mapTileSize"] * playerInfo["positionY"].get<float>() };
 	playerDescriptor.speed = { playerInfo["speedX"].get<float>() * millisecondsToSeconds, playerInfo["speedY"].get<float>() * millisecondsToSeconds };
+	playerDescriptor.jumpSpeed = playerInfo["jumpSpeed"].get<float>();
+
+	playerDescriptor.firstTexture = playerFirstTexture;
 	playerDescriptor.tileWidth = playerInfo["tileWidth"].get<float>();
 	playerDescriptor.tileHeight = playerInfo["tileHeight"].get<float>();
-	playerDescriptor.jumpSpeed = playerInfo["jumpSpeed"].get<float>();
-	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
-	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
-	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();
+
 	playerDescriptor.offsetForAdjustedBoundsLeft = playerInfo["offsetForAdjustedBoundsLeft"].get<float>();
 	playerDescriptor.offsetForAdjustedBoundsTop = playerInfo["offsetForAdjustedBoundsTop"].get<float>();
 	playerDescriptor.offsetForAdjustedBoundsWidth = playerInfo["offsetForAdjustedBoundsWidth"].get<float>();
 	playerDescriptor.offsetForAdjustedBoundsHeight = playerInfo["offsetForAdjustedBoundsHeight"].get<float>();
+
+	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
+	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
+
+	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();
+
 	return playerDescriptor;
 }
 
@@ -82,7 +89,6 @@ void Player::update(float deltaMilliseconds)
 	m_position.x += (m_direction.x * m_speed.x * deltaMilliseconds);
 	m_position.y += m_speed.y * (deltaMilliseconds / 1000.f);
 	
-	
 	if (m_liveAmountChanged)
 	{ 
 		m_liveAmountChanged = false;
@@ -102,7 +108,7 @@ void Player::update(float deltaMilliseconds)
 		if (m_speedBoostTimer >= m_speedBoostDuration)
 		{
 			m_isSpeedBoostActive = false;
-			m_speed.x /= 2.f; // Revert the speed boost
+			m_speed.x /= 2.f;
 		}
 	}
 
@@ -116,7 +122,6 @@ void Player::update(float deltaMilliseconds)
 			m_lifeCount--;
 			m_liveAmountChanged = true;
 		}
-
 		if (m_animationTime >= m_frameDuration)
 		{
 			updateAnimation(m_totalFrames, 2.f);
@@ -138,7 +143,6 @@ void Player::update(float deltaMilliseconds)
 			m_currentFrame = 0;
 			m_deathAnimationStarted = true;
 		}
-
 		if (m_animationTime >= m_frameDuration)
 		{
 			updateAnimation(m_deathAnimationTotalFrames, 4.f);
@@ -198,7 +202,7 @@ void Player::applySpeedBoost()
 	{
 		m_speed.x *= 2.f;
 		m_isSpeedBoostActive = true;
-		m_speedBoostDuration = 10000.f;
+		m_speedBoostDuration = 20000.f;
 		m_speedBoostTimer = 0.0f;
 	}
 }

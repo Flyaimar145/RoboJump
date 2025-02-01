@@ -23,7 +23,7 @@
   </data>
  </layer>
  <objectgroup id="6" name="GroundsLayer">
-  <object id="5" name="Zone1Ground" x="736" y="784" width="240" height="209"/>
+  <object id="5" name="Zone1Ground" x="736" y="784" width="240" height="224"/>
   <object id="6" name="Zone1Ground" x="531" y="752" width="218" height="2"/>
   <object id="17" name="Zone1Ground" x="563" y="496" width="42" height="2"/>
   <object id="18" name="Zone1Ground" x="563" y="688" width="42" height="2"/>

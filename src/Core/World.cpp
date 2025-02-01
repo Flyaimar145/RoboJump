@@ -1,15 +1,23 @@
 #include <Core/CollisionManager.h>
-#include <Core/Level.h>
-#include <Core/World.h>
 #include <Core/EnemyManager.h>
+#include <Core/Level.h>
 #include <Core/PickUpManager.h>
-#include <Gameplay/Player.h>
-#include <Gameplay/Enemies/Enemy.h>
+#include <Core/World.h>
+#include <External/json.hpp>
 #include <Gameplay/Enemies/Cactus.h>
+#include <Gameplay/Enemies/Enemy.h>
+#include <Gameplay/Enemies/Frog.h>
+#include <Gameplay/Enemies/Stomp.h>
+#include <Gameplay/Gem.h>
+#include <Gameplay/PickUp.h>
+#include <Gameplay/PowerUp.h>
+#include <Gameplay/Player.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <UI/HUD.h>
+#include <Utils/Constants.h>
 
+using json = nlohmann::json;
 
 World::~World()
 {
@@ -37,10 +45,12 @@ World::~World()
 
 bool World::load()
 {
+	json gameConfigInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
+
 	m_level = new Level();
 	const bool levelLoaded = m_level->load();
 
-	m_view = new sf::View(sf::FloatRect({ 0.f, 0.f }, { 960.f, 540.f }));
+	m_view = new sf::View(sf::FloatRect({ 0.f, 0.f }, { gameConfigInfo["screenWidth"].get<float>() / 2, gameConfigInfo["screenHeight"].get<float>() / 2 }));
 	float deadZoneWidth = m_view->getSize().x * 0.15f;
 	float deadZoneHeight = m_view->getSize().y * 0.15f;
 	float deadZoneX = (m_view->getSize().x - deadZoneWidth) / 2.f;
@@ -51,8 +61,6 @@ bool World::load()
 	const bool hudLoaded = m_hud->init();
 	m_hudView = new sf::View(sf::FloatRect({ 0.f, 0.f }, m_view->getSize()));
 
-	m_victoryZone = sf::FloatRect(159.f * 16.f, 94.f * 16.f, 12.f * 16.f, 13.f * 16.f);
-
 	m_pickUpManager = new PickUpManager();
 	const bool pickUpsLoaded = m_pickUpManager->loadPickUps();
 
@@ -60,11 +68,11 @@ bool World::load()
 	const bool enemiesLoaded = m_enemyManager->loadEnemies();
 
 	Player* player = new Player();
-	Player::PlayerDescriptor playerDescriptor2 = player->load();
-	const bool playerLoaded = player->init(playerDescriptor2);
+	Player::PlayerDescriptor playerDescriptor = player->load();
+	const bool playerLoaded = player->init(playerDescriptor);
 	m_player = player;
 
-	return playerLoaded && enemiesLoaded && pickUpsLoaded;
+	return playerLoaded && enemiesLoaded && pickUpsLoaded && levelLoaded && hudLoaded;
 }
 
 void World::update(uint32_t deltaMilliseconds)
@@ -102,7 +110,8 @@ void World::render(sf::RenderWindow& window)
 
 	//drawDeadZone(window);
 
-	//This is to make the HUD follow the camera
+	//This is necessary to make the HUD follow the camera. First we save the original view, 
+	//then we set the view to the HUD view, render the HUD and then we set the view back to the original view
 	const sf::View originalView = window.getView();
 	window.setView(*m_hudView);
 	m_hud->render(window);
@@ -111,14 +120,12 @@ void World::render(sf::RenderWindow& window)
 
 void World::drawDeadZone(sf::RenderWindow& window)
 {
-	// Create a rectangle shape for the dead zone
 	sf::RectangleShape deadZoneRect;
 	deadZoneRect.setSize({ m_deadZone.width, m_deadZone.height });
-	deadZoneRect.setFillColor(sf::Color(0, 0, 255, 50)); // Semi-transparent blue
-	deadZoneRect.setOutlineColor(sf::Color::Blue);       // Blue outline
+	deadZoneRect.setFillColor(sf::Color(0, 0, 255, 50));
+	deadZoneRect.setOutlineColor(sf::Color::Blue);       
 	deadZoneRect.setOutlineThickness(0.5f);
 
-	// Position the rectangle relative to the view's center
 	sf::Vector2f viewCenter = m_view->getCenter();
 	sf::Vector2f topLeft(
 		viewCenter.x - m_deadZone.width / 2.f,
@@ -127,26 +134,16 @@ void World::drawDeadZone(sf::RenderWindow& window)
 
 	deadZoneRect.setPosition(topLeft);
 
-	// Draw the rectangle
 	window.draw(deadZoneRect);
 }
 
 void World::updateDeadZone()
 {
-	// Adjust the view's center based on the dead zone
 	sf::Vector2f playerPos = m_player->getPosition();
 	sf::Vector2f viewCenter = m_view->getCenter();
 	if (!m_player->getIsDead())
 	{
-		// Dead zone boundaries relative to the view's center
-		sf::FloatRect viewDeadZone(
-			viewCenter.x - m_deadZone.width / 2.f,
-			viewCenter.y - m_deadZone.height / 2.f,
-			m_deadZone.width,
-			m_deadZone.height
-		);
-
-		// Check if the player is outside the dead zone
+		sf::FloatRect viewDeadZone(viewCenter.x - m_deadZone.width / 2.f, viewCenter.y - m_deadZone.height / 2.f, m_deadZone.width, m_deadZone.height);
 		if (playerPos.x < viewDeadZone.left) {
 			viewCenter.x = playerPos.x + m_deadZone.width / 2.f;
 		}
@@ -234,10 +231,7 @@ void World::checkPlayerEnvironmentCollisions()
 	if (collidedTrapShape != nullptr)
 	{
 		m_player->setHasTakenDamage(true);
-	}
-	
-	
-		
+	}	
 }
 
 void World::checkPlayerEnemiesCollisions()
@@ -250,12 +244,10 @@ void World::checkPlayerEnemiesCollisions()
 			switch (enemy->getEnemyType())
 			{
 			case Enemy::EnemyType::Cactus:
-				//printf("Player touched a Cactus \n");
 				if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < enemy->getAdjustedBounds().top && m_player->getSpeed().y > 0.f)
 				{
 					m_player->setMakeJump(true);
 					enemy->setHasTakenDamage(true);
-					//enemy->setCanMakeDamage(false);
 				}
 				else
 				{
@@ -267,7 +259,6 @@ void World::checkPlayerEnemiesCollisions()
 				break;
 
 			case Enemy::EnemyType::Frog:
-				//printf("Player touched a Frog \n");
 				enemy->onPlayerCollision();
 				if (enemy->getCanMakeDamage())
 				{
@@ -276,7 +267,6 @@ void World::checkPlayerEnemiesCollisions()
 				break;
 
 			case Enemy::EnemyType::Stomp:
-				//printf("Player touched a Stomp \n");
 				if (enemy->getCanMakeDamage())
 				{
 					m_player->setHasTakenDamage(true);
@@ -284,9 +274,7 @@ void World::checkPlayerEnemiesCollisions()
 				break;
 
 			default:
-
 				break;
-
 			}
 		}
 	}
@@ -340,7 +328,7 @@ void World::checkPlayerDeath()
 
 void World::checkIfPlayerHasReachedVictory()
 {
-	if (m_player->getAdjustedBounds().intersects(m_victoryZone))
+	if (m_player->getAdjustedBounds().intersects(m_level->getVictoryZone()))
 	{
 		m_playerHasReachedVictory = true;
 	}

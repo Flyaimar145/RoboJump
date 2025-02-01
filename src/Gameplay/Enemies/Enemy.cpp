@@ -1,5 +1,4 @@
 #include <Gameplay/Enemies/Enemy.h>
-#include <SFML/Graphics/RenderWindow.hpp>
 
 bool Enemy::init(const EnemyDescriptor& enemyDescriptor)
 {

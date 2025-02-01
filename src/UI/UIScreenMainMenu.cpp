@@ -1,12 +1,5 @@
-#include <UI/UIScreenMainMenu.h>
-
 #include <SFML/Window/Keyboard.hpp>
-
-bool UIScreenMainMenu::init(sf::Texture* image)
-{
-	m_screenType = ScreenType::MainMenu;
-	return UIScreen::init(image);
-}
+#include <UI/UIScreenMainMenu.h>
 
 void UIScreenMainMenu::update(float milliseconds)
 {

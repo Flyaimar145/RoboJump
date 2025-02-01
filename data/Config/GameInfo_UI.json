@@ -1,0 +1,15 @@
+{
+    "HUDInfo":
+    {
+        "fontPath": "../data/Fonts/Pixel.ttf",
+        "characterSize": 32,
+        "positionX": 10,
+        "positionY": 5
+    },
+    "UIScreens":
+    {
+        "mainMenuScreenTexturePath": "../data/Images/GameScreens/RoboJumpMainScreen_4.png",
+        "gameOverScreenTexturePath": "../data/Images/GameScreens/GameOverScreen_4.png",
+        "victoryScreenTexturePath": "../data/Images/GameScreens/VictoryScreen_3.png"
+    }
+}

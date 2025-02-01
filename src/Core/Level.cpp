@@ -1,7 +1,11 @@
 #include <Core/Level.h>
+#include <External/json.hpp>
 #include <tmxlite/Map.hpp>
 #include <Render/SFMLOrthogonalLayer.h>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <Utils/Constants.h>
+
+using json = nlohmann::json;
 
 Level::~Level()
 {
@@ -26,10 +30,14 @@ Level::~Level()
 	delete m_map;
 	m_map = nullptr;
 }
+
 bool Level::load()
 {
+	json levelInfo = loadJsonFromFile(GAMEINFOJSON_LEVEL)["Level"];
+	json gameInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
+
 	m_map = new tmx::Map();
-	m_map->load("../Data/Levels/RoboJumpMap_Level1.tmx");
+	m_map->load(levelInfo["mapPath"].get<std::string>());
 	m_layerZero = new MapLayer(*m_map, 0);
 	m_layerOne = new MapLayer(*m_map, 1);
 	m_layerTwo = new MapLayer(*m_map, 2);
@@ -40,7 +48,7 @@ bool Level::load()
 	m_trapsLayer = new ObjectLayer(*m_map, 6);
 	m_enemyWallsLayer = new ObjectLayer(*m_map, 7);
 
-	m_layerZero->setOffset({ .0f, .0f });
+	m_victoryZone = sf::FloatRect(levelInfo["victoryZoneLeft"].get<float>() * gameInfo["mapTileSize"].get<float>(), levelInfo["victoryZoneTop"].get<float>() * gameInfo["mapTileSize"].get<float>(), levelInfo["victoryZoneWidth"].get<float>() * gameInfo["mapTileSize"].get<float>(), levelInfo["victoryZoneHeight"].get<float>() * gameInfo["mapTileSize"].get<float>());
 	
 	return true;
 }

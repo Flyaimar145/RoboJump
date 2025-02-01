@@ -1,22 +1,25 @@
-#include <UI/HUD.h>
 #include <Core/AssetManager.h>
-#include <cstdio>
+#include <External/json.hpp>
 #include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <UI/HUD.h>
 #include <Utils/Constants.h>
+
+using json = nlohmann::json;
 
 bool HUD::init()
 {
+	json hudInfo = loadJsonFromFile(GAMEINFOJSON_UI)["HUDInfo"];
 	
-	if (!m_font.loadFromFile("../data/Fonts/Pixel.ttf"))
+	if (!m_font.loadFromFile(hudInfo["fontPath"].get<std::string>()))
 	{
 		printf("Error loading font\n");
 		return false;
 	}
 	m_scoreText.setFont(m_font);
-	m_scoreText.setCharacterSize(32);
-	m_scoreText.setFillColor(sf::Color::White);
-	m_scoreText.setPosition(10.f, 5.f);
+	m_scoreText.setCharacterSize(hudInfo["characterSize"].get<float>());
+	m_scoreText.setPosition(hudInfo["positionX"].get<float>(), hudInfo["positionY"].get<float>());
 
     return true;
 }

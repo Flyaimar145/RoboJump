@@ -1,5 +1,8 @@
 #include <Core/AssetManager.h>
 #include <Core/PickUpManager.h>
+#include <Gameplay/Gem.h>
+#include <Gameplay/PickUp.h>
+#include <Gameplay/PowerUp.h>
 #include <External/json.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <Utils/Constants.h>
@@ -27,6 +30,8 @@ bool PickUpManager::loadPickUps()
 			sf::Texture* jsonTexture = AssetManager::getInstance()->loadTexture(currentPickUpData["texture"].get<std::string>().c_str());
 			float jsonTileWidth = currentPickUpData["tileWidth"].get<float>();
 			float jsonTileHeight = currentPickUpData["tileHeight"].get<float>();
+			float jsonTotalFrames = currentPickUpData["totalFrames"].get<float>();
+			float jsonFrameDuration = currentPickUpData["frameDuration"].get<float>();
 
 			if (pickUpType == "Gems")
 			{
@@ -36,6 +41,8 @@ bool PickUpManager::loadPickUps()
 				gemDescriptor.texture = jsonTexture;
 				gemDescriptor.tileWidth = jsonTileWidth;
 				gemDescriptor.tileHeight = jsonTileHeight;
+				gemDescriptor.totalFrames = jsonTotalFrames;
+				gemDescriptor.frameDuration = jsonFrameDuration;
 				gemDescriptor.points = currentPickUpData["points"].get<int>();
 				currentPickUp->setPickUpType(PickUp::PickUpType::Gem);
 				const bool pickUpLoaded = currentPickUp->init(gemDescriptor);
@@ -57,6 +64,8 @@ bool PickUpManager::loadPickUps()
 				pickUpDescriptor.texture = jsonTexture;
 				pickUpDescriptor.tileWidth = jsonTileWidth;
 				pickUpDescriptor.tileHeight = jsonTileHeight;
+				pickUpDescriptor.totalFrames = jsonTotalFrames;
+				pickUpDescriptor.frameDuration = jsonFrameDuration;
 				currentPickUp->setPickUpType(PickUp::PickUpType::PowerUp);
 				std::string powerUpType = currentPickUpData["powerUpType"];
 				if (powerUpType == "ExtraLife")

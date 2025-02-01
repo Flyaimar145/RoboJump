@@ -1,5 +1,9 @@
 #include <Core/AssetManager.h>
 #include <Core/EnemyManager.h>
+#include <Gameplay/Enemies/Cactus.h>
+#include <Gameplay/Enemies/Enemy.h>
+#include <Gameplay/Enemies/Frog.h>
+#include <Gameplay/Enemies/Stomp.h>
 #include <External/json.hpp>
 #include <Utils/Constants.h>
 

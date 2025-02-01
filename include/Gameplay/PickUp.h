@@ -13,9 +13,13 @@ class PickUp : public GameObject
 		struct PickUpDescriptor
 		{
 			sf::Vector2f position{ .0f, .0f };
+
 			sf::Texture* texture{ nullptr };
 			float tileWidth{ .0f };
 			float tileHeight{ .0f };
+
+			int totalFrames{ 0 };
+			float frameDuration{ 0.f };
 		};
 
 		enum class PickUpType
@@ -41,16 +45,17 @@ class PickUp : public GameObject
 		void setPickUpType(PickUpType pickUpType) { m_pickUpType = pickUpType; }
 
 	private:
+
 		PickUpType m_pickUpType;
+
 		sf::Sprite m_sprite;
 		float m_tileWidth{ .0f };
 		float m_tileHeight{ .0f };
 		float m_currentSpriteStartingX{ .0f };
 		float m_currentSpriteStartingY{ .0f };
+		
 		int m_currentFrame{ 0 };
 		float m_animationTime{ .0f };
-		float m_frameDuration{ 100.f };
-		int m_totalFrames{ 7 };
-
-
+		float m_frameDuration{ 0.f };
+		int m_totalFrames{ 0 };
 };

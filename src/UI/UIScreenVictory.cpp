@@ -1,13 +1,5 @@
-#include <UI/UIScreenVictory.h>
-
 #include <SFML/Window/Keyboard.hpp>
-
-
-bool UIScreenVictory::init(sf::Texture* image)
-{
-	m_screenType = ScreenType::Victory;
-	return UIScreen::init(image);
-}
+#include <UI/UIScreenVictory.h>
 
 void UIScreenVictory::update(float milliseconds)
 {

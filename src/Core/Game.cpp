@@ -16,26 +16,19 @@ bool Game::init()
 
 	json gameConfigInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
 
-	m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>());
-	//m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>(), sf::Style::Fullscreen);
+	//m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>());
+	m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>(), sf::Style::Fullscreen);
 
 	m_window->setFramerateLimit(gameConfigInfo["frameRateLimit"]);
 
-
-
 	m_uiManager = new UIManager();
 	const bool uiManagerLoaded = m_uiManager->load();
-
-	//m_world = new World();
-	//const bool loadOk = m_world->load();
 
 	return uiManagerLoaded;
 }
 
 Game::~Game()
 {
-	// To-Do: make sure m_world is unloaded()
-
 	delete m_world;
 	m_world = nullptr;
 	delete m_window;
@@ -181,6 +174,6 @@ void Game::render()
 			break;
 		}
 	}
-	
+
 	m_window->display();
 }

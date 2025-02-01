@@ -21,6 +21,6 @@ class PowerUp : public PickUp
 		void setPowerUpType(PowerUpType powerUpType) { m_powerUpType = powerUpType; }
 
 	private:
-		PowerUpType m_powerUpType;
 
+		PowerUpType m_powerUpType;
 };

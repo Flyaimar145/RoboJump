@@ -98,15 +98,3 @@ void Stomp::update(float deltaMilliseconds)
 
 	Enemy::update(deltaMilliseconds);
 }
-
-void Stomp::render(sf::RenderWindow& window)
-{
-	Enemy::render(window);
-	sf::RectangleShape detectionZoneRect(sf::Vector2f(m_detectionZone.width, m_detectionZone.height));
-	detectionZoneRect.setPosition(m_detectionZone.left, m_detectionZone.top);
-	detectionZoneRect.setOutlineColor(sf::Color::Green);
-	detectionZoneRect.setOutlineThickness(.5f);
-	detectionZoneRect.setFillColor(sf::Color::Transparent);
-	window.draw(detectionZoneRect);
-
-}

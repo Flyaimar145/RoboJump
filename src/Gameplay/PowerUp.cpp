@@ -1,4 +1,3 @@
-#include <Gameplay/Player.h>
 #include <Gameplay/PowerUp.h>
 
 int PowerUp::returnInfoOnPlayerCollision()
