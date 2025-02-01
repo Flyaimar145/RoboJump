@@ -3,11 +3,10 @@
 
 #include <UI/UIScreen.h>
 
-
-class UIScreenMainMenu : public UIScreen
+class UIScreenVictory : public UIScreen
 {
 public:
-	~UIScreenMainMenu() = default;
+	~UIScreenVictory() = default;
 
 	bool init(sf::Texture* image) override;
 

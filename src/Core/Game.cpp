@@ -4,7 +4,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Window/Event.hpp>
-#include <UI/UIScreenMainMenu.h>
+#include <UI/UIScreen.h>
+#include <UI/UIManager.h>
 #include <Utils/Constants.h>
 #include <SFML/Window/Keyboard.hpp>
 
@@ -20,13 +21,15 @@ bool Game::init()
 
 	m_window->setFramerateLimit(gameConfigInfo["frameRateLimit"]);
 
-	m_mainMenu = new UIScreenMainMenu();
-	const bool mainMenuInitOk = m_mainMenu->init();
+
+
+	m_uiManager = new UIManager();
+	const bool uiManagerLoaded = m_uiManager->load();
 
 	//m_world = new World();
 	//const bool loadOk = m_world->load();
 
-	return mainMenuInitOk;//loadOk;
+	return uiManagerLoaded;
 }
 
 Game::~Game()
@@ -37,8 +40,8 @@ Game::~Game()
 	m_world = nullptr;
 	delete m_window;
 	m_window = nullptr;
-	delete m_mainMenu;
-	m_mainMenu = nullptr;
+	delete m_uiManager;
+	m_uiManager = nullptr;
 }
 
 bool Game::isRunning() const 
@@ -59,11 +62,16 @@ void Game::update(uint32_t deltaMilliseconds)
 	{
 		case GameState::MainMenu:
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+			{
+				m_window->close();
+			}
+			m_uiManager->getMainMenuScreen()->update(deltaMilliseconds);
+			if (m_uiManager->getMainMenuScreen()->getGoToNextScreen())
 			{
 				this->setGameState(GameState::Playing);
+				m_uiManager->getMainMenuScreen()->setGoToNextScreen(false);
 			}
-			m_mainMenu->update(deltaMilliseconds);
 			break;
 		}
 		case GameState::Playing:
@@ -78,7 +86,16 @@ void Game::update(uint32_t deltaMilliseconds)
 				delete m_world;
 				m_world = nullptr;
 				m_isWorldLoaded = false;
+				m_window->setView(m_window->getDefaultView());
 				this->setGameState(GameState::GameOver);
+			}
+			else if (m_world->getPlayerHasReachedVictory())
+			{
+				delete m_world;
+				m_world = nullptr;
+				m_isWorldLoaded = false;
+				m_window->setView(m_window->getDefaultView());
+				this->setGameState(GameState::Victory);
 			}
 			else
 			{
@@ -88,17 +105,31 @@ void Game::update(uint32_t deltaMilliseconds)
 		}
 		case GameState::GameOver:
 		{
-			// To-Do: update the game over screen
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
+			m_uiManager->getGameOverScreen()->update(deltaMilliseconds);
+			if (m_uiManager->getGameOverScreen()->getGoToNextScreen())
 			{
 				this->setGameState(GameState::MainMenu);
+				m_uiManager->getGameOverScreen()->setGoToNextScreen(false);
 			}
-			m_mainMenu->update(deltaMilliseconds);
 
 			break;
 		}
+		case GameState::Victory:
+		{
+			m_uiManager->getVictoryScreen()->update(deltaMilliseconds);
+			if (m_uiManager->getVictoryScreen()->getGoToNextScreen())
+			{
+				this->setGameState(GameState::MainMenu);
+				m_uiManager->getVictoryScreen()->setGoToNextScreen(false);
+			}
+			break;
+		}
+		default:
+		{
+			assert(false && "Unknown game state");
+			break;
+		}
 	}
-	//m_world->update(deltaMilliseconds);
 }
 
 void Game::render()
@@ -107,35 +138,49 @@ void Game::render()
 
 	switch (m_gameState)
 	{
-	case GameState::MainMenu:
-	{
-		m_mainMenu->render(*m_window);
-		break;
-	}
-	case GameState::Playing:
-	{
-		if (m_isWorldLoaded)
+		case GameState::MainMenu:
 		{
-			m_world->render(*m_window);
+			m_uiManager->getMainMenuScreen()->render(*m_window);
+			break;
 		}
-		//m_world->render(*m_window);
-		break;
-	}
-	case GameState::GameOver:
-	{
-		// To-Do: render the game over screen
-		m_mainMenu->render(*m_window);
-		break;
-	}
-	default:
-	{
-		assert(false && "Unknown game state");
-		break;
-	}
+		case GameState::Playing:
+		{
+			if (m_isWorldLoaded)
+			{
+				m_world->render(*m_window);
+			}
+			break;
+		}
+		case GameState::GameOver:
+		{
+			if (m_isWorldLoaded)
+			{
+				m_world->render(*m_window);
+			}
+			else
+			{
+				m_uiManager->getGameOverScreen()->render(*m_window);
+			}
+			break;
+		}
+		case GameState::Victory:
+		{
+			if (m_isWorldLoaded)
+			{
+				m_world->render(*m_window);
+			}
+			else
+			{
+				m_uiManager->getVictoryScreen()->render(*m_window);
+			}
+			break;
+		}
+		default:
+		{
+			assert(false && "Unknown game state");
+			break;
+		}
 	}
 	
-
-	
-
 	m_window->display();
 }

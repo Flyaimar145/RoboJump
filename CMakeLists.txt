@@ -46,6 +46,12 @@ set(PROJECT_HEADERS
     include/Render/SFMLOrthogonalLayer.h
 
     include/UI/UIScreenMainMenu.h
+    include/UI/UIScreenVictory.h
+    include/UI/UIScreenGameOver.h
+    include/UI/UIManager.h
+    include/UI/UIScreen.h
+    include/UI/HUD.h
+
 
     include/External/json.hpp
 )
@@ -74,6 +80,12 @@ set(PROJECT_SOURCES
     src/Render/SFMLOrthogonalLayer.cpp
 
     src/UI/UIScreenMainMenu.cpp
+    src/UI/UIScreenVictory.cpp
+    src/UI/UIScreenGameOver.cpp
+    src/UI/UIManager.cpp
+    src/UI/UIScreen.cpp
+    src/UI/HUD.cpp
+
 
     src/main.cpp
 )

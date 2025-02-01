@@ -8,6 +8,7 @@
 #include <Gameplay/Enemies/Cactus.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <UI/HUD.h>
 
 
 World::~World()
@@ -26,6 +27,12 @@ World::~World()
 
 	delete m_level;
 	m_level = nullptr;
+
+	delete m_hud;
+	m_hud = nullptr;
+
+	delete m_hudView;
+	m_hudView = nullptr;
 }
 
 bool World::load()
@@ -40,16 +47,22 @@ bool World::load()
 	float deadZoneY = (m_view->getSize().y - deadZoneHeight) / 2.f;
 	m_deadZone = sf::FloatRect(deadZoneX, deadZoneY, deadZoneWidth, deadZoneHeight);
 
+	m_hud = new HUD();
+	const bool hudLoaded = m_hud->init();
+	m_hudView = new sf::View(sf::FloatRect({ 0.f, 0.f }, m_view->getSize()));
+
+	m_victoryZone = sf::FloatRect(159.f * 16.f, 94.f * 16.f, 12.f * 16.f, 13.f * 16.f);
+
 	m_pickUpManager = new PickUpManager();
 	const bool pickUpsLoaded = m_pickUpManager->loadPickUps();
+
+	m_enemyManager = new EnemyManager();
+	const bool enemiesLoaded = m_enemyManager->loadEnemies();
 
 	Player* player = new Player();
 	Player::PlayerDescriptor playerDescriptor2 = player->load();
 	const bool playerLoaded = player->init(playerDescriptor2);
 	m_player = player;
-
-	m_enemyManager = new EnemyManager();
-	const bool enemiesLoaded = m_enemyManager->loadEnemies();
 
 	return playerLoaded && enemiesLoaded && pickUpsLoaded;
 }
@@ -65,8 +78,10 @@ void World::update(uint32_t deltaMilliseconds)
 	checkPlayerEnemiesCollisions();
 	checkPlayerPickUpsCollisions();
 	checkPlayerDeath();
+	checkIfPlayerHasReachedVictory();
 	
 	updateDeadZone();
+	m_hud->update(m_player->getScore());
 
 	m_enemyManager->update(deltaMilliseconds);
 	checkSpecialsForCactusEnemies();
@@ -86,6 +101,12 @@ void World::render(sf::RenderWindow& window)
 	m_enemyManager->render(window);
 
 	//drawDeadZone(window);
+
+	//This is to make the HUD follow the camera
+	const sf::View originalView = window.getView();
+	window.setView(*m_hudView);
+	m_hud->render(window);
+	window.setView(originalView);
 }
 
 void World::drawDeadZone(sf::RenderWindow& window)
@@ -314,6 +335,14 @@ void World::checkPlayerDeath()
 	if (m_player->getHasFinishedDying())
 	{
 		m_isPlayerDead = true;
+	}
+}
+
+void World::checkIfPlayerHasReachedVictory()
+{
+	if (m_player->getAdjustedBounds().intersects(m_victoryZone))
+	{
+		m_playerHasReachedVictory = true;
 	}
 }
 

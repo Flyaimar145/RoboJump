@@ -3,13 +3,13 @@
 
 #include <UI/UIScreen.h>
 
-
-class UIScreenMainMenu : public UIScreen
+class UIScreenGameOver : public UIScreen
 {
 public:
-	~UIScreenMainMenu() = default;
+	~UIScreenGameOver() = default;
 
 	bool init(sf::Texture* image) override;
 
 	void update(float milliseconds) override;
+
 };

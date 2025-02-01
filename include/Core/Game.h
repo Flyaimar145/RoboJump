@@ -15,7 +15,8 @@ namespace sf
 using json = nlohmann::json;
 
 class World;
-class UIScreenMainMenu;
+class UIManager;
+
 
 class Game
 {
@@ -25,7 +26,8 @@ class Game
 		{
 			MainMenu,
 			Playing,
-			GameOver
+			GameOver,
+			Victory
 		};
 
 		~Game();
@@ -47,6 +49,6 @@ class Game
 
 		sf::RenderWindow* m_window{ nullptr };
 		World* m_world{ nullptr };
-		UIScreenMainMenu* m_mainMenu{ nullptr };
+		UIManager* m_uiManager{ nullptr };
 
 };

@@ -4,11 +4,12 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 
 
+
 class EnemyManager;
 class Level;
 class PickUpManager;
 class Player;
-
+class HUD;
 
 namespace sf
 {
@@ -37,6 +38,7 @@ class World
 		void render(sf::RenderWindow& window);
 
 		bool getIsPlayerDead() const { return m_isPlayerDead; }
+		bool getPlayerHasReachedVictory() const { return m_playerHasReachedVictory; }
 
 	private:
 
@@ -48,9 +50,13 @@ class World
 		PickUpManager* m_pickUpManager{ nullptr };
 
 		sf::View* m_view{ nullptr };
+		HUD* m_hud{ nullptr };
+		sf::View* m_hudView;
 		sf::FloatRect m_deadZone;
+		sf::FloatRect m_victoryZone;
 
 		bool m_isPlayerDead{ false };
+		bool m_playerHasReachedVictory{ false };
 
 		void drawDeadZone(sf::RenderWindow& window);
 		void updateDeadZone();
@@ -58,6 +64,7 @@ class World
 		void checkPlayerPickUpsCollisions();
 		void checkPlayerEnemiesCollisions();
 		void checkPlayerDeath();
+		void checkIfPlayerHasReachedVictory();
 
 		void checkSpecialsForCactusEnemies();
 		void checkSpecialsForStompEnemies();
