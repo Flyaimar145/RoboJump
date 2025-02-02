@@ -30,9 +30,6 @@ class Enemy : public Entity
 		bool getCanMakeDamage() const { return m_canMakeDamage; }
 		Enemy::EnemyType getEnemyType() const { return m_enemyType; }
 
-		void setCanMakeDamage(bool canMakeDamage) { m_canMakeDamage = canMakeDamage; }
-		void setEnemyType(Enemy::EnemyType enemyType) { m_enemyType = enemyType; }
-
 	protected:
 
 		bool m_canMakeDamage{ true };

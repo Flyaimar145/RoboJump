@@ -38,6 +38,7 @@ bool EnemyManager::loadEnemies()
 			enemyDescriptor.tileHeight = currentEnemyData["tileHeight"].get<float>();
 			enemyDescriptor.totalFrames = currentEnemyData["totalFrames"].get<int>();
 			enemyDescriptor.deathAnimationTotalFrames = currentEnemyData["deathAnimationTotalFrames"].get<int>();
+			enemyDescriptor.frameDuration = currentEnemyData["frameDuration"].get<float>();
 			enemyDescriptor.initialDirection = { currentEnemyData["initialDirectionX"].get<float>(), currentEnemyData["initialDirectionY"].get<float>() };
 			enemyDescriptor.lifeCount = currentEnemyData["lifeCount"].get<int>();
 			enemyDescriptor.offsetForAdjustedBoundsLeft = currentEnemyData["offsetForAdjustedBoundsLeft"].get<float>();
@@ -55,7 +56,6 @@ bool EnemyManager::loadEnemies()
 				{
 					return false;
 				}
-				
 			}
 			else if (enemyType == "Frog")
 			{

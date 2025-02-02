@@ -1,7 +1,6 @@
 #include <Core/AudioManager.h>
 #include <Gameplay/Enemies/Frog.h>
 
-
 bool Frog::init(const EnemyDescriptor& enemyDescriptor)
 {
 	m_enemyType = Enemy::EnemyType::Frog;

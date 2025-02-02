@@ -1,5 +1,6 @@
 #include <Core/Game.h>
 #include <SFML/System/Clock.hpp>
+#include <stdio.h>
 
 int main()
 {

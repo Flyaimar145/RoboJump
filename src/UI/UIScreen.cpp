@@ -1,8 +1,4 @@
-#include <Core/AssetManager.h>
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Window/Keyboard.hpp>
 #include <UI/UIScreen.h>
 
 bool UIScreen::init(sf::Texture*image)

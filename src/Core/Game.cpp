@@ -3,12 +3,12 @@
 #include <Core/Game.h>
 #include <Core/World.h>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Window/Event.hpp>
-#include <UI/UIScreen.h>
+#include <UI/UIScreenGameOver.h>
+#include <UI/UIScreenMainMenu.h>
+#include <UI/UIScreenVictory.h>
 #include <UI/UIManager.h>
 #include <Utils/Constants.h>
-#include <SFML/Window/Keyboard.hpp>
 
 
 bool Game::init()
@@ -66,11 +66,11 @@ void Game::update(uint32_t deltaMilliseconds)
 	{
 		case GameState::MainMenu:
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+			m_uiManager->getMainMenuScreen()->update(deltaMilliseconds);
+			if (m_uiManager->getMainMenuScreen()->getExitGame())
 			{
 				m_window->close();
 			}
-			m_uiManager->getMainMenuScreen()->update(deltaMilliseconds);
 			if (m_uiManager->getMainMenuScreen()->getGoToNextScreen())
 			{
 				AudioManager::getInstance()->stopCurrentMusic();
@@ -83,7 +83,7 @@ void Game::update(uint32_t deltaMilliseconds)
 		}
 		case GameState::Playing:
 		{
-			if (m_isWorldLoaded == false)
+			if (!m_isWorldLoaded)
 			{
 				m_world = new World();
 				m_isWorldLoaded = m_world->load();

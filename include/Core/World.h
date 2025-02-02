@@ -46,14 +46,13 @@ class World
 		PickUpManager* m_pickUpManager{ nullptr };
 
 		sf::View* m_view{ nullptr };
-		HUD* m_hud{ nullptr };
 		sf::View* m_hudView{ nullptr };
+		HUD* m_hud{ nullptr };
 		sf::FloatRect m_deadZone;
 
 		bool m_isPlayerDead{ false };
 		bool m_playerHasReachedVictory{ false };
-
-		void drawDeadZone(sf::RenderWindow& window);
+ 
 		void updateDeadZone();
 
 		void checkPlayerEnvironmentCollisions();

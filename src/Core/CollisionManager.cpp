@@ -1,5 +1,4 @@
 #include <Core/CollisionManager.h>
-
 #include <Gameplay/Enemies/Enemy.h>
 #include <Gameplay/PickUp.h>
 #include <Gameplay/Player.h>

@@ -1,11 +1,7 @@
 #include <Core/AssetManager.h>
 #include <External/json.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <SFML/Window/Keyboard.hpp>
 #include <UI/UIManager.h>
-#include <UI/UIScreen.h>
 #include <UI/UIScreenGameOver.h>
 #include <UI/UIScreenMainMenu.h>
 #include <UI/UIScreenVictory.h>

@@ -1,15 +1,11 @@
 #pragma once
 
 #include <cstdint>
-#include <string>
-#include <External/json.hpp>
 
 namespace sf
 {
 	class RenderWindow;
 }
-
-using json = nlohmann::json;
 
 class World;
 class UIManager;

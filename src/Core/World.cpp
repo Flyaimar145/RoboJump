@@ -7,11 +7,8 @@
 #include <External/json.hpp>
 #include <Gameplay/Enemies/Cactus.h>
 #include <Gameplay/Enemies/Enemy.h>
-#include <Gameplay/Enemies/Frog.h>
 #include <Gameplay/Enemies/Stomp.h>
-#include <Gameplay/Gem.h>
 #include <Gameplay/PickUp.h>
-#include <Gameplay/PowerUp.h>
 #include <Gameplay/Player.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -109,33 +106,12 @@ void World::render(sf::RenderWindow& window)
 
 	m_enemyManager->render(window);
 
-	//drawDeadZone(window);
-
-	//This is necessary to make the HUD follow the camera. First we save the original view, 
+	//This is necessary to make the HUD follow the camera. First we save the current view, 
 	//then we set the view to the HUD view, render the HUD and then we set the view back to the original view
 	const sf::View originalView = window.getView();
 	window.setView(*m_hudView);
 	m_hud->render(window);
 	window.setView(originalView);
-}
-
-void World::drawDeadZone(sf::RenderWindow& window)
-{
-	sf::RectangleShape deadZoneRect;
-	deadZoneRect.setSize({ m_deadZone.width, m_deadZone.height });
-	deadZoneRect.setFillColor(sf::Color(0, 0, 255, 50));
-	deadZoneRect.setOutlineColor(sf::Color::Blue);       
-	deadZoneRect.setOutlineThickness(0.5f);
-
-	sf::Vector2f viewCenter = m_view->getCenter();
-	sf::Vector2f topLeft(
-		viewCenter.x - m_deadZone.width / 2.f,
-		viewCenter.y - m_deadZone.height / 2.f
-	);
-
-	deadZoneRect.setPosition(topLeft);
-
-	window.draw(deadZoneRect);
 }
 
 void World::updateDeadZone()
@@ -145,17 +121,21 @@ void World::updateDeadZone()
 	if (!m_player->getIsDead())
 	{
 		sf::FloatRect viewDeadZone(viewCenter.x - m_deadZone.width / 2.f, viewCenter.y - m_deadZone.height / 2.f, m_deadZone.width, m_deadZone.height);
-		if (playerPos.x < viewDeadZone.left) {
+		if (playerPos.x < viewDeadZone.left) 
+		{
 			viewCenter.x = playerPos.x + m_deadZone.width / 2.f;
 		}
-		else if (playerPos.x > viewDeadZone.left + m_deadZone.width) {
+		else if (playerPos.x > viewDeadZone.left + m_deadZone.width) 
+		{
 			viewCenter.x = playerPos.x - m_deadZone.width / 2.f;
 		}
 
-		if (playerPos.y < viewDeadZone.top) {
+		if (playerPos.y < viewDeadZone.top) 
+		{
 			viewCenter.y = playerPos.y + m_deadZone.height / 2.f;
 		}
-		else if (playerPos.y > viewDeadZone.top + m_deadZone.height) {
+		else if (playerPos.y > viewDeadZone.top + m_deadZone.height) 
+		{
 			viewCenter.y = playerPos.y - m_deadZone.height / 2.f;
 		}
 

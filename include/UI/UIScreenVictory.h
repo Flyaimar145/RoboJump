@@ -6,7 +6,7 @@ class UIScreenVictory : public UIScreen
 {
 	public:
 
-		~UIScreenVictory() = default;
+		~UIScreenVictory() override = default;
 
 		void update(float milliseconds) override;
 };

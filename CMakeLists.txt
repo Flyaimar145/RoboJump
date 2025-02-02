@@ -103,7 +103,7 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT $
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-audio tmxlite)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
-target_compile_definitions(${PROJECT_NAME} PUBLIC DEBUG_MODE=1)
+target_compile_definitions(${PROJECT_NAME} PUBLIC DEBUG_MODE=0)
 
 if(WIN32)
     add_custom_command(

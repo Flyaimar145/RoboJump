@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
 namespace sf
@@ -12,7 +11,7 @@ class UIScreen
 {
 	public:
 
-		~UIScreen() = default;
+		virtual ~UIScreen() = default;
 
 		virtual bool init(sf::Texture* image);
 		virtual void update(float milliseconds) = 0;

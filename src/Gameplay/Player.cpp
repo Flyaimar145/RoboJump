@@ -32,6 +32,7 @@ Player::PlayerDescriptor Player::load()
 
 	playerDescriptor.totalFrames = playerInfo["totalFrames"].get<int>();
 	playerDescriptor.deathAnimationTotalFrames = playerInfo["deathAnimationTotalFrames"].get<int>();
+	playerDescriptor.frameDuration = playerInfo["frameDuration"].get<float>();
 
 	playerDescriptor.lifeCount = playerInfo["lifeCount"].get<int>();
 

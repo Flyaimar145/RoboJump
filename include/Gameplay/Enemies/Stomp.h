@@ -14,10 +14,7 @@ class Stomp : public Enemy
 
 		void update(float deltaMilliseconds) override;
 
-		bool getHasToAttack() const { return m_hasToAttack; }
 		sf::FloatRect getDetectionZone() const { return m_detectionZone; }
-
-		void setHasToAttack(bool hasToAttack) { m_hasToAttack = hasToAttack; }
 
 	private:
 

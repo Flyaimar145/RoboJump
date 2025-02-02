@@ -23,6 +23,7 @@ class Entity : public GameObject
 
 			int totalFrames{ 0 };
 			int deathAnimationTotalFrames{ 0 };
+			float frameDuration{ 0.f };
 
 			int lifeCount{ 0 };
 		};
@@ -43,14 +44,11 @@ class Entity : public GameObject
 
 		sf::Vector2f getSpeed() const { return m_speed; }
 		sf::Vector2f getDirection() const { return m_direction; }
-		int getLifeCount() const { return m_lifeCount; }
-		bool getHasTakenDamage() const { return m_hasTakenDamage; }
 		bool getIsDead() const { return m_isDead; }
 		bool getHasFinishedDying() const { return m_hasFinishedDying; }
 
 		void setSpeed(sf::Vector2f speed) { m_speed = speed; }
 		void setDirection(sf::Vector2f direction) { m_direction = direction; }
-		void setLifeCount(int lifeCount) { m_lifeCount = lifeCount; }
 		void setHasTakenDamage(bool damageTaken) { m_hasTakenDamage = damageTaken; }
 		void setIsDead(bool isDead) { m_isDead = isDead; }
 
@@ -70,7 +68,7 @@ class Entity : public GameObject
 		float m_currentSpriteStartingX{ .0f };
 		float m_currentSpriteStartingY{ .0f };
 		float m_animationTime{ .0f };
-		float m_frameDuration{ 50.f };
+		float m_frameDuration{ 0.f };
 		int m_currentFrame{ 0 };
 		int m_totalFrames{ 0 };
 		int m_deathAnimationTotalFrames{ 0 };

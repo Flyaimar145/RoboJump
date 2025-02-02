@@ -1,8 +1,5 @@
-#include <Core/AssetManager.h>
 #include <External/json.hpp>
-#include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Text.hpp>
 #include <UI/HUD.h>
 #include <Utils/Constants.h>
 

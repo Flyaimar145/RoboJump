@@ -7,4 +7,8 @@ void UIScreenMainMenu::update(float milliseconds)
 	{
 		m_goToNextScreen = true;
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+	{
+		m_exitGame = true;
+	}
 }

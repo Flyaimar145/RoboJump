@@ -16,6 +16,7 @@
                     "tileHeight": 32,
                     "totalFrames": 12,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": -1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -34,6 +35,7 @@
                     "tileHeight": 32,
                     "totalFrames": 12,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -52,6 +54,7 @@
                     "tileHeight": 32,
                     "totalFrames": 12,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -72,6 +75,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -90,6 +94,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": -1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -108,6 +113,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": -1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -126,6 +132,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -144,6 +151,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": -1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -162,6 +170,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": -1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -180,6 +189,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -198,6 +208,7 @@
                     "tileHeight": 32,
                     "totalFrames": 11,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 50,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -218,6 +229,7 @@
                     "tileHeight": 48,
                     "totalFrames": 8,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 100,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -236,6 +248,7 @@
                     "tileHeight": 48,
                     "totalFrames": 8,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 100,
                     "initialDirectionX": -1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
@@ -254,6 +267,7 @@
                     "tileHeight": 48,
                     "totalFrames": 8,
                     "deathAnimationTotalFrames": 7,
+                    "frameDuration": 100,
                     "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1

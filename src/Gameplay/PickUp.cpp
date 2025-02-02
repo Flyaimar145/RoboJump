@@ -30,15 +30,6 @@ void PickUp::render(sf::RenderWindow& window)
 {
 	m_sprite.setTextureRect(sf::IntRect(m_currentSpriteStartingX, m_currentSpriteStartingY, m_tileWidth, m_tileHeight));
 	window.draw(m_sprite);
-
-	// Uncomment to draw the bounds of the sprite
-	/*const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
-	sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
-	boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
-	boundsRect.setOutlineColor(sf::Color::Blue);
-	boundsRect.setOutlineThickness(.5f);
-	boundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(boundsRect);*/
 }
 
 void PickUp::updateAnimation(int totalAnimationFrames, float spriteSheetRow)

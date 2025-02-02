@@ -15,6 +15,7 @@
           "tileHeight": 32,
           "totalFrames": 12,
           "deathAnimationTotalFrames": 7,
+          "frameDuration": 50,
           "jumpSpeed": 300,
           "lifeCount": 2
      }

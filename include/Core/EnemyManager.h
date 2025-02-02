@@ -16,6 +16,7 @@ class Stomp;
 class EnemyManager 
 {
 	public:
+
 		~EnemyManager();
 		
 		bool loadEnemies();
@@ -31,6 +32,7 @@ class EnemyManager
 		std::vector<Stomp*>& getStompTypeEnemiesVector() { return m_stompTypeEnemiesVector; }
 
 	private:
+
 		std::vector<Enemy*> m_enemiesVector;
 		std::vector<Cactus*> m_cactusTypeEnemiesVector;
 		std::vector<Frog*> m_frogTypeEnemiesVector;

@@ -6,7 +6,7 @@ class UIScreenGameOver : public UIScreen
 {
 	public:
 
-		~UIScreenGameOver() = default;
+		~UIScreenGameOver() override = default;
 
 		void update(float milliseconds) override;
 };

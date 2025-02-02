@@ -1,6 +1,8 @@
 #pragma once
 
-class UIScreen;
+class UIScreenMainMenu;
+class UIScreenGameOver;
+class UIScreenVictory;
 
 namespace sf
 {
@@ -10,16 +12,18 @@ namespace sf
 class UIManager
 {
 	public:
+
 		~UIManager();
 
 		bool load();
 		
-		UIScreen* getMainMenuScreen() const { return m_mainMenuScreen; }
-		UIScreen* getGameOverScreen() const { return m_gameOverScreen; }
-		UIScreen* getVictoryScreen() const { return m_victoryScreen; }
+		UIScreenMainMenu* getMainMenuScreen() const { return m_mainMenuScreen; }
+		UIScreenGameOver* getGameOverScreen() const { return m_gameOverScreen; }
+		UIScreenVictory* getVictoryScreen() const { return m_victoryScreen; }
 
 	private:
-		UIScreen* m_mainMenuScreen = nullptr;
-		UIScreen* m_gameOverScreen = nullptr;
-		UIScreen* m_victoryScreen = nullptr;
+
+		UIScreenMainMenu* m_mainMenuScreen = nullptr;
+		UIScreenGameOver* m_gameOverScreen = nullptr;
+		UIScreenVictory* m_victoryScreen = nullptr;
 };

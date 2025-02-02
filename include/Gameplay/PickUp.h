@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Gameplay/GameObject.h>
-#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
 class Player;

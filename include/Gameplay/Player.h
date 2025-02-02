@@ -22,13 +22,9 @@ class Player : public Entity
 		void addLife();
 		void applySpeedBoost();
 
-		bool getIsJumping() const { return m_isJumping; }
-		float getJumpSpeed() const { return m_jumpSpeed; }
-		float getGravity() const { return m_currentGravity; }
 		int getScore() const { return m_score; }
 
 		void setIsJumping(bool isJumping) { m_isJumping = isJumping; }
-		void setJumpSpeed(float jumpSpeed) { m_jumpSpeed = jumpSpeed; }
 		void setGravity(float gravity) { m_currentGravity = gravity; }
 		void setMakeJump(bool makeJump) { m_makeJump = makeJump; }
 	

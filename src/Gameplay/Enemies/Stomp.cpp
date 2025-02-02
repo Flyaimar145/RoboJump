@@ -1,11 +1,9 @@
 #include <Core/AudioManager.h>
 #include <Gameplay/Enemies/Stomp.h>
-#include <SFML/Graphics/RenderWindow.hpp>
 
 bool Stomp::init(const EnemyDescriptor& enemyDescriptor)
 {
 	m_enemyType = Enemy::EnemyType::Stomp;
-	m_frameDuration = 100.f;
 	m_initialPositionY = enemyDescriptor.position.y;
 	m_originalSpeedX = enemyDescriptor.speed.x;
 	m_detectionZone = sf::FloatRect(enemyDescriptor.position.x + enemyDescriptor.tileWidth/2.f - 2.f, enemyDescriptor.position.y + enemyDescriptor.tileHeight*2 -2.f , 2.f, 2.f);

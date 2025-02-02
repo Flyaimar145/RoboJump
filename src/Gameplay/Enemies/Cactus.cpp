@@ -1,6 +1,5 @@
 #include <Core/AudioManager.h>
 #include <Gameplay/Enemies/Cactus.h>
-#include <SFML/Graphics/RenderWindow.hpp>
 
 bool Cactus::init(const EnemyDescriptor& enemyDescriptor)
 {
@@ -44,6 +43,7 @@ void Cactus::update(float deltaMilliseconds)
 				if (m_lifeCount <= 0)
 				{
 					m_isDead = true;
+					m_canMakeDamage = false;
 				}
 			}
 		}

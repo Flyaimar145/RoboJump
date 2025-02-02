@@ -22,6 +22,7 @@ bool Entity::init(const EntityDescriptor& entityDescriptor)
 
 	m_totalFrames = entityDescriptor.totalFrames;
 	m_deathAnimationTotalFrames = entityDescriptor.deathAnimationTotalFrames;
+	m_frameDuration = entityDescriptor.frameDuration;
 	
 	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tileWidth, m_tileHeight));
 
@@ -36,26 +37,7 @@ void Entity::update(float  deltaMilliseconds)
 void Entity::render(sf::RenderWindow& window)
 {
 	m_sprite.setTextureRect(sf::IntRect(m_currentSpriteStartingX, m_currentSpriteStartingY, m_tileWidth, m_tileHeight));
-
 	window.draw(m_sprite);
-
-	// Uncomment to draw the sprite bounds
-	/*const sf::FloatRect spriteBounds = m_sprite.getGlobalBounds();
-	sf::RectangleShape boundsRect(sf::Vector2f(spriteBounds.width, spriteBounds.height));
-	boundsRect.setPosition(spriteBounds.left, spriteBounds.top);
-	boundsRect.setOutlineColor(sf::Color::Blue);
-	boundsRect.setOutlineThickness(.5f);
-	boundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(boundsRect);*/
-
-	// Uncomment to draw the adjusted bounds (what is used for collision detection)
-	/*const sf::FloatRect adjustedBounds = this->getAdjustedBounds();
-	sf::RectangleShape adjustedBoundsRect(sf::Vector2f(adjustedBounds.width, adjustedBounds.height));
-	adjustedBoundsRect.setPosition(adjustedBounds.left, adjustedBounds.top);
-	adjustedBoundsRect.setOutlineColor(sf::Color::Yellow);
-	adjustedBoundsRect.setOutlineThickness(.5f);
-	adjustedBoundsRect.setFillColor(sf::Color::Transparent);
-	window.draw(adjustedBoundsRect);*/
 }
 
 void Entity::updateAnimation(int totalAnimationFrames, float spriteSheetRow)
