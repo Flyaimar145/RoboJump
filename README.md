@@ -1,103 +1,44 @@
-# CMake SFML Project Template
+# RoboJump
 
-This repository template should allow for a fast and hassle-free kick start of your next SFML project using CMake.
-Thanks to [GitHub's nature of templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template), you can fork this repository without inheriting its Git history.
+Welcome to **RoboJump**, a small 2D platformer game built using **SFML** and C++!
 
-The template starts out very basic, but might receive additional features over time:
+## Game Description
 
-- Basic CMake script to build your project and link SFML on any operating system
-- Basic [GitHub Actions](https://github.com/features/actions) script for all major platforms
+In RoboJump, you control a robot navigating through a level divided in 3 zones filled with platforms, enemies, and obstacles. Collect gems and avoid traps and enemies while aiming for victory. Will you reach the end with the maximum score?
 
-## How to Use
+## Screenshots
+
+![MainMenu](./data/Images/GameScreenshotsForTheReadme/MainMenu.png)
+![Gameplay](./data/Images/GameScreenshotsForTheReadme/Gameplay.png)
+
+
+## How to Use / Installation
 
 1. Install [Git](https://git-scm.com/downloads) and [CMake](https://cmake.org/download/). Use your system's package manager if available.
-2. Follow [GitHub's instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for how to use their project template feature to create your own project. If you don't want to use GitHub, see the section below.
-3. Clone your new GitHub repo and open the repo in your text editor of choice.
-4. Open [CMakeLists.txt](CMakeLists.txt). Rename the project and the target name of the executable to whatever name you want. Make sure to change all occurrences.
-5. If you want to add or remove any .cpp files, change the source files listed in the `add_executable` call in CMakeLists.txt to match the source files your project requires. If you plan on keeping the default main.cpp file then no changes are required.
-6. If your code uses the Audio or Network modules then add `sfml-audio` or `sfml-network` to the `target_link_libraries` call alongside the existing `sfml-graphics` library that is being linked.
-7. If you use Linux, install SFML's dependencies using your system package manager. On Ubuntu and other Debian-based distributions you can use the following commands:
-   ```
-   sudo apt update
-   sudo apt install \
-       libxrandr-dev \
-       libxcursor-dev \
-       libudev-dev \
-       libfreetype-dev \
-       libopenal-dev \
-       libflac-dev \
-       libvorbis-dev \
-       libgl1-mesa-dev \
-       libegl1-mesa-dev
-   ```
-8. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
-
-   - [VS Code](https://code.visualstudio.com) via the [CMake extension](https://code.visualstudio.com/docs/cpp/cmake-linux)
-   - [Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170)
-   - [CLion](https://www.jetbrains.com/clion/features/cmake-support.html)
-   - [Qt Creator](https://doc.qt.io/qtcreator/creator-project-cmake.html)
-
-   Using CMake from the command line is straightforward as well.
-   Be sure to run these commands in the root directory of the project you just created.
-
+2. Clone the GitHub repo or download it as a zip and extract it.
+3. Create an empty "build" folder in the root directory.
+4. Use CMake from the command line to generate the game build (if you are on Windows you can use the option of the step 4).
+   Be sure to run these commands in the root directory of the game.
    ```
    cmake -B build
-   cmake --build build
+   cmake --build ./build
    ```
+4. If you are on Windows, you can run ./scripts/build.bat to generate the build.
+5. (Optional) If you have Visual Studio 2022 and want to generate the VS solution, execute ./scripts/generate.bat
 
-9. Enjoy!
+## Features
 
-## Upgrading SFML
+- Enemies: Try to avoid being killed by 3 types of enemies: Cactus, Frog and Stomp.
+- Gems: Collect different colored gem to increase your score and test yourself to get the maximum score!
+- Power ups: Collect up to 2 power ups, extra lives and speed boosts.
+- AI: Some enemies have basic player detection so they know when to attack.
 
-SFML is found via CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module.
-FetchContent automatically downloads SFML from GitHub and builds it alongside your own code.
-Beyond the convenience of not having to install SFML yourself, this ensures ABI compatibility and simplifies things like specifying static versus shared libraries.
+## Technical challenges faced in the development
 
-Modifying what version of SFML you want is as easy as changing the [`GIT_TAG`](CMakeLists.txt#L7) argument.
-Currently it uses the latest in-development version of SFML 2 via the `2.6.x` tag.
-If you're feeling adventurous and want to give SFML 3 a try, use the `master` tag.
-Beware, this requires changing your code to suit the modified API!
-The nice folks in the [SFML community](https://github.com/SFML/SFML#community) can help you with that transition and the bugs you may encounter along the way.
-
-## But I want to...
-
-Modify CMake options by adding them as configuration parameters (with a `-D` flag) or by modifying the contents of CMakeCache.txt and rebuilding.
-
-### Not use GitHub
-
-You can use this project without a GitHub account by [downloading the contents](https://github.com/SFML/cmake-sfml-project/archive/refs/heads/master.zip) of the repository as a ZIP archive and unpacking it locally.
-This approach also avoids using Git entirely if you would prefer to not do that.
-
-### Change Compilers
-
-See the variety of [`CMAKE_<LANG>_COMPILER`](https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER.html) options.
-In particular you'll want to modify `CMAKE_CXX_COMPILER` to point to the C++ compiler you wish to use.
-
-### Change Compiler Optimizations
-
-CMake abstracts away specific optimizer flags through the [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) option.
-By default this project recommends `Release` builds which enable optimizations.
-Other build types include `Debug` builds which enable debug symbols but disable optimizations.
-If you're using a multi-configuration generator (as is often the case on Windows), you can modify the [`CMAKE_CONFIGURATION_TYPES`](https://cmake.org/cmake/help/latest/variable/CMAKE_CONFIGURATION_TYPES.html#variable:CMAKE_CONFIGURATION_TYPES) option.
-
-### Change Generators
-
-While CMake will attempt to pick a suitable default generator, some systems offer a number of generators to choose from.
-Ubuntu, for example, offers Makefiles and Ninja as two potential options.
-For a list of generators, click [here](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html).
-To modify the generator you're using you must reconfigure your project providing a `-G` flag with a value corresponding to the generator you want.
-You can't simply modify an entry in the CMakeCache.txt file unlike the above options.
-Then you may rebuild your project with this new generator.
-
-## More Reading
-
-Here are some useful resources if you want to learn more about CMake:
-
-- [Official CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/)
-- [How to Use CMake Without the Agonizing Pain - Part 1](https://alexreinking.com/blog/how-to-use-cmake-without-the-agonizing-pain-part-1.html)
-- [How to Use CMake Without the Agonizing Pain - Part 2](https://alexreinking.com/blog/how-to-use-cmake-without-the-agonizing-pain-part-2.html)
-- [Better CMake YouTube series by Jefferon Amstutz](https://www.youtube.com/playlist?list=PL8i3OhJb4FNV10aIZ8oF0AA46HgA2ed8g)
+- Class hierarchy: Making a good class hierarchy for some elements of the game has not been easy, specially since some of them are controlled through a manager that must manage them in a generic way.
+- Memory usage: To learn about how pointers work and to have better control over them, raw pointers have been used instead of smart pointers.
+- Data-driven configuration: Game's info is loaded thanks to some JSON files. That makes easier to change parameters of the game's elements or to add elements. For example, to add a new enemy, just going to the enemies' JSON and adding a new entry is enough, the code must not be changed.
 
 ## License
 
-The source code is dual licensed under Public Domain and MIT -- choose whichever you prefer.
+This project is licensed under the MIT License. See LICENSE.md file for full details.

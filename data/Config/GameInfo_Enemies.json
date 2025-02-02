@@ -3,7 +3,7 @@
      {
           "Cactus": [
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
                     "positionX": 51,
                     "positionY": 37,
                     "offsetForAdjustedBoundsLeft": 6,
@@ -22,7 +22,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
                     "positionX": 121,
                     "positionY": 28,
                     "offsetForAdjustedBoundsLeft": 6,
@@ -41,7 +41,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/PatrolEnemyTileSet.png",
                     "positionX": 125,
                     "positionY": 51,
                     "offsetForAdjustedBoundsLeft": 6,
@@ -62,7 +62,7 @@
           ],
           "Frog": [
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 136,
                     "positionY": 34,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -81,7 +81,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 142,
                     "positionY": 31,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -100,7 +100,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 142,
                     "positionY": 37,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -119,7 +119,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 135,
                     "positionY": 40,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -138,7 +138,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 95,
                     "positionY": 81,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -157,7 +157,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 95,
                     "positionY": 89,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -176,7 +176,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 84,
                     "positionY": 85,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -195,7 +195,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/FrogEnemyTileSet.png",
                     "positionX": 84,
                     "positionY": 93,
                     "offsetForAdjustedBoundsLeft": 0,
@@ -216,7 +216,7 @@
           ],
           "Stomp": [
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/StompEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/StompEnemyTileSet.png",
                     "positionX": 120,
                     "positionY": 35,
                     "offsetForAdjustedBoundsLeft": 8,
@@ -235,7 +235,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/StompEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/StompEnemyTileSet.png",
                     "positionX": 108,
                     "positionY": 64,
                     "offsetForAdjustedBoundsLeft": 8,
@@ -254,7 +254,7 @@
                     "lifeCount": 1
                },
                {
-                    "texture": "../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/StompEnemyTileSet.png",
+                    "texture": "./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/4 Enemies/StompEnemyTileSet.png",
                     "positionX": 108,
                     "positionY": 72,
                     "offsetForAdjustedBoundsLeft": 8,

@@ -18,6 +18,7 @@ AssetManager::~AssetManager()
 	{
 		delete it.second;
 	}
+	m_texturePathToTexture.clear();
 }
 
 sf::Texture* AssetManager::loadTexture(const char* assetPath)

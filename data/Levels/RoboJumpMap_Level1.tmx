@@ -20,11 +20,11 @@
  </layer>
  <layer id="3" name="MainLayer" width="200" height="130">
   <data encoding="base64" compression="zlib">
-   eJzt3FtqU1EYBeDdNIm2zkDtZQZeWt90ICrqDNpSHcCBCuocvLx4efHy4mUKgjPwwbG4Sgs9bd1gSk4S0u+DBZtAYD+cBfuQP7sUAAAAAAAAAAAAAAAAAAAAAADm2aBXyjC50Jv2TmD2XE4vriRX9QNOuZZeXE9u6AcAMEHD/lEAgMl4sFjKw+TR4rR3ArNnN714nDzRD+ZQ+/3rLO9gz9KL58kL/QAAAGACzMJCnVlYqDMLCwAAAN35438f8E8/043fya/DjtwelHJnMN09AQAAAAAAAADdu9gr6yvJzWTae4FZs5RerCYb+gGnLKcXa8mmfgAAjKR9r3ptDedV+1712hrOq/a96rU1AAAAAAAAMB9qcyTmS6A+R2K+BOpzJOZLAAAAAAAAAAAAAAAAAAAAAAAA4Ij7HaHO/Y5Q535HAIDx8n4Odd7Poe4s7+cv+6W8Sl4nb/rd7Q323c0zdi+5f5Am6yafNf/7/fYZaZznpaWFUpaTSwvHP3+bfb5L3icf9IOObeUZ2052DtJk3WyN0I/2GWmc56XV9GItWT/Rj4/Z56fkc/JFP+jYXp6xp8nwMFk3eyP0o31GGufvGRvpxWZy60Q/vmaP35LvyQ/9AAAAAAAAAAAAAAAAAAAAAACAufQXpEdI+w==
+   eJzt3F1KlFEcBvDjODOl7SBN3YGVdlcLKal2oJEt4AWFag993PRx08dN1hYCN9UjBr4pBxqZeWcYfz944DAgnIv3gXPwzykFAAAAAAAAAAAAAAAAAAAAAIB5NuiVMkyu9aa9E5g9N9OLlWRVP+CCzfTidnJHPwCADg37ZwEAuvF4sZQnydPFae8EZs/z9GI/eaEfzKH2/esyd7CX6cWr5LV+AAAA0AGzsFBnFhbqzMICAAAA0LXf/VKOWzN59welPBhMbz8AAAAAAAAAQDeu98rGreRuMu29wKxZSi/Wki39gAuW04v1ZFs/AABG0n5XvbaGq6r9rnptDVdV+1312hoAAAAAAACYD7U5EvMlUJ8jMV8C9TkS8yUAAAAAAAAAAAAAAAAAAAAAAABwxvuOUOd9R6jzviMAwHi5n0Od+znUXeZ+/qZfytvkXfK+P7m9wYmH+cYeJTunabJu8lvzv3/fPiON87y0tFDKcnJj4d/fP2SfH5NPyWf9YMJ2843tJc9O02Td7I7Qj/YZaZznpbX0Yj3ZONePL9nn1+Rb8l0/mLCDfGOHyfBvsm4ORuhH+4w0zv9nbKUX28m9c/34kT0eJT+TX/oBAAAAAAAAAAAAAAAAAAAAAABz6Q/eo0c7
   </data>
  </layer>
  <objectgroup id="6" name="GroundsLayer">
-  <object id="5" name="Zone1Ground" x="736" y="784" width="240" height="15.3333"/>
+  <object id="5" name="Zone1Ground" x="736" y="784" width="240" height="223.333"/>
   <object id="6" name="Zone1Ground" x="531" y="752" width="218" height="2"/>
   <object id="17" name="Zone1Ground" x="563" y="496" width="42" height="2"/>
   <object id="18" name="Zone1Ground" x="563" y="688" width="42" height="2"/>

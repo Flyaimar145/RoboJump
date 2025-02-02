@@ -17,8 +17,9 @@ bool Game::init()
 
 	json gameConfigInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
 
-	m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>());
-	//m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>(), sf::Style::Fullscreen);
+	//Toggle these two lines to switch between fullscreen and windowed mode (fullscreen is recommended)
+	//m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>());
+	m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>(), sf::Style::Fullscreen);
 
 	m_window->setFramerateLimit(gameConfigInfo["frameRateLimit"]);
 
@@ -69,6 +70,8 @@ void Game::update(uint32_t deltaMilliseconds)
 			m_uiManager->getMainMenuScreen()->update(deltaMilliseconds);
 			if (m_uiManager->getMainMenuScreen()->getExitGame())
 			{
+				AudioManager::getInstance()->stopCurrentMusic();
+				AudioManager::getInstance()->stopAllSounds();
 				m_window->close();
 			}
 			if (m_uiManager->getMainMenuScreen()->getGoToNextScreen())

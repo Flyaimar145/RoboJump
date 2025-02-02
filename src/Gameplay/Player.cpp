@@ -97,11 +97,11 @@ void Player::update(float deltaMilliseconds)
 		m_liveAmountChanged = false;
 		if (m_lifeCount <= 1)
 		{
-			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png"));
+			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2_1Live.png"));
 		}
 		else 
 		{
-			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("../data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png"));
+			m_sprite.setTexture(*AssetManager::getInstance()->getTexture("./data/Levels/images/png/craftpix-net-396765-free-simple-platformer-game-kit-pixel-art/1 Main Characters/MainCharacter2.png"));
 		}
 	}
 
