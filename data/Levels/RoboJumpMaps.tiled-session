@@ -5,18 +5,18 @@
     },
     "activeFile": "RoboJumpMap_Level1.tmx",
     "expandedProjectPaths": [
-        "images/tilemap",
         ".",
+        "images/tilemap",
         "images"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "RoboJumpMap_Level1.tmx": {
-            "scale": 1,
-            "selectedLayer": 3,
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 934.5,
-                "y": 975.5
+                "x": 1761,
+                "y": 1128.3333333333333
             }
         },
         "demo.tmx": {
@@ -55,6 +55,10 @@
             "scaleInDock": 3,
             "scaleInEditor": 4
         },
+        "images/tilemap/KeyboardKeysTileSet.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
         "images/tilemap/LocationsTileset.tsx": {
             "scaleInDock": 1.5,
             "scaleInEditor": 3
@@ -65,7 +69,7 @@
         }
     },
     "frame.defaultDuration": 100,
-    "last.imagePath": "C:/Users/flyai/Desktop/Master ProgVideoj/ProgramacionC++/GitHubRoboJumpProject/RoboJump/data/Levels/images/png/treasure chest 64x64",
+    "last.imagePath": "C:/Users/flyai/Desktop/Master ProgVideoj/ProgramacionC++/GitHubRoboJumpProject/RoboJump/data/Levels/images/png/Keyboard",
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": "3",
     "map.tileHeight": 16,
@@ -74,25 +78,26 @@
     "openFiles": [
         "RoboJumpMap_Level1.tmx",
         "images/tilemap/GUITileset.tsx",
-        "images/tilemap/GemsTileset.tsx",
         "images/tilemap/BackgroundsTileset.tsx",
         "demo.tmx",
         "images/tilemap/FlagsTileset.tsx",
         "images/tilemap/LocationsTileset.tsx",
         "images/tilemap/TrapsTileset.tsx",
-        "images/tilemap/ChestTileSet.tsx"
+        "images/tilemap/ChestTileSet.tsx",
+        "images/tilemap/KeyboardKeysTileSet.tsx"
     ],
     "project": "RoboJumpMaps.tiled-project",
     "recentFiles": [
+        "images/tilemap/KeyboardKeysTileSet.tsx",
         "images/tilemap/ChestTileSet.tsx",
         "images/tilemap/TrapsTileset.tsx",
         "images/tilemap/LocationsTileset.tsx",
         "images/tilemap/FlagsTileset.tsx",
         "demo.tmx",
         "images/tilemap/BackgroundsTileset.tsx",
-        "images/tilemap/GemsTileset.tsx",
         "images/tilemap/GUITileset.tsx",
         "RoboJumpMap_Level1.tmx",
+        "images/tilemap/GemsTileset.tsx",
         "images/tilemap/BoxesTileset.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",

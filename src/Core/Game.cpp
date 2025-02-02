@@ -1,4 +1,5 @@
 #include <cassert>
+#include <Core/AudioManager.h>
 #include <Core/Game.h>
 #include <Core/World.h>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -16,14 +17,24 @@ bool Game::init()
 
 	json gameConfigInfo = loadJsonFromFile(GAMEINFOJSON_CONFIG)["GameInfo"];
 
-	//m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>());
-	m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>(), sf::Style::Fullscreen);
+	m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>());
+	//m_window = new sf::RenderWindow({ gameConfigInfo["screenWidth"], gameConfigInfo["screenHeight"] }, gameConfigInfo["gameTitle"].get<std::string>(), sf::Style::Fullscreen);
 
 	m_window->setFramerateLimit(gameConfigInfo["frameRateLimit"]);
 
 	m_uiManager = new UIManager();
 	const bool uiManagerLoaded = m_uiManager->load();
 
+	const bool audioLoaded = AudioManager::getInstance()->loadAllAudio();
+	if (!audioLoaded)
+	{
+		printf("Error: Could not load audio\n");
+		return false;
+	}
+	else
+	{
+		AudioManager::getInstance()->playMusic(MusicType::MainMenu, true, 50);
+	}
 	return uiManagerLoaded;
 }
 
@@ -62,6 +73,9 @@ void Game::update(uint32_t deltaMilliseconds)
 			m_uiManager->getMainMenuScreen()->update(deltaMilliseconds);
 			if (m_uiManager->getMainMenuScreen()->getGoToNextScreen())
 			{
+				AudioManager::getInstance()->stopCurrentMusic();
+				AudioManager::getInstance()->playSound(SoundType::StartGame);
+
 				this->setGameState(GameState::Playing);
 				m_uiManager->getMainMenuScreen()->setGoToNextScreen(false);
 			}
@@ -73,22 +87,27 @@ void Game::update(uint32_t deltaMilliseconds)
 			{
 				m_world = new World();
 				m_isWorldLoaded = m_world->load();
+				AudioManager::getInstance()->playMusic(MusicType::Game, true, 25);
 			}
 			else if (m_world->getIsPlayerDead())
 			{
+				AudioManager::getInstance()->stopCurrentMusic();
 				delete m_world;
 				m_world = nullptr;
 				m_isWorldLoaded = false;
 				m_window->setView(m_window->getDefaultView());
 				this->setGameState(GameState::GameOver);
+				AudioManager::getInstance()->playSound(SoundType::GameOver);
 			}
 			else if (m_world->getPlayerHasReachedVictory())
 			{
+				AudioManager::getInstance()->stopCurrentMusic();
 				delete m_world;
 				m_world = nullptr;
 				m_isWorldLoaded = false;
 				m_window->setView(m_window->getDefaultView());
 				this->setGameState(GameState::Victory);
+				AudioManager::getInstance()->playSound(SoundType::Victory);
 			}
 			else
 			{
@@ -103,6 +122,7 @@ void Game::update(uint32_t deltaMilliseconds)
 			{
 				this->setGameState(GameState::MainMenu);
 				m_uiManager->getGameOverScreen()->setGoToNextScreen(false);
+				AudioManager::getInstance()->playMusic(MusicType::MainMenu, true, 25);
 			}
 
 			break;
@@ -114,6 +134,7 @@ void Game::update(uint32_t deltaMilliseconds)
 			{
 				this->setGameState(GameState::MainMenu);
 				m_uiManager->getVictoryScreen()->setGoToNextScreen(false);
+				AudioManager::getInstance()->playMusic(MusicType::MainMenu, true, 50);
 			}
 			break;
 		}

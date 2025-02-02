@@ -1,3 +1,4 @@
+#include <Core/AudioManager.h>
 #include <Gameplay/Enemies/Frog.h>
 
 
@@ -31,6 +32,7 @@ void Frog::update(float deltaMilliseconds)
 	{
 		if (!m_attackAnimationStarted)
 		{
+			AudioManager::getInstance()->playSound(SoundType::FrogAttack);
 			m_currentFrame = 0;
 			m_attackAnimationStarted = true;
 		}

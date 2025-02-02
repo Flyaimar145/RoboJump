@@ -7,6 +7,7 @@
  <tileset firstgid="622" source="images/tilemap/LocationsTileset.tsx"/>
  <tileset firstgid="798" source="images/tilemap/TrapsTileset.tsx"/>
  <tileset firstgid="1176" source="images/tilemap/ChestTileSet.tsx"/>
+ <tileset firstgid="1208" source="images/tilemap/KeyboardKeysTileSet.tsx"/>
  <layer id="1" name="BackgroundLayer" width="200" height="130">
   <data encoding="base64" compression="zlib">
    eJztnP2u00YQRy3+p8Utt/QFoHWgoS9QyldbXgBoL9DyjjwD79VZKVHdvXbswYlnxnN+0kgcba43EvZmTtZO0xBCCCGEkEvlT6nXUm+k3sKm/E7qvdRfUtcBeI15rHNH6rbUV1Jfw6b8rdRdqVbqmwC8xjzW+VHqvtQDqR9gU34o9Uiqk9oF4DXmsc5TqV+knkj9CpvyC6mXUs+kngfgNeaxjqf+Oztb+wT+cTOe+u/sbO0T+MfNeOq/s7O1T+AfN+Np/czO9fpp7Rf4h6/1MzvX66e1X+Afvr6/yc71+mntF/iHr+9vsnO9flr7Bf7hq//OzvgH/gHjH/gHjH/gHzD+gX+cnz/f8tHve2P8A/8oXK4PD/2+N8Y/8vpHuSas+vsytwe/wD/wjzEu56hVf1/m9uAX+Af+AeMf+AeMf+AfMP6Bf/jpv7Mz/oF/wPgH/gHjH/hHlP2PI5f3YDn/KS7nAv6R1z8s9z+OXN6DJ9/o89B6bO0X+Iev/ntrXK+HU+P4B/4RkXcD4/W5PMcnpsbxj7z+EZG7kfGh3uLJgfuvr9fDqf0O/COvf0TjtsfdwHh9Ls/Zz5gaxz/y+kdxY2sfWMK7iutzeYmPdCPj1n6Bf6zXz5frw4tPnMM/jvxs5O+7gdcP+cjuMD60Hlv7Bf7hq9+PzrV/TPlG32e4/wr/iMDtyHjfR3ZfePwxH+lGxq39Av/w09975G7m67se12ugxkfwj7z+kYXrNVBzvxX+kdc/PNx/tQbXa+Cp17P/gX94uv9qDa7XQI2P4B/4B8zzH/gHzPMf+AfM8+f4R3z/4Pev8I8vTYb7r7z+3u+V1HdS96S+b/CPzP5hef+V19/7/UlqL/VY6ucG/8A/bPZDvP7+7m9Sv0v9IfWqwT8y+wd8kz9I/S31j9THBv/I7B8w/oF/wPgH/gHjH/gHjH/gH5768a3zlG8ceX8oa7/AP3z141vno2+0h5r7/Ef5Gw++gX/Al+Qp3zjyvsE/8I983PeN8n/fXy8fN/gH/rEtrn1Cy/V6ua/Y2i/wD1/9eTSu9y+03B3+rX3+/KrBP9bK08ZPfx6Na5/QMs+f4x9b5nr/QstlfSyfH3OfP79q8vnHHF76OX4qnvr5aLzUP6Z4qk8/9/E8+sccXvo5njER/OP6xHhZG8v5fco/tPNF9I85vPRzPGMi+McYdwee6tO1x4/oH3N46ed0xnj3j/3EeLlGpvpu7fz4h94/tppI/nE9Mt4euB3hS/tPFMY/9IngH3P2R/o+UvvJpeePwviHPpH9o/Dx/sX+eNv8308uOX8kxj/08e4fGm4vfPzojH/oE8k/hrg9cDcx7qH/t2b8Q58t+MeQj3QrzheF8Q99ovtH4do/tONZGP/QZ0v+0eeu+W9/xEv/b834hz7R/aPP3YWPH53xD3226B8w/nGubME/YPzjUtmqf8D4xzmyJf+A8Y9zB//Iw/iHPvhHHsY/9ME/8jD+oQ/+kYfxD33wjzyMf+iDf+Rh/EMf/CMP4x/64B95GP/QB//Iw/iHPvhHHsY/9ME/8jD+oQ/+kYfxD33wjzyMf+iDf+Rh/EMf/CMP4x/64B95GP/QB//Iw/iHPvhHHsY/9ME/8jD+oQ/+kYfxD33wjzyMf+iDf+Rh/EOfKP7x+ZZ9/x6d8Q99ovhHuT6s+/fojH/oE8U/yvVh3b9HZ/xDnyj+Ua4P6/49OuMf+uAfy7hx9n5OMf6hD/6Rh/EPfSL5R12fFhwvI+Mf+kTxDxj/sEgU/4DxD4t4WNfgGJwxHtY1OAZnjIfvVeAYnDEevleBY3DGeOpvYd+cMZ76W9g3Z4yn/hb2zRnjqb+FfXPGeOpvYd+cMZ76W9g3Z4yn/hb2zYQQQgghhBBCCCGEEEIIIYSQvPkXpNglZg==
@@ -19,11 +20,11 @@
  </layer>
  <layer id="3" name="MainLayer" width="200" height="130">
   <data encoding="base64" compression="zlib">
-   eJzt3FlKXEEYBeCy7bRDdmCMugNNNIsxQd2BEXUBFxQS92CSF01eMrxk2F6OKHijFKSlJ9rvgwNFg1AP90AV/lQpAAAAAAAAAAAAAAAAAAAAAABMsyedUnrJXGfcO4HJs5RePEuW9QPuWU8vNpIX+gEAjFCvexsAYDR2ZkvZTfZmx70TmDyH6cVRcqwfTKH2/eshd7B36cX75Ew/AAAAGAGzsFBnFhbqzMICAAAAAAAAAAAAAAAwCvOdsvY8eZmMey8waRbSi5VkUz/gnsX0YjXZ0g8AgL6031WvreGxar+rXlvDY9V+V722BgAAAAAAAKZDbY7EfAnU50jMl0B9jsR8CQAAAAAAAAAAAAAAAAAAAAAAANzyviPUed8R6rzvCAAwWO7nUOd+DnUPuZ+fd0v5kHxMPnWHtze4sp1v7HXy5jpN1k1+a/7379tnpEGelxZmSllMns78+/tF9nmZfE6+6AdDtp9v7G1ycJ0m62a/j360z0iDPC+tpBerydqdfnzNPr8l35Mf+sGQneQbO016N8m6OemjH+0z0iD/n7GZXmwlr+7042f2+Cv5nfzRDwAAAAAAAAAAAAAAAAAAAAAAmEp/AXLgRR0=
+   eJzt3FtqU1EYBeDdNIm2zkDtZQZeWt90ICrqDNpSHcCBCuocvLx4efHy4mUKgjPwwbG4Sgs9bd1gSk4S0u+DBZtAYD+cBfuQP7sUAAAAAAAAAAAAAAAAAAAAAADm2aBXyjC50Jv2TmD2XE4vriRX9QNOuZZeXE9u6AcAMEHD/lEAgMl4sFjKw+TR4rR3ArNnN714nDzRD+ZQ+/3rLO9gz9KL58kL/QAAAGACzMJCnVlYqDMLCwAAAN35438f8E8/043fya/DjtwelHJnMN09AQAAAAAAAADdu9gr6yvJzWTae4FZs5RerCYb+gGnLKcXa8mmfgAAjKR9r3ptDedV+1712hrOq/a96rU1AAAAAAAAMB9qcyTmS6A+R2K+BOpzJOZLAAAAAAAAAAAAAAAAAAAAAAAA4Ij7HaHO/Y5Q535HAIDx8n4Odd7Poe4s7+cv+6W8Sl4nb/rd7Q323c0zdi+5f5Am6yafNf/7/fYZaZznpaWFUpaTSwvHP3+bfb5L3icf9IOObeUZ2052DtJk3WyN0I/2GWmc56XV9GItWT/Rj4/Z56fkc/JFP+jYXp6xp8nwMFk3eyP0o31GGufvGRvpxWZy60Q/vmaP35LvyQ/9AAAAAAAAAAAAAAAAAAAAAACAufQXpEdI+w==
   </data>
  </layer>
  <objectgroup id="6" name="GroundsLayer">
-  <object id="5" name="Zone1Ground" x="736" y="784" width="240" height="224"/>
+  <object id="5" name="Zone1Ground" x="736" y="784" width="240" height="15.3333"/>
   <object id="6" name="Zone1Ground" x="531" y="752" width="218" height="2"/>
   <object id="17" name="Zone1Ground" x="563" y="496" width="42" height="2"/>
   <object id="18" name="Zone1Ground" x="563" y="688" width="42" height="2"/>

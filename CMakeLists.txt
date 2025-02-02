@@ -22,72 +22,71 @@ FetchContent_MakeAvailable(TMXLITE)
 
 
 set(PROJECT_HEADERS 
-    include/Utils/Constants.h
-
     include/Core/AssetManager.h
+    include/Core/AudioManager.h
+    include/Core/AudioTypes.h    
     include/Core/CollisionManager.h
     include/Core/EnemyManager.h
-    include/Core/PickUpManager.h
     include/Core/Game.h
+    include/Core/Level.h    
+    include/Core/PickUpManager.h
     include/Core/World.h
-    include/Core/Level.h
+    
+    include/External/json.hpp
 
-    include/Gameplay/Enemies/Enemy.h
-    include/Gameplay/GameObject.h
-    include/Gameplay/Enemies/Stomp.h
-    include/Gameplay/Enemies/Frog.h
     include/Gameplay/Enemies/Cactus.h
-    include/Gameplay/Player.h
+    include/Gameplay/Enemies/Enemy.h
+    include/Gameplay/Enemies/Frog.h
+    include/Gameplay/Enemies/Stomp.h
     include/Gameplay/Entity.h
+    include/Gameplay/GameObject.h
     include/Gameplay/Gem.h
-    include/Gameplay/PowerUp.h
     include/Gameplay/PickUp.h
+    include/Gameplay/Player.h
+    include/Gameplay/PowerUp.h
 
     include/Render/SFMLOrthogonalLayer.h
 
-    include/UI/UIScreenMainMenu.h
-    include/UI/UIScreenVictory.h
-    include/UI/UIScreenGameOver.h
+    include/UI/HUD.h
     include/UI/UIManager.h
     include/UI/UIScreen.h
-    include/UI/HUD.h
+    include/UI/UIScreenGameOver.h
+    include/UI/UIScreenMainMenu.h
+    include/UI/UIScreenVictory.h
 
-
-    include/External/json.hpp
+    include/Utils/Constants.h
 )
 
 set(PROJECT_SOURCES 
+    src/main.cpp
 
     src/Core/AssetManager.cpp
+    src/Core/AudioManager.cpp
     src/Core/CollisionManager.cpp
     src/Core/EnemyManager.cpp
-    src/Core/PickUpManager.cpp
     src/Core/Game.cpp
-    src/Core/World.cpp
     src/Core/Level.cpp
+    src/Core/PickUpManager.cpp
+    src/Core/World.cpp
 
-    src/Gameplay/Enemies/Enemy.cpp
-    src/Gameplay/Enemies/Stomp.cpp
     src/Gameplay/Enemies/Cactus.cpp
+    src/Gameplay/Enemies/Enemy.cpp
     src/Gameplay/Enemies/Frog.cpp
-    src/Gameplay/Player.cpp
+    src/Gameplay/Enemies/Stomp.cpp
     src/Gameplay/Entity.cpp
     src/Gameplay/Gem.cpp
-    src/Gameplay/PowerUp.cpp
     src/Gameplay/PickUp.cpp
-
+    src/Gameplay/Player.cpp
+    src/Gameplay/PowerUp.cpp
 
     src/Render/SFMLOrthogonalLayer.cpp
 
-    src/UI/UIScreenMainMenu.cpp
-    src/UI/UIScreenVictory.cpp
-    src/UI/UIScreenGameOver.cpp
+    src/UI/HUD.cpp
     src/UI/UIManager.cpp
     src/UI/UIScreen.cpp
-    src/UI/HUD.cpp
-
-
-    src/main.cpp
+    src/UI/UIScreenGameOver.cpp
+    src/UI/UIScreenMainMenu.cpp
+    src/UI/UIScreenVictory.cpp
 )
 
 set(PROJECT_FILES 
@@ -101,7 +100,7 @@ add_executable(${PROJECT_NAME} ${PROJECT_FILES})
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics tmxlite)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-audio tmxlite)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC DEBUG_MODE=1)

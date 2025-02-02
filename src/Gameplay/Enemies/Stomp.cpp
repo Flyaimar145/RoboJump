@@ -1,3 +1,4 @@
+#include <Core/AudioManager.h>
 #include <Gameplay/Enemies/Stomp.h>
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -42,6 +43,7 @@ void Stomp::update(float deltaMilliseconds)
 		
 		if (!m_attackAnimationStarted)
 		{
+			AudioManager::getInstance()->playSound(SoundType::StompAttack);
 			m_speed.x = 0.f;
 			m_currentFrame = 0;
 			m_attackAnimationStarted = true;

@@ -8,14 +8,15 @@ bool Entity::init(const EntityDescriptor& entityDescriptor)
 	m_speed = entityDescriptor.speed;
 
 	m_sprite.setTexture(*entityDescriptor.firstTexture);
+	m_sprite.setPosition(entityDescriptor.position);
+	this->setPosition(entityDescriptor.position);
+
 	m_tileWidth = entityDescriptor.tileWidth;
 	m_tileHeight = entityDescriptor.tileHeight;
 	m_offsetForAdjustedBoundsLeft = entityDescriptor.offsetForAdjustedBoundsLeft;
 	m_offsetForAdjustedBoundsTop = entityDescriptor.offsetForAdjustedBoundsTop;
 	m_offsetForAdjustedBoundsWidth = entityDescriptor.offsetForAdjustedBoundsWidth;
 	m_offsetForAdjustedBoundsHeight = entityDescriptor.offsetForAdjustedBoundsHeight;
-	
-	this->setPosition(entityDescriptor.position);
 	
 	m_lifeCount = entityDescriptor.lifeCount;
 

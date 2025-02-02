@@ -254,7 +254,7 @@
                     "tileHeight": 48,
                     "totalFrames": 8,
                     "deathAnimationTotalFrames": 7,
-                    "initialDirectionX": -1,
+                    "initialDirectionX": 1,
                     "initialDirectionY": 0,
                     "lifeCount": 1
                }

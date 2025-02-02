@@ -1,3 +1,4 @@
+#include <Core/AudioManager.h>
 #include <Core/AssetManager.h>
 #include <External/json.hpp>
 #include <Gameplay/Player.h>
@@ -73,6 +74,7 @@ void Player::update(float deltaMilliseconds)
 
 	if ((isJumpingInput && !m_isJumping) || m_makeJump)
 	{
+		AudioManager::getInstance()->playSound(SoundType::PlayerJump);
 		m_makeJump = false;
 		m_isJumping = true;
 		m_speed.y = -m_jumpSpeed;
@@ -117,6 +119,7 @@ void Player::update(float deltaMilliseconds)
 	{
 		if (!m_damageAnimationStarted)
 		{
+			AudioManager::getInstance()->playSound(SoundType::EntityHurt);
 			m_currentFrame = 0;
 			m_damageAnimationStarted = true;
 			m_lifeCount--;
@@ -140,6 +143,7 @@ void Player::update(float deltaMilliseconds)
 	{
 		if (!m_deathAnimationStarted)
 		{
+			AudioManager::getInstance()->playSound(SoundType::EntityDeath);
 			m_currentFrame = 0;
 			m_deathAnimationStarted = true;
 		}

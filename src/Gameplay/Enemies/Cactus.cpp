@@ -1,3 +1,4 @@
+#include <Core/AudioManager.h>
 #include <Gameplay/Enemies/Cactus.h>
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -27,6 +28,7 @@ void Cactus::update(float deltaMilliseconds)
 	{
 		if (!m_damageAnimationStarted)
 		{
+			AudioManager::getInstance()->playSound(SoundType::EntityHurt);
 			m_currentFrame = 0;
 			m_damageAnimationStarted = true;
 			m_lifeCount--;
@@ -50,6 +52,7 @@ void Cactus::update(float deltaMilliseconds)
 	{
 		if (!m_deathAnimationStarted)
 		{
+			AudioManager::getInstance()->playSound(SoundType::EntityDeath);
 			m_currentFrame = 0;
 			m_deathAnimationStarted = true;
 		}

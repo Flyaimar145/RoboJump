@@ -1,0 +1,19 @@
+{
+    "Music":
+    {
+        "MainMenu": "../data/Audio/Music/RoboJumpMainMenu.mp3",
+        "Game": "../data/Audio/Music/RoboJumpGame.mp3"
+    },
+    "FX":
+    {
+        "EntityDeath": "../data/Audio/FX/EntityDeath.mp3",
+        "EntityHurt": "../data/Audio/FX/EntityHurt.mp3",
+        "FrogAttack": "../data/Audio/FX/FrogAttack.mp3",
+        "GameOver": "../data/Audio/FX/GameOver.mp3",
+        "PickUpCollected": "../data/Audio/FX/PickUpCollected.mp3",
+        "PlayerJump": "../data/Audio/FX/PlayerJump.mp3",
+        "StartGame": "../data/Audio/FX/StartGame.mp3",
+        "StompAttack": "../data/Audio/FX/StompAttack.mp3",
+        "Victory": "../data/Audio/FX/Victory.mp3"
+    }
+}

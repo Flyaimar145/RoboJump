@@ -1,3 +1,4 @@
+#include <Core/AudioManager.h>
 #include <Core/CollisionManager.h>
 #include <Core/EnemyManager.h>
 #include <Core/Level.h>
@@ -243,38 +244,38 @@ void World::checkPlayerEnemiesCollisions()
 		{
 			switch (enemy->getEnemyType())
 			{
-			case Enemy::EnemyType::Cactus:
-				if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < enemy->getAdjustedBounds().top && m_player->getSpeed().y > 0.f)
-				{
-					m_player->setMakeJump(true);
-					enemy->setHasTakenDamage(true);
-				}
-				else
-				{
+				case Enemy::EnemyType::Cactus:
+					if (m_player->getAdjustedBounds().top + m_player->getAdjustedBounds().height - 5.f < enemy->getAdjustedBounds().top && m_player->getSpeed().y > 0.f)
+					{
+						m_player->setMakeJump(true);
+						enemy->setHasTakenDamage(true);
+					}
+					else
+					{
+						if (enemy->getCanMakeDamage())
+						{
+							m_player->setHasTakenDamage(true);
+						}
+					}
+					break;
+
+				case Enemy::EnemyType::Frog:
+					enemy->onPlayerCollision();
 					if (enemy->getCanMakeDamage())
 					{
 						m_player->setHasTakenDamage(true);
 					}
-				}
-				break;
+					break;
 
-			case Enemy::EnemyType::Frog:
-				enemy->onPlayerCollision();
-				if (enemy->getCanMakeDamage())
-				{
-					m_player->setHasTakenDamage(true);
-				}
-				break;
+				case Enemy::EnemyType::Stomp:
+					if (enemy->getCanMakeDamage())
+					{
+						m_player->setHasTakenDamage(true);
+					}
+					break;
 
-			case Enemy::EnemyType::Stomp:
-				if (enemy->getCanMakeDamage())
-				{
-					m_player->setHasTakenDamage(true);
-				}
-				break;
-
-			default:
-				break;
+				default:
+					break;
 			}
 		}
 	}
@@ -285,6 +286,7 @@ void World::checkPlayerPickUpsCollisions()
 	PickUp* collidedPickUp = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndPickUp(m_player, m_pickUpManager->getPickUpsVector());
 	if (collidedPickUp != nullptr)
 	{
+		AudioManager::getInstance()->playSound(SoundType::PickUpCollected);
 		switch (collidedPickUp->getPickUpType())
 		{
 			case PickUp::PickUpType::Gem:
