@@ -45,7 +45,8 @@ set(PROJECT_HEADERS
     include/Gameplay/Player.h
     include/Gameplay/PowerUp.h
 
-    include/Render/SFMLOrthogonalLayer.h
+    include/Render/MapLayer.h
+    include/Render/ObjectLayer.h
 
     include/UI/HUD.h
     include/UI/UIManager.h
@@ -79,7 +80,8 @@ set(PROJECT_SOURCES
     src/Gameplay/Player.cpp
     src/Gameplay/PowerUp.cpp
 
-    src/Render/SFMLOrthogonalLayer.cpp
+    src/Render/MapLayer.cpp
+    src/Render/ObjectLayer.cpp
 
     src/UI/HUD.cpp
     src/UI/UIManager.cpp

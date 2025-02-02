@@ -1,9 +1,11 @@
 #include <Core/Level.h>
 #include <External/json.hpp>
 #include <tmxlite/Map.hpp>
-#include <Render/SFMLOrthogonalLayer.h>
+#include <Render/MapLayer.h>
+#include <Render/ObjectLayer.h>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <Utils/Constants.h>
+
 
 using json = nlohmann::json;
 

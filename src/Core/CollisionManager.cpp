@@ -2,7 +2,8 @@
 #include <Gameplay/Enemies/Enemy.h>
 #include <Gameplay/PickUp.h>
 #include <Gameplay/Player.h>
-#include <Render/SFMLOrthogonalLayer.h>
+#include <Render/MapLayer.h>
+#include <Render/ObjectLayer.h>
 
 
 CollisionManager* CollisionManager::s_instance{ nullptr };

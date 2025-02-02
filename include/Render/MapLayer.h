@@ -31,36 +31,18 @@ This is an example of drawing with SFML - not all features
 are implemented.
 */
 
-#ifndef SFML_ORTHO_HPP_
-#define SFML_ORTHO_HPP_
-
-#include <tmxlite/Map.hpp>
-#include <tmxlite/detail/Log.hpp>
-#include <tmxlite/Layer.hpp>
-#include <tmxlite/ObjectGroup.hpp>
-#include <tmxlite/TileLayer.hpp>
-
-#include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/ConvexShape.hpp>
+#include <iostream>
 #include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/Vertex.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Vertex.hpp>
 #include <SFML/System/Time.hpp>
-#include <SFML/System/Vector2.hpp>
-
-#include <memory>
-#include <vector>
-#include <array>
-#include <map>
-#include <string>
-#include <limits>
-#include <iostream>
-#include <cmath>
-
+#include <tmxlite/Layer.hpp>
+#include <tmxlite/Map.hpp>
+#include <tmxlite/ObjectGroup.hpp>
+#include <tmxlite/TileLayer.hpp>
 
 class MapLayer final : public sf::Drawable
 {
@@ -176,17 +158,3 @@ private:
     void draw(sf::RenderTarget& rt, sf::RenderStates states) const override;
 };
 
-class ObjectLayer : public sf::Drawable, public sf::Transformable
-{
-public:
-    ObjectLayer(const tmx::Map& map, std::size_t layerID);
-    const std::vector<sf::Shape*>& getShapes() const;
-
-private:
-    sf::Shape* createShape(const tmx::Object& object);
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
-    std::vector<sf::Shape*> m_shapes;
-};
-
-#endif //SFML_ORTHO_HPP_

@@ -5,8 +5,8 @@
     },
     "activeFile": "RoboJumpMap_Level1.tmx",
     "expandedProjectPaths": [
-        ".",
         "images/tilemap",
+        ".",
         "images"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -15,8 +15,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1761,
-                "y": 1128.3333333333333
+                "x": 1076.3333333333333,
+                "y": 894.3333333333333
             }
         },
         "demo.tmx": {
