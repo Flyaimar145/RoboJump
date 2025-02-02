@@ -13,10 +13,12 @@ enum class SoundType
 {
     EntityDeath,
     EntityHurt,
+	ExtraLifeCollected,
     FrogAttack,
     GameOver,
-    PickUpCollected,
+    GemCollected,
     PlayerJump,
+	SpeedBoostCollected,
     StartGame,
     StompAttack,
     Victory
@@ -48,10 +50,12 @@ inline SoundType parseSoundType(const std::string& soundType)
     {
         {"EntityDeath", SoundType::EntityDeath},
         {"EntityHurt", SoundType::EntityHurt},
+		{"ExtraLifeCollected", SoundType::ExtraLifeCollected},
         {"FrogAttack", SoundType::FrogAttack},
         {"GameOver", SoundType::GameOver},
-        {"PickUpCollected", SoundType::PickUpCollected},
+        {"GemCollected", SoundType::GemCollected},
         {"PlayerJump", SoundType::PlayerJump},
+		{"SpeedBoostCollected", SoundType::SpeedBoostCollected},
         {"StartGame", SoundType::StartGame},
         {"StompAttack", SoundType::StompAttack},
         {"Victory", SoundType::Victory}

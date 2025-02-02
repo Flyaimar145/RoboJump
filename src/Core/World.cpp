@@ -266,11 +266,11 @@ void World::checkPlayerPickUpsCollisions()
 	PickUp* collidedPickUp = CollisionManager::getInstance()->checkCollisionBetweenPlayerAndPickUp(m_player, m_pickUpManager->getPickUpsVector());
 	if (collidedPickUp != nullptr)
 	{
-		AudioManager::getInstance()->playSound(SoundType::PickUpCollected);
 		switch (collidedPickUp->getPickUpType())
 		{
 			case PickUp::PickUpType::Gem:
 			{
+				AudioManager::getInstance()->playSound(SoundType::GemCollected);
 				int gemValue = collidedPickUp->returnInfoOnPlayerCollision();
 				m_player->addScore(gemValue);
 				break;
@@ -281,9 +281,11 @@ void World::checkPlayerPickUpsCollisions()
 				switch (powerUpType)
 				{
 					case 0:
+						AudioManager::getInstance()->playSound(SoundType::ExtraLifeCollected);
 						m_player->addLife();
 						break;
 					case 1:
+						AudioManager::getInstance()->playSound(SoundType::SpeedBoostCollected);
 						m_player->applySpeedBoost();
 						break;
 					default:

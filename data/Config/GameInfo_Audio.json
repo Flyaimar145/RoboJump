@@ -8,10 +8,12 @@
     {
         "EntityDeath": "../data/Audio/FX/EntityDeath.mp3",
         "EntityHurt": "../data/Audio/FX/EntityHurt.mp3",
+        "ExtraLifeCollected": "../data/Audio/FX/ExtraLifeCollected.mp3",
         "FrogAttack": "../data/Audio/FX/FrogAttack.mp3",
         "GameOver": "../data/Audio/FX/GameOver.mp3",
-        "PickUpCollected": "../data/Audio/FX/PickUpCollected.mp3",
+        "GemCollected": "../data/Audio/FX/GemCollected.mp3",
         "PlayerJump": "../data/Audio/FX/PlayerJump.mp3",
+        "SpeedBoostCollected": "../data/Audio/FX/SpeedBoostCollected.mp3",
         "StartGame": "../data/Audio/FX/StartGame.mp3",
         "StompAttack": "../data/Audio/FX/StompAttack.mp3",
         "Victory": "../data/Audio/FX/Victory.mp3"
