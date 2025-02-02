@@ -33,6 +33,11 @@ In RoboJump, you control a robot navigating through a level divided in 3 zones f
 - Power ups: Collect up to 2 power ups, extra lives and speed boosts.
 - AI: Some enemies have basic player detection so they know when to attack.
 
+## Controls
+
+- Move left and right with A/D.
+- Jump with spacebar.
+
 ## Technical challenges faced in the development
 
 - Class hierarchy: Making a good class hierarchy for some elements of the game has not been easy, specially since some of them are controlled through a manager that must manage them in a generic way.
