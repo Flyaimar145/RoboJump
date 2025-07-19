@@ -8,7 +8,7 @@
     },
     "UIScreens":
     {
-        "mainMenuScreenTexturePath": "./data/Images/GameScreens/RoboJumpMainScreen_4.png",
+        "mainMenuScreenTexturePath": "./data/Images/GameScreens/RoboJumpMainScreen_5.png",
         "gameOverScreenTexturePath": "./data/Images/GameScreens/GameOverScreen_4.png",
         "victoryScreenTexturePath": "./data/Images/GameScreens/VictoryScreen_3.png"
     }
